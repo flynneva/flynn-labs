@@ -9,3 +9,4 @@ deploy:
   provider: gae
   keyfile: "MY FILE"
   project: "MY PROJECT ID"
+  edge: true
