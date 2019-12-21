@@ -7,7 +7,7 @@ script:
 - echo "Hello world"
 deploy:
   provider: gae
-  keyfile: flynn-labs-b4dc0d737627.json.enc
+  keyfile: './deploy/flynn-labs-b4dc0d737627.json'
   project: flynn-labs
   on: master
   edge: true
