@@ -4,11 +4,12 @@ python:
 install:
 - pip install -r requirements.txt
 script:
-- python main.py
+- echo "Hello world"
 deploy:
   provider: gae
-  keyfile: MY FILE
-  project: MY PROJECT ID
+  keyfile: flynn-labs-b4dc0d737627.json.enc
+  project: flynn-labs
+  on: master
   edge: true
 before_install:
 - openssl aes-256-cbc -K $encrypted_cb887607c220_key -iv $encrypted_cb887607c220_iv
