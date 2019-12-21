@@ -5,6 +5,8 @@ python:
 install:
   - pip install -r requirements.txt
 
+script:
+  - python main.py
 deploy:
   provider: gae
   keyfile: "MY FILE"
