@@ -3,7 +3,7 @@ python:
 - '3.6'
 before_install:
 - openssl aes-256-cbc -K $encrypted_cb887607c220_key -iv $encrypted_cb887607c220_iv
-  -in t_key.json.enc -out t_key.json -d
+  -in ./deploy/t_key.json.enc -out ./deploy/t_key.json -d
 
 install:
 - pip install -r requirements.txt
