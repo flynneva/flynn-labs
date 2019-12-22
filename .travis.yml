@@ -1,11 +1,9 @@
 language: python
 python:
 - '3.6'
-
-# Decrypt Google API key
 before_install:
 - openssl aes-256-cbc -K $encrypted_cb887607c220_key -iv $encrypted_cb887607c220_iv
-  -in ./deploy/flynn-labs-b4dc0d737627.json.enc -out ./deploy/flynn-labs-b4dc0d737627.json -d
+  -in t_key.json.enc -out t_key.json -d
 
 install:
 - pip install -r requirements.txt
@@ -13,7 +11,7 @@ script:
 - echo "Hello world"
 deploy:
   provider: gae
-  keyfile: './deploy/flynn-labs-b4dc0d737627.json'
+  keyfile: "./deploy/t_key.json"
   project: flynn-labs
   on: master
   edge: true
