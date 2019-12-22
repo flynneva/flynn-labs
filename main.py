@@ -23,6 +23,7 @@ firebaseConfig["messagingSenderId"] = os.getenv('FIREBASE_MESSAGING_SENDER_ID')
 firebaseConfig["appId"] = os.getenv('FIREBASE_APP_ID')
 firebaseConfig["measurementId"] = os.getenv('FIREBASE_MEASUREMENT_ID')
 
+
 def store_time(email, dt):
     entity = datastore.Entity(key=datastore_client.key('User', email, 'visit'))
     entity.update({
