@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import datetime
+import json
 
 from flask import render_template
 
@@ -66,6 +67,14 @@ def college_mens_basketball():
   # get json list of games today from
   #https://data.ncaa.com/casablanca/scoreboard/basketball-men/d1/2019/12/23/scoreboard.json
   todaysGames = ncaa_data.getTodaysGames("basketball-men", "d1")
-
-  print(todaysGames)  
-  return render_template("college_basketball_men.html")
+  listOfGames = {}
+  i = 0
+  # iterate through json object and get relevant data
+  for game in todaysGames['games']:
+    awayTeam = game['game']['away']['names']['full']
+    homeTeam = game['game']['home']['names']['full']
+    #TODO: grab the rankings for each team too
+    listOfGames[i] = homeTeam + " vs " + awayTeam
+    i = i + 1
+  return render_template(
+    "college_basketball_men.html", listOfGames=listOfGames)

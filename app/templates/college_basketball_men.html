@@ -2,7 +2,20 @@
 {% block collegeBody %}
 <div>
   <div class="container">
-    <p>COLLEGE MENS BASKETBALL</p>
+    <table border="1">
+      <thead>
+          <tr>
+              <th>Todays Games</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for game in listOfGames %}
+          <tr>
+              <td>{{ listOfGames[game] }}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
 {% endblock %}
