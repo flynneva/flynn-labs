@@ -37,3 +37,17 @@ def index():
 @app.route('/about')
 def about():
     return render_template("about.html")
+
+
+@app.route('/sports')
+def sports():
+    return render_template("sports.html")
+
+@app.route('/finance')
+def finance():
+    return render_template("finance.html")
+
+
+@app.route('/robotics')
+def robotics():
+    return render_template("robotics.html")
