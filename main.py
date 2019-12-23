@@ -4,4 +4,5 @@
 from app import app
 
 if __name__ == '__main__':
-    app.run()
+  print("in main")
+  app.run(host='localhost', port=8080, debug=False)
