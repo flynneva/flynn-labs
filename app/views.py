@@ -9,6 +9,7 @@ from app import app
 
 from app import env
 from app import ds_helper
+from app import ncaa_data
 
 @app.route('/')
 def index():
@@ -51,3 +52,20 @@ def finance():
 @app.route('/robotics')
 def robotics():
     return render_template("robotics.html")
+
+@app.route('/sports/professional')
+def professional():
+    return render_template("professional.html")
+
+@app.route('/sports/college')
+def college():
+    return render_template("college.html")
+
+@app.route('/sports/college/basketball-men')
+def college_mens_basketball():
+  # get json list of games today from
+  #https://data.ncaa.com/casablanca/scoreboard/basketball-men/d1/2019/12/23/scoreboard.json
+  todaysGames = ncaa_data.getTodaysGames("basketball-men", "d1")
+
+  print(todaysGames)  
+  return render_template("college_basketball_men.html")

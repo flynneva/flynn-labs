@@ -7,7 +7,17 @@
 
 {% block body %}
 <div>
-  <h1>Sports</h1>
-  <p class="lead">Sports!</p>
+  <h2>Sports</h2>
+  <div class="container">
+    <div class="header clearfix">
+     <nav>
+       <ul class="nav nav-pills pull-left">
+         <li role="presentation"><a href="/sports/professional">Professional</a></li>
+         <li role="presentation"><a href="/sports/college">College</a></li>
+       </ul>
+     </nav>
+    </div>
+  </div>
+  {% block sportsBody %} {% endblock%}
 </div>
 {% endblock %}
