@@ -1,7 +1,3 @@
-import mimetypes
-
-mimetypes.add_type('text/css', '.css')
-
 'use strict';
 
 window.addEventListener('load', function () {

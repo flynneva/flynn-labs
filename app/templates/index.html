@@ -36,11 +36,9 @@ console.log(msg);
 alert(msg);
 }
 </script>
-<!-- [START gae_python37_auth_include_firebaseui] -->
 <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
 <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css">
-<!-- [END gae_python37_auth_include_firebaseui] -->
 <script type="text/jscript" src="{{ url_for('static', filename='script.js') }}"></script>
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 {% endblock %}
@@ -50,7 +48,6 @@ alert(msg);
 <div>
   <h1>Flynn Labs</h1>
   
-  <!-- [START gae_python37_auth_firebase_html] -->
   <div id="firebaseui-auth-container"></div>
   
   <button id="sign-out" hidden=true>Sign Out</button>
