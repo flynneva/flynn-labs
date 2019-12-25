@@ -63,7 +63,7 @@ def college():
     return render_template("college.html")
 
 @app.route('/sports/college/basketball-men')
-def college_mens_basketball():
+def college_basketball_men():
   # get json list of games today from
   #https://data.ncaa.com/casablanca/scoreboard/basketball-men/d1/2019/12/23/scoreboard.json
   todaysGames = ncaa_data.getTodaysGames("basketball-men", "d1")
@@ -73,8 +73,18 @@ def college_mens_basketball():
   for game in todaysGames['games']:
     awayTeam = game['game']['away']['names']['full']
     homeTeam = game['game']['home']['names']['full']
+    startTime = game['game']['startTime']
     #TODO: grab the rankings for each team too
-    listOfGames[i] = homeTeam + " vs " + awayTeam
+    listOfGames[i] = {'home': homeTeam, 'away': awayTeam, 'startTime': startTime }
+ 
     i = i + 1
   return render_template(
     "college_basketball_men.html", listOfGames=listOfGames)
+
+@app.route('/sports/college/basketball-men/<gameID>')
+def college_basketball_men_game(gameID):
+  return render_template("college_basketball_men_game.html", page=page)
+ 
+@app.errorhandler(404)
+def not_found_error(error):
+  return render_template('404.html', pic=pic), 404
