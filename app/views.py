@@ -4,7 +4,7 @@
 import datetime
 import json
 
-from flask import render_template
+from flask import render_template, jsonify
 
 from app import app
 
@@ -75,9 +75,9 @@ def college_basketball_men():
     homeTeam = game['game']['home']['names']['full']
     startTime = game['game']['startTime']
     #TODO: grab the rankings for each team too
-    listOfGames[i] = {'home': homeTeam, 'away': awayTeam, 'startTime': startTime }
- 
+    listOfGames[i] = [homeTeam, awayTeam, startTime]
     i = i + 1
+  print(listOfGames)
   return render_template(
     "college_basketball_men.html", listOfGames=listOfGames)
 

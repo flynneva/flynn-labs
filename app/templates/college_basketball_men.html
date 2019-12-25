@@ -10,6 +10,15 @@
               <th>Start Time</th>
           </tr>
       </thead>
+      <tbody>
+        {% for game in listOfGames %}
+        <tr>
+          <td>{{ listOfGames[game][0] }}</td>
+          <td>{{ listOfGames[game][1] }}</td>
+          <td>{{ listOfGames[game][2] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
       <tfoot>
         <tr>
           <th>Home Team</th>
@@ -18,26 +27,6 @@
         </tr>
       </tfoot>
     </table>
-    <script>
-    function setupData() {
-      $(document).ready(function() {
-          $('#example').DataTable( {
-              "ajax": {
-                  // "url": "static/objects2.txt", // This works for the static file
-                  "url": "/sports/college/basketball-men",
-                  "dataType": "json",
-                  "contentType": "application/json"
-              },
-              "columns": [
-                  { "data": "home" },
-                  { "data": "away" },
-                  { "data": "start_time" },
-              ]
-          } );
-      } );
-    }
-    $( window ).on( "load", setupData );
-    </script>
   </div>
 </div>
 {% endblock %}
