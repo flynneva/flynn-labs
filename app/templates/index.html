@@ -2,6 +2,9 @@
 {% block title %}Home{% endblock %}
 {% block head %}
 
+<!-- Bootstrap core CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
 <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
 
@@ -13,9 +16,6 @@
 
 <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css">
-
-<!-- Bootstrap core CSS -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- See https://github.com/firebase/firebaseui-web. -->
 <script>
@@ -42,9 +42,6 @@ console.log(msg);
 alert(msg);
 }
 </script>
-<script type="text/jscript" src="{{ url_for('static', filename='script/script.js') }}"></script>
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
-<script type="text/javascript" src="{{ url_for('static', filename='script/tableHelp.js') }}"></script>
 {% endblock %}
 
 {% block body %}

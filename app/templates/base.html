@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>{% block title %}{% endblock %}</title>
+    
+    <script type="text/javascript" src="{{ url_for('static', filename='script/script.js') }}" charset="utf-8"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='script/tableHelp.js') }}" charset="utf-8"></script>
+
     {% block head %}{% endblock %}
   </head>
   <body>
