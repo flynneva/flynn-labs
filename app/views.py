@@ -68,16 +68,18 @@ def college_basketball_men():
   #https://data.ncaa.com/casablanca/scoreboard/basketball-men/d1/2019/12/23/scoreboard.json
   todaysGames = ncaa_data.getTodaysGames("basketball-men", "d1")
   listOfGames = {}
-  i = 0
-  # iterate through json object and get relevant data
-  for game in todaysGames['games']:
-    awayTeam = game['game']['away']['names']['full']
-    homeTeam = game['game']['home']['names']['full']
-    startTime = game['game']['startTime']
-    #TODO: grab the rankings for each team too
-    listOfGames[i] = [homeTeam, awayTeam, startTime]
-    i = i + 1
-  print(listOfGames)
+  if todaysGames["games"] == "No games today...":
+      listOfGames[0]=['NO', 'GAMES', 'TODAY']
+  else:
+    i = 0
+    # iterate through json object and get relevant data
+    for game in todaysGames['games']:
+      awayTeam = game['game']['away']['names']['full']
+      homeTeam = game['game']['home']['names']['full']
+      startTime = game['game']['startTime']
+      #TODO: grab the rankings for each team too
+      listOfGames[i] = [homeTeam, awayTeam, startTime]
+      i = i + 1
   return render_template(
     "college_basketball_men.html", listOfGames=listOfGames)
 
@@ -87,4 +89,4 @@ def college_basketball_men_game(gameID):
  
 @app.errorhandler(404)
 def not_found_error(error):
-  return render_template('404.html', pic=pic), 404
+  return render_template('404.html'), 404

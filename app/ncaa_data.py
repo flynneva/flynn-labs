@@ -7,4 +7,8 @@ def getTodaysGames(sport, division):
   todaysURL = "https://data.ncaa.com/casablanca/scoreboard/"
   todaysURL = todaysURL + sport + "/" + division + "/"
   todaysURL = todaysURL + str(now.year) + "/" + str(now.month) + "/" + str(now.day) + "/scoreboard.json"
-  return json.loads(urllib.request.urlopen(todaysURL).read().decode())
+  try:
+    return json.loads(urllib.request.urlopen(todaysURL).read().decode())
+  except:
+    errorStr = '{ "games": "No games today..." }'
+    return json.loads(errorStr)
