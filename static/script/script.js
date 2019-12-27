@@ -50,7 +50,7 @@ function fBaseSignOut() {
 }
 
 function signOutHandler() {
-  document.getElementById('sign-out').onclick = fbaseSignOut();
+  document.getElementById('sign-out').onclick = fBaseSignOut();
   
   firebase.auth().onAuthStateChanged( userState );
 }
