@@ -45,14 +45,14 @@ function logInError(error) {
     alert('Unable to log in: ' + error)
 }
 
+function fBaseSignOut() {
+  firebase.auth().signOut();
+}
+
 function signOutHandler() {
   document.getElementById('sign-out').onclick = fbaseSignOut();
   
   firebase.auth().onAuthStateChanged( userState );
-}
-
-function fBaseSignOut() {
-  firebase.auth().signOut();
 }
 
 window.addEventListener('load', signOutHandler()); 
