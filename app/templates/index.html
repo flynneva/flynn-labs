@@ -5,43 +5,6 @@
 <!-- Bootstrap core CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-
-<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
-
-<!-- Add Firebase products that you want to use -->
-<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
-
-<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css">
-
-<!-- See https://github.com/firebase/firebaseui-web. -->
-<script>
-// Your web app's Firebase configuration
-var firebaseConfig = {
-apiKey: "{{ firebaseConfig['apiKey'] }}",
-authDomain: "{{ firebaseConfig['authDomain'] }}",
-databaseURL: "{{ firebaseConfig['databaseURL'] }}",
-projectId: "{{ firebaseConfig['projectId'] }}",
-storageBucket: "{{ firebaseConfig['storageBucket'] }}",
-messagingSenderId: "{{ firebaseConfig['messagingSenderId'] }}",
-appId: "{{ firebaseConfig['appId'] }}",
-measurementId: "{{ firebaseConfig['measurementId'] }}"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-</script>
-
-<script>
-if (typeof firebase === 'undefined') {
-const msg = "Please paste the Firebase initialization snippet into index.html. See https://console.firebase.google.com > Overview > Add Firebase to your web app.";
-console.log(msg);
-alert(msg);
-}
-</script>
 {% endblock %}
 
 {% block body %}
