@@ -4,7 +4,65 @@
 {% block head %}
    <meta charset="utf-8">
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   <script type="text/javascript" src="{{ url_for('static', filename='script/tableHelp.js') }}" charset="utf-8"></script>
+   <style>
+     #searchInput {
+        background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+        background-position: 10px 12px; /* Position the search icon */
+        background-repeat: no-repeat; /* Do not repeat the icon image */
+        width: 100%; /* Full-width */
+        font-size: 16px; /* Increase font-size */
+        padding: 12px 20px 12px 40px; /* Add some padding */
+        border: 1px solid #ddd; /* Add a grey border */
+        margin-bottom: 12px; /* Add some space below the input */
+      }
+      
+      #todays_games {
+        border-collapse: collapse; /* Collapse borders */
+        width: 100%; /* Full-width */
+        border: 1px solid #ddd; /* Add a grey border */
+        font-size: 18px; /* Increase font-size */
+      }
+      
+      #todays_games th, #todays_games td {
+        text-align: left; /* Left-align text */
+        padding: 12px; /* Add padding */
+      }
+      
+      #todays_games tr {
+        /* Add a bottom border to all table rows */
+        border-bottom: 1px solid #ddd;
+      }
+      
+      #todays_games tr.header, #todays_games tr:hover {
+        /* Add a grey background color to the table header and on hover */
+        background-color: #f1f1f1;
+      }
+  </style>
+  <script>
+    function searchTable() {
+      // Declare variables
+      var input, filter, table, tr, td, td2, i, txtValue, txtValue2;
+      input = document.getElementById("searchInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("todays_games");
+      tr = table.getElementsByTagName("tr");
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < (tr.length); i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        td2 = tr[i].getElementsByTagName("td")[1];
+        if (filter != '' && td && td2) {
+          txtValue = td.textContent || td.innerText;
+          txtValue2 = td2.textContent || td2.innerText;
+          // Searched row, if found match to filter then hide row
+          if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
 {% endblock %}
 
 {% block body %}
