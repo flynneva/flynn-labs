@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Robotics{% endblock %}
 
+{% block head %}
+   <meta charset="utf-8">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+   <script type="text/javascript" src="{{ url_for('static', filename='script/tableHelp.js') }}" charset="utf-8"></script>
+{% endblock %}
+
 {% block body %}
 <div>
   <h1>Robotics</h1>
