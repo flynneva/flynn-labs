@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import datetime
+from datetime import timedelta
 import json
 
 from flask import render_template, jsonify
@@ -64,22 +65,8 @@ def college():
 
 @app.route('/sports/college/basketball-men')
 def college_basketball_men():
-  # get json list of games today from
-  #https://data.ncaa.com/casablanca/scoreboard/basketball-men/d1/2019/12/23/scoreboard.json
-  todaysGames = ncaa_data.getTodaysGames("basketball-men", "d1")
-  listOfGames = {}
-  if todaysGames["games"] == "No games today...":
-      listOfGames[0]=['NO', 'GAMES', 'TODAY']
-  else:
-    i = 0
-    # iterate through json object and get relevant data
-    for game in todaysGames['games']:
-      awayTeam = game['game']['away']['names']['full']
-      homeTeam = game['game']['home']['names']['full']
-      startTime = game['game']['startTime']
-      #TODO: grab the rankings for each team too
-      listOfGames[i] = [homeTeam, awayTeam, startTime]
-      i = i + 1
+  listOfGames = ncaa_data.getTodaysGames("basketball-men", "d1")
+  
   return render_template(
     "college_basketball_men.html", listOfGames=listOfGames)
 
