@@ -17,8 +17,10 @@ def parseTodaysGames(todaysGames):
     i = 0
     # iterate through json object and get relevant data
     for game in todaysGames['games']:
-      awayTeam = game['game']['away']['names']['full']
-      homeTeam = game['game']['home']['names']['full']
+      awayTeam = game['game']['away']['names']['full'] + " ("
+      awayTeam = awayTeam + game['game']['away']['names']['char6'] + ")"
+      homeTeam = game['game']['home']['names']['full'] + " ("
+      homeTeam = homeTeam + game['game']['home']['names']['char6'] + ")"
       gameState = game['game']['gameState']
 
       # see if gameState is live
@@ -34,6 +36,7 @@ def parseTodaysGames(todaysGames):
       #TODO: grab the rankings for each team too
       listOfGames[i] = [homeTeam, awayTeam, startTime]
       i = i + 1
+ 
   return listOfGames
 
 # arg: sport to add to URL
