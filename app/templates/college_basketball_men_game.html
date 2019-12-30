@@ -1,43 +1,23 @@
 {% extends "college.html" %}
+
 {% block collegeBody %}
 <div>
   <div class="container">
-    <table id="example" class="display" style="width:100%">
+    <input type="text" id="searchInput" onkeyup="searchTable()" plaseholder="Search...">
+    <table id="scoreboard" style="width:100%">
       <thead>
           <tr>
-              <th>Home Team</th>
-              <th>Away Team</th>
-              <th>Start Time</th>
+              <th>{{ homeTeam }}</th>
+              <th>{{ awayTeam }}</th>
           </tr>
       </thead>
-      <tfoot>
+      <tbody>
         <tr>
-          <th>Home Team</th>
-          <th>Away Team</th>
-          <th>Start Time</th>
+          <td>{{ homeScore }}</td>
+          <td>{{ awayScore }}</td>
         </tr>
-      </tfoot>
+      </tbody>
     </table>
-    <script>
-    function setupData() {
-      $(document).ready(function() {
-          $('#example').DataTable( {
-              "ajax": {
-                  // "url": "static/objects2.txt", // This works for the static file
-                  "url": "/sports/college/basketball-men",
-                  "dataType": "json",
-                  "contentType": "application/json"
-              },
-              "columns": [
-                  { "data": "home" },
-                  { "data": "away" },
-                  { "data": "start_time" },
-              ]
-          } );
-      } );
-    }
-    $( window ).on( "load", setupData );
-    </script>
   </div>
 </div>
 {% endblock %}
