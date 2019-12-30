@@ -72,16 +72,10 @@ def college_basketball_men():
 
 @app.route('/sports/college/basketball-men/<gameID>')
 def college_basketball_men_game(gameID):
-  homeTeam = "MSU"
-  awayTeam = "Michigan"
-  homeScore = 78
-  awayScore = 56
-  gameID = "1"
-  gameTitle = "MSU vs Michigan"
-  return render_template("live_game.html", gameTitle=gameTitle, gameID=gameID,
-                         homeTeam=homeTeam, awayTeam=awayTeam,
-                         homeScore=homeScore, awayScore=awayScore)
- 
+  boxScore = ncaa_data.getBoxScore(gameID)
+  
+  return render_template("live_game.html", gameID=gameID, boxScore=boxScore) 
+
 @app.errorhandler(404)
 def not_found_error(error):
   return render_template('404.html'), 404

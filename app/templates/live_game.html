@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{{ gameTitle }}{% endblock %}
+{% block body %}
 <div>
   <h1>{{ gameTitle }}</h1>
 
@@ -8,16 +9,17 @@
     <table id="scoreboard" style="width:100%">
       <thead>
           <tr>
-              <th>{{ homeTeam }}</th>
-              <th>{{ awayTeam }}</th>
+              <th>{{ boxScore['meta']['teams'][0]['shortName'] }}</th>
+              <th>{{ boxScore['meta']['teams'][1]['shortName'] }}</th>
           </tr>
       </thead>
       <tbody>
         <tr>
-          <td>{{ homeScore }}</td>
-          <td>{{ awayScore }}</td>
+          <td>{{ boxScore['teams'][0]['playerTotals']['points'] }}</td>
+          <td>{{ boxScore['teams'][1]['playerTotals']['points'] }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+{% endblock %}

@@ -22,7 +22,10 @@ def parseTodaysGames(todaysGames):
       homeTeam = game['game']['home']['names']['full'] + " ("
       homeTeam = homeTeam + game['game']['home']['names']['char6'] + ")"
       gameState = game['game']['gameState']
+      gameID = game['game']['url']
 
+      gameID = gameID.split('/')
+  
       # see if gameState is live
       if (gameState == 'pre'):
         startTime = game['game']['startTime']
@@ -34,7 +37,7 @@ def parseTodaysGames(todaysGames):
         startTime = 'GAME HAS ENDED'
 
       #TODO: grab the rankings for each team too
-      listOfGames[i] = [homeTeam, awayTeam, startTime]
+      listOfGames[i] = [homeTeam, awayTeam, startTime, gameID[2]]
       i = i + 1
  
   return listOfGames
@@ -53,3 +56,18 @@ def getTodaysGames(sport, division):
     tableOfGames = parseTodaysGames('{ "games": "No games today..." }')
 
   return tableOfGames
+
+def parseBoxScore(boxScore):
+  return boxScore
+
+def getBoxScore(gameID):
+  # build URL to NCAA data
+  gameURL = "https://data.ncaa.com/casablanca/game/"
+  gameURL = gameURL + gameID + "/boxscore.json"
+
+  try:
+    boxScore = parseBoxScore(json.loads(urllib.request.urlopen(gameURL).read().decode()))
+  except:
+    boxScore = parseBoxScore('{updatedTimestamp: "No data available"}')
+
+  return boxScore
