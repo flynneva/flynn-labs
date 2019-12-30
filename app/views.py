@@ -77,7 +77,8 @@ def college_basketball_men_game(gameID):
   homeScore = 78
   awayScore = 56
   gameID = "1"
-  return render_template("college_basketball_men_game.html", gameID=gameID,
+  gameTitle = "MSU vs Michigan"
+  return render_template("live_game.html", gameTitle=gameTitle, gameID=gameID,
                          homeTeam=homeTeam, awayTeam=awayTeam,
                          homeScore=homeScore, awayScore=awayScore)
  

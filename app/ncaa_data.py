@@ -4,10 +4,10 @@ import pytz
 import urllib.request, json
 
 utc = pytz.UTC
-# get current time in Eastern Time Zone US
-now = datetime.datetime.now(utc) - timedelta(hours=5)
 
 def parseTodaysGames(todaysGames):
+  # get current time in Eastern Time Zone US
+  now = datetime.datetime.now(utc) - timedelta(hours=5)
   # init list of games
   listOfGames = {}
 
@@ -41,6 +41,8 @@ def parseTodaysGames(todaysGames):
 
 # arg: sport to add to URL
 def getTodaysGames(sport, division):
+  # get current time in Eastern Time Zone US
+  now = datetime.datetime.now(utc) - timedelta(hours=5)
   todaysURL = "https://data.ncaa.com/casablanca/scoreboard/"
   todaysURL = todaysURL + sport + "/" + division + "/"
   todaysURL = todaysURL + str(now.year) + "/" + str(now.month) + "/" + str(now.day) + "/scoreboard.json"

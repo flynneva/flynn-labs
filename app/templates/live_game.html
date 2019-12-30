@@ -1,7 +1,8 @@
-{% extends "college.html" %}
-
-{% block collegeBody %}
+{% extends "base.html" %}
+{% block title %}{{ gameTitle }}{% endblock %}
 <div>
+  <h1>{{ gameTitle }}</h1>
+
   <div class="container">
     <input type="text" id="searchInput" onkeyup="searchTable()" plaseholder="Search...">
     <table id="scoreboard" style="width:100%">
@@ -20,4 +21,3 @@
     </table>
   </div>
 </div>
-{% endblock %}
