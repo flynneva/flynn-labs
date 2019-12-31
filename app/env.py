@@ -6,7 +6,7 @@ from google.auth.transport import requests
 from google.cloud import datastore
 import google.oauth2.id_token
 
-debug = True
+debug = False
 
 firebase_request_adapter = requests.Request()
 
