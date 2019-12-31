@@ -14,6 +14,10 @@ from app import ds_helper
 from app import ncaa_data
 
 @app.route('/')
+def home():
+  return render_template("home.html")
+
+@app.route('/index')
 def index():
     # Verify Firebase auth.
     id_token = env.request.cookies.get("token")
@@ -44,7 +48,8 @@ def about():
 
 @app.route('/sports')
 def sports():
-    return render_template("sports.html")
+     # levels is defined in env.py
+    return render_template("sports.html", levels=env.levels)
 
 @app.route('/finance')
 def finance():
@@ -55,26 +60,41 @@ def finance():
 def robotics():
     return render_template("robotics.html")
 
-@app.route('/sports/professional')
-def professional():
-    return render_template("professional.html")
+@app.route('/sports/<level>')
+def levelOfSport(level):
+    return render_template("level.html", levels=env.levels, level=level, sports=env.sports)
 
-@app.route('/sports/college')
-def college():
-    return render_template("college.html")
+@app.route('/sports/<level>/<sport>/<division>')
+def sport(level, sport, division):
+  if (level == 'ncaa'):
+    scoreboard = ncaa_data.getTodaysGames(sport, division)
+  elif (level == 'professional'):
+    scoreboard = '{ "games": "None" }'
+  else:
+    scoreboard = '{ "No data for that level of sport" }'
 
-@app.route('/sports/college/basketball-men')
-def college_basketball_men():
-  listOfGames = ncaa_data.getTodaysGames("basketball-men", "d1")
-  
   return render_template(
-    "college_basketball_men.html", listOfGames=listOfGames)
+    "sport.html", levels=env.levels, sports=env.sports,
+                  level=level, sport=sport, division=division, scoreboard=scoreboard)
 
-@app.route('/sports/college/basketball-men/<gameID>')
-def college_basketball_men_game(gameID):
-  boxScore = ncaa_data.getBoxScore(gameID)
-  
-  return render_template("live_game.html", gameID=gameID, boxScore=boxScore) 
+@app.route('/sports/<level>/<sport>/<divison>/<gameID>')
+def live_game(level, sport, division, gameID):
+  if (level == 'ncaa'):
+    scoreboard = ncaa_data.getLiveScoreboard(gameID)
+    boxScore = ncaa_data.getBoxScore(gameID)
+    pbp = ncaa_data.getPbp(gameID)
+  elif (level == 'professional'):
+    scoreboard = ''
+    boxScore = ''
+    pbp = ''
+  else:
+    scoreboard = ''
+    boxScore = ''
+    pbp = ''
+
+  return render_template("live_game.html", level=level, sport=sport,
+                         division=division, gameID=gameID, 
+                         scoreboard=scoreboard, boxScore=boxScore, pbp=pbp) 
 
 @app.errorhandler(404)
 def not_found_error(error):

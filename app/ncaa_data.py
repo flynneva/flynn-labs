@@ -49,16 +49,14 @@ def getTodaysGames(sport, division):
   todaysURL = "https://data.ncaa.com/casablanca/scoreboard/"
   todaysURL = todaysURL + sport + "/" + division + "/"
   todaysURL = todaysURL + str(now.year) + "/" + str(now.month) + "/" + str(now.day) + "/scoreboard.json"
+  print(todaysURL)
   try:
-    tableOfGames = parseTodaysGames(json.loads(urllib.request.urlopen(todaysURL).read().decode()))
-  
+    tableOfGames = json.loads(urllib.request.urlopen(todaysURL).read().decode())
+    
   except:
-    tableOfGames = parseTodaysGames('{ "games": "No games today..." }')
-
+    tableOfGames = '{ "games": "none"  }'
+  
   return tableOfGames
-
-def parseBoxScore(boxScore):
-  return boxScore
 
 def getBoxScore(gameID):
   # build URL to NCAA data
@@ -66,8 +64,8 @@ def getBoxScore(gameID):
   gameURL = gameURL + gameID + "/boxscore.json"
 
   try:
-    boxScore = parseBoxScore(json.loads(urllib.request.urlopen(gameURL).read().decode()))
+    boxScore = json.loads(urllib.request.urlopen(gameURL).read().decode())
   except:
-    boxScore = parseBoxScore('{updatedTimestamp: "No data available"}')
+    boxScore = '{updatedTimestamp: "No data available"}'
 
   return boxScore

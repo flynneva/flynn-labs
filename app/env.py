@@ -6,7 +6,7 @@ from google.auth.transport import requests
 from google.cloud import datastore
 import google.oauth2.id_token
 
-debug = False
+debug = True
 
 firebase_request_adapter = requests.Request()
 
@@ -14,13 +14,27 @@ datastore_client = datastore.Client()
 
 app = Flask(__name__)
 
+# sports levels
+levels = {}
+levels['ncaa'] = 'NCAA'
+levels['professional'] = 'Professional'
+
+# sports
+sports = {}
+sports['basketball-men'] = 'Men\'s Basketball'
+sports['football'] = 'Football'
+
+# divisions
+divisions = {}
+divisions['d1'] = 'Divsion 1'
+
 firebase_entity = {}
 firebaseConfig = {}
 
 if(debug == False):
   # get env vars for firebase login
   firebase_entity = datastore_client.get(datastore_client.key('env_var', 'firebaseConfig'))
-
+  
   firebaseConfig["apiKey"] = firebase_entity['FIREBASE_API_KEY']
   firebaseConfig["authDomain"] = firebase_entity['FIREBASE_AUTH_DOMAIN']
   firebaseConfig["databaseURL"] = firebase_entity['FIREBASE_DATABASE_URL']

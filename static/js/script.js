@@ -35,9 +35,12 @@ function fBaseSignOut() {
 }
 
 function signOutHandler() {
-  document.getElementById('sign-out').onclick = fBaseSignOut();
-  
-  firebase.auth().onAuthStateChanged( userState );
+  var elem = document.getElementById('sign-out');
+  if (typeof elem != 'undefined' && elem !== null) {
+    elem.onclick = fBaseSignOut();
+
+    firebase.auth().onAuthStateChanged( userState );
+  }
 }
 
 window.addEventListener('load', signOutHandler()); 
