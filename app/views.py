@@ -77,8 +77,12 @@ def sport(level, sport, division):
     "sport.html", levels=env.levels, sports=env.sports,
                   level=level, sport=sport, division=division, scoreboard=scoreboard)
 
-@app.route('/sports/<level>/<sport>/<divison>/<gameID>')
-def live_game(level, sport, division, gameID):
+@app.route('/sports/<level>/<sport>/<game>/<gameID>')
+def live_game(level, sport, game, gameID):
+  print(level)
+  print(sport)
+  print(game)
+  print(gameID)
   if (level == 'ncaa'):
     scoreboard = ncaa_data.getLiveScoreboard(gameID)
     boxScore = ncaa_data.getBoxScore(gameID)
