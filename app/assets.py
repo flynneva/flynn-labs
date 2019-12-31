@@ -5,6 +5,7 @@ bundles = {
 
     'base_js': Bundle(
         'js/script.js',
+        'js/searchTable.js',
         output='gen/base.js'),
 
     'base_css': Bundle(

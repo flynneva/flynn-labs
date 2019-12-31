@@ -66,10 +66,6 @@ def levelOfSport(level):
 
 @app.route('/sports/<level>/<sport>/<division>')
 def sport(level, sport, division):
-  print(level)
-  print(sport)
-  print(division)
-
   if (level == 'ncaa'):
     scoreboard = ncaa_data.getTodaysGames(sport, division)
   elif (level == 'professional'):
@@ -77,7 +73,6 @@ def sport(level, sport, division):
   else:
     scoreboard = '{ "No data for that level of sport" }'
 
-  print(scoreboard)
   return render_template(
     "sport.html", levels=env.levels, sports=env.sports,
                   level=level, sport=sport, division=division, scoreboard=scoreboard)
