@@ -68,3 +68,27 @@ def getBoxScore(gameID):
     boxScore = '{updatedTimestamp: "No data available"}'
 
   return boxScore
+
+def getScoreboard(gameID):
+  # build URL to NCAA data
+  gameURL = "https://data.ncaa.com/casablanca/game/"
+  gameURL = gameURL + gameID + "/scoreboard.json"
+
+  try:
+    scoreboard = json.loads(urllib.request.urlopen(gameURL).read().decode())
+  except:
+    scoreboard = '{updatedTimestamp: "No data available"}'
+
+  return scoreboard
+
+def getPBP(gameID):
+  # build URL to NCAA data
+  gameURL = "https://data.ncaa.com/casablanca/game/"
+  gameURL = gameURL + gameID + "/pbp.json"
+
+  try:
+    pbp = json.loads(urllib.request.urlopen(gameURL).read().decode())
+  except:
+    pbp = '{updatedTimestamp: "No data available"}'
+
+  return pbp

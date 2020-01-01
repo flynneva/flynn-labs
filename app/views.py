@@ -77,16 +77,12 @@ def sport(level, sport, division):
     "sport.html", levels=env.levels, sports=env.sports,
                   level=level, sport=sport, division=division, scoreboard=scoreboard)
 
-@app.route('/sports/<level>/<sport>/<game>/<gameID>')
-def live_game(level, sport, game, gameID):
-  print(level)
-  print(sport)
-  print(game)
-  print(gameID)
+@app.route('/sports/<level>/<sport>/<division>/<game>/<gameID>')
+def live_game(level, sport, division, game, gameID):
   if (level == 'ncaa'):
-    scoreboard = ncaa_data.getLiveScoreboard(gameID)
+    scoreboard = ncaa_data.getScoreboard(gameID)
     boxScore = ncaa_data.getBoxScore(gameID)
-    pbp = ncaa_data.getPbp(gameID)
+    pbp = ncaa_data.getPBP(gameID)
   elif (level == 'professional'):
     scoreboard = ''
     boxScore = ''
@@ -97,7 +93,7 @@ def live_game(level, sport, game, gameID):
     pbp = ''
 
   return render_template("live_game.html", level=level, sport=sport,
-                         division=division, gameID=gameID, 
+                         division=division, game=game, gameID=gameID, 
                          scoreboard=scoreboard, boxScore=boxScore, pbp=pbp) 
 
 @app.errorhandler(404)

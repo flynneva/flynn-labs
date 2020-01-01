@@ -71,7 +71,7 @@
       </thead>
       <tbody>
         {% for game in scoreboard['games'] %}
-        <tr data-href="basketball-men{{ game['game']['url'] }}">
+        <tr data-href="d1{{ game['game']['url'] }}">
           <td>{{ game['game']['home']['rank'] }} {{ game['game']['home']['names']['short'] }} {{ game['game']['home']['description'] }}</td>
           <td>{{ game['game']['away']['rank'] }} {{ game['game']['away']['names']['short'] }} {{ game['game']['away']['description'] }}</td>
           {% if game['game']['gameState'] == 'pre' %}
