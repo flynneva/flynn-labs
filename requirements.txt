@@ -1,4 +1,5 @@
-Flask==1.1.1
+flask==1.1.1
+flask-assets==0.12
 gunicorn==19.9.0
 google-cloud-datastore==1.10.0
 google-auth==1.10.0
