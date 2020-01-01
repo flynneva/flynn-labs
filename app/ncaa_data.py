@@ -5,53 +5,28 @@ import urllib.request, json
 
 utc = pytz.UTC
 
-def parseTodaysGames(todaysGames):
-  # get current time in Eastern Time Zone US
-  now = datetime.datetime.now(utc) - timedelta(hours=5)
-  # init list of games
-  listOfGames = {}
-
-  if (todaysGames['games'] == "No games today..."):
-      listOfGames[0]=['NO', 'GAMES', 'TODAY']
-  else:
-    i = 0
-    # iterate through json object and get relevant data
-    for game in todaysGames['games']:
-      awayTeam = game['game']['away']['names']['full'] + " ("
-      awayTeam = awayTeam + game['game']['away']['names']['char6'] + ")"
-      homeTeam = game['game']['home']['names']['full'] + " ("
-      homeTeam = homeTeam + game['game']['home']['names']['char6'] + ")"
-      gameState = game['game']['gameState']
-      gameID = game['game']['url']
-
-      gameID = gameID.split('/')
-  
-      # see if gameState is live
-      if (gameState == 'pre'):
-        startTime = game['game']['startTime']
-      elif (gameState == 'live'):
-        startTime = 'LIVE'
-      elif (gameState == 'canceled'):
-        startTime = 'CANCELED'
-      elif (gameState == 'final'):
-        startTime = 'GAME HAS ENDED'
-
-      #TODO: grab the rankings for each team too
-      listOfGames[i] = [homeTeam, awayTeam, startTime, gameID[2]]
-      i = i + 1
- 
-  return listOfGames
-
 # arg: sport to add to URL
 def getTodaysGames(sport, division):
   # get current time in Eastern Time Zone US
   now = datetime.datetime.now(utc) - timedelta(hours=5)
   todaysURL = "https://data.ncaa.com/casablanca/scoreboard/"
   todaysURL = todaysURL + sport + "/" + division + "/"
-  todaysURL = todaysURL + str(now.year) + "/" + str(now.month) + "/" + str(now.day) + "/scoreboard.json"
+
+  if (sport == 'football'):
+    if (now.month == 12): 
+      todaysURL = todaysURL + str(now.year) + "/P/scoreboard.json"
+    elif (now.month == 1):
+      todaysURL = todaysURL + str(now.year - 1) + "/P/scoreboard.json"
+    else: 
+     todaysURL = todaysURL + str(now.year) + "/" + str(now.month) + "/" + str(now.day) + "/scoreboard.json"
+  elif (sport == 'basketball-men'):
+    if (now.month == 3 or now.month == 4):
+      todaysURL = todaysURL + str(now.year) + "/P/scoreboard.json"
+    else:
+      todaysURL = todaysURL + str(now.year) + "/" + str(now.month) + "/" + str(now.day) + "/scoreboard.json"   
+
   try:
-    tableOfGames = json.loads(urllib.request.urlopen(todaysURL).read().decode())
-    
+    tableOfGames = json.loads(urllib.request.urlopen(todaysURL).read().decode())    
   except:
     tableOfGames = '{ "games": "none"  }'
   

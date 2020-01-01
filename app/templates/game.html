@@ -1,14 +1,13 @@
-{% extends "level.html" %}
-
+{% extends "sport.html" %}
 {% block head %}
   {% assets "base_js" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
   {% endassets %}
 {% endblock %}
 
-{% block levelBody %}
+{% block body %}
 <div>
-  <style>
+ <style>
     #sport .{{ sport }} {
       background-color: #f1f1f1;
     }
@@ -24,6 +23,7 @@
       });
     });
     </script>
+
     <style>
     [data-href] {
       cursor: pointer;
@@ -38,62 +38,60 @@
       border: 1px solid #ddd; /* Add a grey border */
       margin-bottom: 12px; /* Add some space below the input */
     }
-
-    #todays_games {
+    #boxScore {
       border-collapse: collapse; /* Collapse borders */
       width: 100%; /* Full-width */
       border: 1px solid #ddd; /* Add a grey border */
       font-size: 18px; /* Increase font-size */
     }
 
-    #todays_games th, #todays_games td {
+    #boxScore th, #boxScore td {
       text-align: left; /* Left-align text */
       padding: 12px; /* Add padding */
     }
 
-    #todays_games tr {
+    #boxScore tr {
       /* Add a bottom border to all table rows */
       border-bottom: 1px solid #ddd;
     }
 
-    #todays_games th, #todays_games tr:hover {
+    #boxScore th, #boxScore tr:hover {
       /* Add a grey background color to the table header and on hover */
       background-color: #f1f1f1;
     }
     </style>
-    <table id="todays_games" style="width:100%" class=>
+
+
+
+  <h1>{{ boxScore['meta']['description'] }}</h1>
+
+  <div class="container">
+    <input type="text" id="searchInput" onkeyup="searchTable()" plaseholder="Search...">
+    {%for team in boxScore['teams'] %}
+    <h3>{{ boxScore['meta']['teams'][loop.index-1]['shortName'] }}</h3>
+    <table id="boxScore" style="width:100%">
       <thead>
           <tr>
-              <th>Home Team</th>
-              <th>Away Team</th>
-              <th>Game Status</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              {%for colHeader in team['playerHeader'] %}
+              <th>{{ team['playerHeader'][colHeader] }}</th>
+              {%endfor%}
           </tr>
       </thead>
       <tbody>
-        {% for game in scoreboard['games'] %}
-        <tr data-href="{{ divisions[ sport ][0] }}{{ game['game']['url'] }}">
-          <td>{{ game['game']['home']['rank'] }} {{ game['game']['home']['names']['short'] }} {{ game['game']['home']['description'] }}</td>
-          <td>{{ game['game']['away']['rank'] }} {{ game['game']['away']['names']['short'] }} {{ game['game']['away']['description'] }}</td>
-          {% if game['game']['gameState'] == 'pre' %}
-            <td>{{ game['game']['startTime'] }}</td>
-          {% elif game['game']['gameState'] == 'live' %}
-            <td>{{ game['game']['home']['score'] }} to {{ game['game']['away']['score'] }} [LIVE]</td>
-          {% elif game['game']['gameState'] == 'final' %}
-            <td>{{ game['game']['home']['score'] }} to {{ game['game']['away']['score'] }} [FINAL]</td>
-          {% elif game['game']['gameState'] == 'canceled' %}
-            <td>Canceled</td>
-          {%endif%}
-        </tr>
-        {% endfor %}
-      </tbody>
-      <tfoot>
+        {%for playerStats in team['playerStats'] %}
         <tr>
-          <th>Home Team</th>
-          <th>Away Team</th>
-          <th>Game Status</th>
+          <td>{{ playerStats['firstName'] }}</td>
+          <td>{{ playerStats['lastName'] }}</td>
+          {%for colHeader in team['playerHeader'] %}
+          <td>{{ playerStats[colHeader] }} </td>
+          {%endfor%}
         </tr>
-      </tfoot>
+        {%endfor%}
+      </tbody>
     </table>
+    {%endfor%}
   </div>
 </div>
 {% endblock %}

@@ -1,14 +1,24 @@
 {% extends "base.html" %}
 {% block title %}Finance{% endblock %}
-
-{% block head %}
-   <meta charset="utf-8">
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-{% endblock %}
-
 {% block body %}
 <div>
-  <h1>Finance</h1>
-  <p class="lead">Everybody needs money. Thats why they call it money!</p>
+  <style>
+    #baseNav .{{ baseTopic }} {
+      background-color: #f1f1f1;
+    }
+  </style>
+  <h2>Finance</h2>
+  <div class="container">
+    <div class="header clearfix">
+     <nav id="finance">
+       <ul class="nav nav-pills pull-left">
+         {%for topic in financeTopics %}
+         <li class="{{ level }}" role="presentation"><a href="/finance/{{ topic }}">{{ financeTopics[topic] }}</a></li>
+         {%endfor%}
+       </ul>
+     </nav>
+    </div>
+  </div>
+  {% block financeBody %} {% endblock%}
 </div>
 {% endblock %}

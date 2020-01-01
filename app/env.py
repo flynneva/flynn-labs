@@ -26,7 +26,20 @@ sports['football'] = 'Football'
 
 # divisions
 divisions = {}
-divisions['d1'] = 'Divsion 1'
+
+basketballMensDiv = {}
+footballDiv = {}
+basketballMensDiv[0] = 'd1'
+footballDiv[0] = 'fbs'
+
+divisions['basketball-men'] = basketballMensDiv
+divisions['football'] = footballDiv
+
+# finance topics
+financeTopics = {}
+financeTopics['stocks'] = 'Stocks'
+financeTopics['personal_finance'] = 'Personal Finance'
+financeTopics['compound_interest'] = 'Compound Interest'
 
 firebase_entity = {}
 firebaseConfig = {}

@@ -40,12 +40,6 @@ def index():
         "index.html",
         user_data=claims, error_message=error_message, times=times, firebaseConfig=env.firebaseConfig)
 
-
-@app.route('/about')
-def about():
-    return render_template("about.html")
-
-
 @app.route('/sports')
 def sports():
      # levels is defined in env.py
@@ -53,7 +47,8 @@ def sports():
 
 @app.route('/finance')
 def finance():
-    return render_template("finance.html")
+  baseTopic = 'finance'  
+  return render_template("finance.html", baseTopic=baseTopic, financeTopics=env.financeTopics)
 
 
 @app.route('/robotics')
@@ -62,7 +57,7 @@ def robotics():
 
 @app.route('/sports/<level>')
 def levelOfSport(level):
-    return render_template("level.html", levels=env.levels, level=level, sports=env.sports)
+  return render_template("level.html", levels=env.levels, level=level, sports=env.sports, divisions=env.divisions)
 
 @app.route('/sports/<level>/<sport>/<division>')
 def sport(level, sport, division):
@@ -75,7 +70,8 @@ def sport(level, sport, division):
 
   return render_template(
     "sport.html", levels=env.levels, sports=env.sports,
-                  level=level, sport=sport, division=division, scoreboard=scoreboard)
+                  level=level, sport=sport, division=division, 
+                  divisions=env.divisions, scoreboard=scoreboard)
 
 @app.route('/sports/<level>/<sport>/<division>/<game>/<gameID>')
 def live_game(level, sport, division, game, gameID):
@@ -92,10 +88,16 @@ def live_game(level, sport, division, game, gameID):
     boxScore = ''
     pbp = ''
 
-  return render_template("live_game.html", level=level, sport=sport,
+  if (sport == 'basketball-men'):
+    return render_template("basketball_game.html", level=level, sport=sport, divsions=env.divisions,
                          division=division, game=game, gameID=gameID, 
-                         scoreboard=scoreboard, boxScore=boxScore, pbp=pbp) 
-
+                         scoreboard=scoreboard, boxScore=boxScore, pbp=pbp)
+  elif (sport == 'football'):
+    return render_template("football_game.html", level=level, sport=sport, divsions=env.divisions,
+                         division=division, game=game, gameID=gameID, 
+                         scoreboard=scoreboard, boxScore=boxScore, pbp=pbp)
+  else:
+    return render_template('404.html'), 404
 @app.errorhandler(404)
 def not_found_error(error):
   return render_template('404.html'), 404

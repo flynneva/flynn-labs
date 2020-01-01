@@ -11,7 +11,7 @@
      <nav id="sport">
        <ul class="nav nav-pills pull-left">
          {%for sport in sports %}
-         <li class={{ sport }} role="presentation"><a href="/sports/{{ level }}/{{ sport }}/d1">{{ sports[sport] }}</a></li>
+         <li class={{ sport }} role="presentation"><a href="/sports/{{ level }}/{{ sport }}/{{ divisions[sport][0] }}">{{ sports[sport] }}</a></li>
          {%endfor%}
        </ul>
      </nav>
