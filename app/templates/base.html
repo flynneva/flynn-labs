@@ -4,26 +4,29 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     {% block head %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-indigo.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     {% endblock %}
   </head>
   <body>
   <style>
   .demo-layout-transparent .mdl-layout__header,
   .demo-layout-transparent .mdl-layout__drawer-button {
-    /* This background is dark, so we set text to white. Use 87% black instead if
-       your background is light. */
-    color: white;
-  .mdl-grid.center-items {
+    color: black;
+  }
+  .demo-layout-transparent .mdl-layout__content main {
+    display: flex;
+    align-items: center;
     justify-content: center;
   }
+  .mdl-card {
+    margin: 8px;
+  }
   </style>
-  <div class="demo-layout-transparent mdl-layout mdl-js-layout" style="background: url('{{ url_for('static', filename='img/background.jpg') }}') center / cover;">
+  <div class="demo-layout-transparent mdl-layout mdl-js-layout" style="background: #DDDDDD">
     <header class="mdl-layout__header mdl-layout__header--transparent" id="baseNav">
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">Flynn Labs</span>
@@ -47,14 +50,14 @@
         <a class="mdl-navigation__link" href="/about">About</a>
       </nav>
     </div>
-    <main class="mdl-layout__content">
-    <div class="mdl-grid center-items" style"width: 100%">
-      {% block body %}
-      {% endblock %}
+    <div class="mdl-layout__content">
+      <main>
+        {% block body %}
+        {% endblock %}
+      </main>
     </div>
-    <footer class="footer">
-      <p>© 2020 Evan Flynn</p>
-    </footer>
-    </main>
   </body>
+  <footer class="footer">
+    <p>© 2020 Evan Flynn</p>
+  </footer>
 </html>
