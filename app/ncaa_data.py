@@ -25,7 +25,6 @@ def getTodaysGames(sport, division):
     else:
       todaysURL = todaysURL + str(now.year) + "/" + str('{:02d}'.format(now.month)) + "/" + str('{:02d}'.format(now.day)) + "/scoreboard.json"   
 
-  print(todaysURL)
   try:
     tableOfGames = json.loads(urllib.request.urlopen(todaysURL).read().decode())    
   except:
