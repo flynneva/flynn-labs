@@ -18,13 +18,14 @@ def getTodaysGames(sport, division):
     elif (now.month == 1):
       todaysURL = todaysURL + str(now.year - 1) + "/P/scoreboard.json"
     else: 
-     todaysURL = todaysURL + str(now.year) + "/" + str(now.month) + "/" + str(now.day) + "/scoreboard.json"
+      todaysURL = todaysURL + str(now.year) + "/" + str('{:02d}'.format(now.month)) + "/" + str('{:02d}'.format(now.day)) + "/scoreboard.json"   
   elif (sport == 'basketball-men'):
     if (now.month == 3 or now.month == 4):
       todaysURL = todaysURL + str(now.year) + "/P/scoreboard.json"
     else:
-      todaysURL = todaysURL + str(now.year) + "/" + str(now.month) + "/" + str(now.day) + "/scoreboard.json"   
+      todaysURL = todaysURL + str(now.year) + "/" + str('{:02d}'.format(now.month)) + "/" + str('{:02d}'.format(now.day)) + "/scoreboard.json"   
 
+  print(todaysURL)
   try:
     tableOfGames = json.loads(urllib.request.urlopen(todaysURL).read().decode())    
   except:
