@@ -1,99 +1,39 @@
 {% extends "level.html" %}
 
-{% block head %}
-  {% assets "base_js" %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-  {% endassets %}
-{% endblock %}
-
 {% block levelBody %}
 <div>
-  <style>
-    #sport .{{ sport }} {
-      background-color: #f1f1f1;
-    }
-  </style>
-
-  <div class="container">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <input type="text" id="searchInput" onkeyup="searchTable()" plaseholder="Search...">
-    <script>
-    jQuery(document).ready(function($) {
-      $('*[data-href]').on('click', function() {
-        window.location = $(this).data("href");
-      });
-    });
-    </script>
-    <style>
-    [data-href] {
-      cursor: pointer;
-    }
-    #searchInput {
-      background-image: url('/static/img/searchicon.png'); /* Add a search icon to input */
-      background-position: 10px 12px; /* Position the search icon */
-      background-repeat: no-repeat; /* Do not repeat the icon image */
-      width: 100%; /* Full-width */
-      font-size: 16px; /* Increase font-size */
-      padding: 12px 20px 12px 40px; /* Add some padding */
-      border: 1px solid #ddd; /* Add a grey border */
-      margin-bottom: 12px; /* Add some space below the input */
-    }
-
-    #todays_games {
-      border-collapse: collapse; /* Collapse borders */
-      width: 100%; /* Full-width */
-      border: 1px solid #ddd; /* Add a grey border */
-      font-size: 18px; /* Increase font-size */
-    }
-
-    #todays_games th, #todays_games td {
-      text-align: left; /* Left-align text */
-      padding: 12px; /* Add padding */
-    }
-
-    #todays_games tr {
-      /* Add a bottom border to all table rows */
-      border-bottom: 1px solid #ddd;
-    }
-
-    #todays_games th, #todays_games tr:hover {
-      /* Add a grey background color to the table header and on hover */
-      background-color: #f1f1f1;
-    }
-    </style>
-    <table id="todays_games" style="width:100%" class=>
-      <thead>
-          <tr>
-              <th>Home Team</th>
-              <th>Away Team</th>
-              <th>Game Status</th>
-          </tr>
-      </thead>
-      <tbody>
-        {% for game in scoreboard['games'] %}
-        <tr data-href="{{ divisions[ sport ][0] }}{{ game['game']['url'] }}">
-          <td>{{ game['game']['home']['rank'] }} {{ game['game']['home']['names']['short'] }} {{ game['game']['home']['description'] }}</td>
-          <td>{{ game['game']['away']['rank'] }} {{ game['game']['away']['names']['short'] }} {{ game['game']['away']['description'] }}</td>
-          {% if game['game']['gameState'] == 'pre' %}
-            <td>{{ game['game']['startTime'] }}</td>
-          {% elif game['game']['gameState'] == 'live' %}
-            <td>{{ game['game']['home']['score'] }} to {{ game['game']['away']['score'] }} [LIVE]</td>
-          {% elif game['game']['gameState'] == 'final' %}
-            <td>{{ game['game']['home']['score'] }} to {{ game['game']['away']['score'] }} [FINAL]</td>
-          {% elif game['game']['gameState'] == 'canceled' %}
-            <td>Canceled</td>
-          {%endif%}
-        </tr>
-        {% endfor %}
-      </tbody>
-      <tfoot>
+  <table id="todays_games" style="width:100%" class=>
+    <thead>
         <tr>
-          <th>Home Team</th>
-          <th>Away Team</th>
-          <th>Game Status</th>
+            <th>Home Team</th>
+            <th>Away Team</th>
+            <th>Game Status</th>
         </tr>
-      </tfoot>
-    </table>
-  </div>
+    </thead>
+    <tbody>
+      {% for game in scoreboard['games'] %}
+      <tr data-href="{{ divisions[ sport ][0] }}{{ game['game']['url'] }}">
+        <td>{{ game['game']['home']['rank'] }} {{ game['game']['home']['names']['short'] }} {{ game['game']['home']['description'] }}</td>
+        <td>{{ game['game']['away']['rank'] }} {{ game['game']['away']['names']['short'] }} {{ game['game']['away']['description'] }}</td>
+        {% if game['game']['gameState'] == 'pre' %}
+          <td>{{ game['game']['startTime'] }}</td>
+        {% elif game['game']['gameState'] == 'live' %}
+          <td>{{ game['game']['home']['score'] }} to {{ game['game']['away']['score'] }} [LIVE]</td>
+        {% elif game['game']['gameState'] == 'final' %}
+          <td>{{ game['game']['home']['score'] }} to {{ game['game']['away']['score'] }} [FINAL]</td>
+        {% elif game['game']['gameState'] == 'canceled' %}
+          <td>Canceled</td>
+        {%endif%}
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Game Status</th>
+      </tr>
+    </tfoot>
+  </table>
 </div>
 {% endblock %}

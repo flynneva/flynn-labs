@@ -1,25 +1,27 @@
 {% extends "base.html" %}
 {% block title %}Sports{% endblock %}
 {% block body %}
-<style>
-  #baseNav .{{ baseTopic }} {
-    background-color: #f1f1f1;
-  }
-</style>
-
 <div>
   <h2>Sports</h2>
-  <div class="container">
-    <div class="header clearfix">
-     <nav id="sports">
-       <ul class="nav nav-pills pull-left">
-         {%for level in levels %}
-         <li class="{{ level }}" role="presentation"><a href="/sports/{{ level }}">{{ levels[level] }}</a></li>
-         {%endfor%}
-       </ul>
-     </nav>
+  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+      {%for level in levels %}
+      {% if level|string() == 'ncaa' %}
+      <a href="#{{ level }}" class="mdl-tabs__tab is-active">{{ levels[level] }}</a>
+      {% else %}
+      <a href="#{{ level }}" class="mdl-tabs__tab">{{ levels[level] }}</a>
+      {% endif %}
+      {%endfor%}
     </div>
+  {%for level in levels %}
+    {% if level|string() == 'ncaa' %}
+    <div class="mdl-tabs__panel is-active" id="{{ level }}">
+    {% else %}
+    <div class="mdl-tabs__panel" id="{{ level }}">
+    {% endif %}
+      {% include 'level.html' %}
+    </div>
+  {% endfor %}  
   </div>
-  {% block sportsBody %} {% endblock%}
 </div>
 {% endblock %}
