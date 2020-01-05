@@ -17,43 +17,14 @@ from app import ncaa_data
 def home():
   return render_template("home.html")
 
-@app.route('/index')
-def index():
-    # Verify Firebase auth.
-    id_token = env.request.cookies.get("token")
-    error_message = None
-    claims = None
-    times = None
-
-    if id_token:
-        try:
-            claims = env.google.oauth2.id_token.verify_firebase_token(
-                id_token, env.firebase_request_adapter)
-
-            ds_helper.store_time(claims['email'], datetime.datetime.now())
-            times = ds_helper.fetch_times(claims['email'], 10)
-
-        except ValueError as exc:
-            error_message = str(exc)
-
-    return render_template(
-        "index.html",
-        user_data=claims, error_message=error_message, times=times, firebaseConfig=env.firebaseConfig)
-
-@app.route('/sports')
-def sports():
-     # levels is defined in env.py
-    return render_template("sports.html", levels=env.levels)
-
-@app.route('/finance')
-def finance():
-  baseTopic = 'finance'  
-  return render_template("finance.html", baseTopic=baseTopic, financeTopics=env.financeTopics)
-
-
-@app.route('/robotics')
-def robotics():
-    return render_template("robotics.html")
+@app.route('/<topic>')
+def topic(topic):
+  html_file = topic + '.html'
+ 
+  if (topic == 'sports'):
+    return render_template(html_file, levels=env.levels)
+  else:
+    return render_template(html_file)
 
 @app.route('/sports/<level>')
 def levelOfSport(level):
@@ -98,6 +69,30 @@ def live_game(level, sport, division, game, gameID):
                          scoreboard=scoreboard, boxScore=boxScore, pbp=pbp)
   else:
     return render_template('404.html'), 404
+
+@app.route('/index')
+def index():
+    # Verify Firebase auth.
+    id_token = env.request.cookies.get("token")
+    error_message = None
+    claims = None
+    times = None
+
+    if id_token:
+        try:
+            claims = env.google.oauth2.id_token.verify_firebase_token(
+                id_token, env.firebase_request_adapter)
+
+            ds_helper.store_time(claims['email'], datetime.datetime.now())
+            times = ds_helper.fetch_times(claims['email'], 10)
+
+        except ValueError as exc:
+            error_message = str(exc)
+
+    return render_template(
+        "index.html",
+        user_data=claims, error_message=error_message, times=times, firebaseConfig=env.firebaseConfig)
+
 @app.errorhandler(404)
 def not_found_error(error):
   return render_template('404.html'), 404

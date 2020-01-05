@@ -2,26 +2,25 @@
 {% block title %}Sports{% endblock %}
 {% block body %}
 <div>
-  <h2>Sports</h2>
   <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
     <div class="mdl-tabs__tab-bar">
-      {%for level in levels %}
-      {% if level|string() == 'ncaa' %}
-      <a href="#{{ level }}" class="mdl-tabs__tab is-active">{{ levels[level] }}</a>
+      {% for level in levels %}
+      {% if loop.index|int() == 1 %}
+      <a href="/sports/{{ level }}" class="mdl-tabs__tab is-active">{{ levels[level] }}</a>
       {% else %}
-      <a href="#{{ level }}" class="mdl-tabs__tab">{{ levels[level] }}</a>
+      <a href="/sports/{{ level }}" class="mdl-tabs__tab">{{ levels[level] }}</a>
       {% endif %}
-      {%endfor%}
+      {% endfor %}
     </div>
-  {%for level in levels %}
-    {% if level|string() == 'ncaa' %}
+    {% for level in levels %}
+    {% if loop.index|int() == 1 %}
     <div class="mdl-tabs__panel is-active" id="{{ level }}">
     {% else %}
     <div class="mdl-tabs__panel" id="{{ level }}">
     {% endif %}
-      {% include 'level.html' %}
+      {% block sportsBody %}{% endblock %}
     </div>
-  {% endfor %}  
+    {% endfor %}
   </div>
 </div>
 {% endblock %}

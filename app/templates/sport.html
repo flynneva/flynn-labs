@@ -1,39 +1,86 @@
 {% extends "level.html" %}
 
-{% block levelBody %}
-<div>
-  <table id="todays_games" style="width:100%" class=>
-    <thead>
+{% block sportBody %}
+<style>
+
+#game_title {
+  font-size: 20px;
+  font-weight: 750;
+  color: black;
+}
+#game_state, #game_state p {
+  line-height: auto;
+  margin: 0;
+  padding: 0;
+  padding-right: 5px;
+  font-size: 10px;
+  font-weight: 750;
+}
+#team_name {
+  font-size: 15px;
+  font-weight: 550;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+#record {
+  font-size: 12px;
+  font-weight: 300;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+#score {
+  font-size: 22px;
+  font-weight: 500;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+  padding-right: 20px;
+}
+</style>
+{% for game in scoreboard['games'] %}
+<section class="mdl-grid">
+  <div class="mdl-layout-spacer"></div>
+  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop mdl-cell--stretch">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <thead>
         <tr>
-            <th>Home Team</th>
-            <th>Away Team</th>
-            <th>Game Status</th>
+          <th id="game_title">{{ game['game']['away']['names']['char6'] }} at {{ game['game']['home']['names']['char6'] }}</th>
+          <th id="game_state">
+            {% if game['game']['gameState']|string() == 'pre' %}
+            <p>{{ game['game']['startTime'] }}</p>
+            <p>{{ game['game']['startDate'] }}</p>
+            {% elif game['game']['gameState']|string() == 'live' %}
+            <p>{{ game['game']['contestClock'] }}</p>
+            <p>{{ game['game']['currentPeriod'] }}</p>
+            {% elif game['game']['gameState']|string() == 'final' %}
+            <p>{{ game['game']['finalMessage'] }}</p>
+            {% elif game['game']['gameState']|string() == 'canceled' %}
+            <p>CANCELED</p>
+            {% endif %}
+          </th>
         </tr>
-    </thead>
-    <tbody>
-      {% for game in scoreboard['games'] %}
-      <tr data-href="{{ divisions[ sport ][0] }}{{ game['game']['url'] }}">
-        <td>{{ game['game']['home']['rank'] }} {{ game['game']['home']['names']['short'] }} {{ game['game']['home']['description'] }}</td>
-        <td>{{ game['game']['away']['rank'] }} {{ game['game']['away']['names']['short'] }} {{ game['game']['away']['description'] }}</td>
-        {% if game['game']['gameState'] == 'pre' %}
-          <td>{{ game['game']['startTime'] }}</td>
-        {% elif game['game']['gameState'] == 'live' %}
-          <td>{{ game['game']['home']['score'] }} to {{ game['game']['away']['score'] }} [LIVE]</td>
-        {% elif game['game']['gameState'] == 'final' %}
-          <td>{{ game['game']['home']['score'] }} to {{ game['game']['away']['score'] }} [FINAL]</td>
-        {% elif game['game']['gameState'] == 'canceled' %}
-          <td>Canceled</td>
-        {%endif%}
-      </tr>
-      {% endfor %}
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>Home Team</th>
-        <th>Away Team</th>
-        <th>Game Status</th>
-      </tr>
-    </tfoot>
-  </table>
-</div>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p id="team_name">{{ game['game']['home']['names']['short'] }}</p>
+            <p id="record">{{ game['game']['home']['description'] }}</p>
+          </td>
+          <td id="score">{{ game['game']['home']['score'] }}</td>
+        </tr>
+        <tr>
+          <td>
+            <p id="team_name">{{ game['game']['away']['names']['short'] }}</p>
+            <p id="record">{{ game['game']['away']['description'] }}</p>
+          </td>
+          <td id="score">{{ game['game']['away']['score'] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mdl-layout-spacer"></div>
+</section>  
+{% endfor %}
 {% endblock %}

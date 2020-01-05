@@ -17,7 +17,7 @@
   .demo-layout-transparent .mdl-layout__drawer-button {
     color: black;
   }
-  .demo-layout-transparent .mdl-layout__content main {
+  .demo-layout-transparent .mdl-layout__content .page-content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,12 +54,12 @@
         <a class="mdl-navigation__link" href="/about">About</a>
       </nav>
     </div>
-    <div class="mdl-layout__content">
-      <main>
+    <main class="mdl-layout__content">
+      <div class="page-content">  
         {% block body %}
         {% endblock %}
-      </main>
-    </div>
+      </div>
+    </main>
   </body>
   <footer class="footer">
     <p>© 2020 Evan Flynn</p>
