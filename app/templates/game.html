@@ -1,72 +1,10 @@
 {% extends "sport.html" %}
-{% block head %}
-  {% assets "base_js" %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-  {% endassets %}
-{% endblock %}
-
-{% block body %}
+{% block sportBody %}
 <div>
- <style>
-    #sport .{{ sport }} {
-      background-color: #f1f1f1;
-    }
-  </style>
-
   <div class="container">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <input type="text" id="searchInput" onkeyup="searchTable()" plaseholder="Search...">
-    <script>
-    jQuery(document).ready(function($) {
-      $('*[data-href]').on('click', function() {
-        window.location = $(this).data("href");
-      });
-    });
-    </script>
-
-    <style>
-    [data-href] {
-      cursor: pointer;
-    }
-    #searchInput {
-      background-image: url('/static/img/searchicon.png'); /* Add a search icon to input */
-      background-position: 10px 12px; /* Position the search icon */
-      background-repeat: no-repeat; /* Do not repeat the icon image */
-      width: 100%; /* Full-width */
-      font-size: 16px; /* Increase font-size */
-      padding: 12px 20px 12px 40px; /* Add some padding */
-      border: 1px solid #ddd; /* Add a grey border */
-      margin-bottom: 12px; /* Add some space below the input */
-    }
-    #boxScore {
-      border-collapse: collapse; /* Collapse borders */
-      width: 100%; /* Full-width */
-      border: 1px solid #ddd; /* Add a grey border */
-      font-size: 18px; /* Increase font-size */
-    }
-
-    #boxScore th, #boxScore td {
-      text-align: left; /* Left-align text */
-      padding: 12px; /* Add padding */
-    }
-
-    #boxScore tr {
-      /* Add a bottom border to all table rows */
-      border-bottom: 1px solid #ddd;
-    }
-
-    #boxScore th, #boxScore tr:hover {
-      /* Add a grey background color to the table header and on hover */
-      background-color: #f1f1f1;
-    }
-    </style>
-
-
-
   <h1>{{ boxScore['meta']['description'] }}</h1>
 
   <div class="container">
-    <input type="text" id="searchInput" onkeyup="searchTable()" plaseholder="Search...">
     {%for team in boxScore['teams'] %}
     <h3>{{ boxScore['meta']['teams'][loop.index-1]['shortName'] }}</h3>
     <table id="boxScore" style="width:100%">

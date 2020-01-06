@@ -32,8 +32,11 @@ footballDiv = {}
 basketballMensDiv[0] = 'd1'
 footballDiv[0] = 'fbs'
 
-divisions['basketball-men'] = basketballMensDiv
-divisions['football'] = footballDiv
+ncaaDivisions = {}
+ncaaDivisions['basketball-men'] = basketballMensDiv
+ncaaDivisions['football'] = footballDiv
+
+divisions['ncaa'] = ncaaDivisions
 
 # finance topics
 financeTopics = {}

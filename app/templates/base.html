@@ -4,29 +4,64 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>{% block title %}{% endblock %}</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     {% block head %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-indigo.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     {% endblock %}
   </head>
   <body>
-    <div class="container">
-      <div class="header clearfix">
-        <nav id="baseNav">
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="/">Home</a></li>
-            <li role="presentation"><a href="/sports">Sports</a></li>
-            <li role="presentation"><a href="/finance">Finance</a></li>
-            <li role="presentation"><a href="/robotics">Robotics</a></li>
-            <li role="presentation"><a href="/about">About</a></li>
-          </ul>
+  <style>
+  .demo-layout-transparent .mdl-layout__header,
+  .demo-layout-transparent .mdl-layout__drawer-button {
+    color: black;
+  }
+  .demo-layout-transparent .mdl-layout__content .page-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .demo-layout-transparent .mdl-layout__header-row,
+  .demo-layout-transparent .mdl-navigation__link {
+    color: black;
+  }
+  .mdl-card {
+    margin: 8px;
+  }
+  </style>
+  <div class="demo-layout-transparent mdl-layout mdl-js-layout" style="background: #FFFFFF">
+    <header class="mdl-layout__header mdl-layout__header--transparent" id="baseNav">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">Flynn Labs</span>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="/">Home</a>
+          <a class="mdl-navigation__link" href="/sports">Sports</a>
+          <a class="mdl-navigation__link" href="/finance">Finance</a>
+          <a class="mdl-navigation__link" href="/robotics">Robotics</a>
+          <a class="mdl-navigation__link" href="/about">About</a>
         </nav>
       </div>
-      {% block body %}
-      {% endblock %}
-      <footer class="footer">
-        <p>© 2020 Evan Flynn</p>
-      </footer>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Flynn Labs</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="/">Home</a>
+        <a class="mdl-navigation__link" href="/sports">Sports</a>
+        <a class="mdl-navigation__link" href="/finance">Finance</a>
+        <a class="mdl-navigation__link" href="/robotics">Robotics</a>
+        <a class="mdl-navigation__link" href="/about">About</a>
+      </nav>
     </div>
+    <main class="mdl-layout__content">
+      <div class="page-content">  
+        {% block body %}
+        {% endblock %}
+      </div>
+    </main>
   </body>
+  <footer class="footer">
+    <p>© 2020 Evan Flynn</p>
+  </footer>
 </html>

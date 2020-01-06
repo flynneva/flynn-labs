@@ -1,22 +1,26 @@
 {% extends "sports.html" %}
+{% block title %}{{ level }}{% endblock %}
 {% block sportsBody %}
 <div>
-  <style>
-    #sports .{{ level }} {
-      background-color: #f1f1f1;
-    }
-  </style>
-  <div class="container">
-    <div class="header clearfix">
-     <nav id="sport">
-       <ul class="nav nav-pills pull-left">
-         {%for sport in sports %}
-         <li class={{ sport }} role="presentation"><a href="/sports/{{ level }}/{{ sport }}/{{ divisions[sport][0] }}">{{ sports[sport] }}</a></li>
-         {%endfor%}
-       </ul>
-     </nav>
+  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+      {% for sport in sports %}
+      {% if loop.index|int() == 1 %}
+      <a href="{{ level }}/{{ sport }}/{{ divisions[level][sport][0] }}" class="mdl-tabs__tab is-active">{{ sports[sport] }}</a>
+      {% else %}
+      <a href="{{ level }}/{{ sport }}/{{ divisions[level][sport][0] }}" class="mdl-tabs__tab">{{ sports[sport] }}</a>
+      {% endif %}
+      {% endfor %}
     </div>
+    {% for sport in sports %}
+    {% if loop.index|int() == 1 %}
+    <div class="mdl-tabs__panel is-active" id="{{ sport }}">
+    {% else %}
+    <div class="mdl-tabs__panel" id="{{ sport }}">
+    {% endif %}
+      {% block sportBody %}{% endblock %}
+    </div>
+    {% endfor %}
   </div>
-  {% block levelBody %}{% endblock %}
 </div>
 {% endblock %}
