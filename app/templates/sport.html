@@ -1,9 +1,25 @@
 {% extends "level.html" %}
-
 {% block sportBody %}
 <style>
+#scorecard {
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 1px;
+}
+
+#scoretable {
+  width: 350px;
+}
+
+#cell_for_table a{
+  position: absolute;
+  width: 350px;
+  height: 195px;
+  z-index: 1;
+}
 
 #game_title {
+  text-align: left;
   font-size: 20px;
   font-weight: 750;
   color: black;
@@ -39,13 +55,14 @@
   padding-right: 20px;
 }
 </style>
+<div class="mdl-grid">
 {% for game in scoreboard['games'] %}
-<section class="mdl-grid">
-  <div class="mdl-layout-spacer"></div>
-  <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop mdl-cell--stretch">
-    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+<div class="mdl-grid" id="scorecard">
+  <div id="cell_for_table" class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop mdl-cell--stretch">
+    <a href="{{ division }}{{ game['game']['url'] }}"></a>
+    <table id="scoretable" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
       <thead>
-        <tr>
+        <tr bgcolor="#d3d3d3">
           <th id="game_title">{{ game['game']['away']['names']['char6'] }} at {{ game['game']['home']['names']['char6'] }}</th>
           <th id="game_state">
             {% if game['game']['gameState']|string() == 'pre' %}
@@ -63,14 +80,22 @@
         </tr>
       </thead>
       <tbody>
+        {% if game['game']['home']['winner']|string() == 'True' %}
+        <tr bgcolor="#B4ECB4">
+        {% else %}
         <tr>
+        {% endif %}
           <td>
             <p id="team_name">{{ game['game']['home']['names']['short'] }}</p>
             <p id="record">{{ game['game']['home']['description'] }}</p>
           </td>
           <td id="score">{{ game['game']['home']['score'] }}</td>
         </tr>
+        {% if game['game']['away']['winner']|string() == 'True' %}
+        <tr bgcolor="#B4ECB4">
+        {% else %}
         <tr>
+        {% endif %}
           <td>
             <p id="team_name">{{ game['game']['away']['names']['short'] }}</p>
             <p id="record">{{ game['game']['away']['description'] }}</p>
@@ -80,7 +105,8 @@
       </tbody>
     </table>
   </div>
-  <div class="mdl-layout-spacer"></div>
-</section>  
+</div>
 {% endfor %}
+</div>
 {% endblock %}
+{% block scoreBody %}{% endblock %}
