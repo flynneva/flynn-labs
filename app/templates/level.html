@@ -4,15 +4,15 @@
 <div>
   <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
     <div class="mdl-tabs__tab-bar">
-      {% for sport in sports %}
+      {% for sport in sports[level] %}
       {% if loop.index|int() == 1 %}
-      <a href="{{ level }}/{{ sport }}/{{ divisions[level][sport][0] }}" class="mdl-tabs__tab is-active">{{ sports[sport] }}</a>
+      <a href="/sports/{{ level }}/{{ sport }}/{{ divisions[level][sport][0] }}" class="mdl-tabs__tab is-active">{{ sports[level][sport] }}</a>
       {% else %}
-      <a href="{{ level }}/{{ sport }}/{{ divisions[level][sport][0] }}" class="mdl-tabs__tab">{{ sports[sport] }}</a>
+      <a href="/sports/{{ level }}/{{ sport }}/{{ divisions[level][sport][0] }}" class="mdl-tabs__tab">{{ sports[level][sport] }}</a>
       {% endif %}
       {% endfor %}
     </div>
-    {% for sport in sports %}
+    {% for sport in sports[level] %}
     {% if loop.index|int() == 1 %}
     <div class="mdl-tabs__panel is-active" id="{{ sport }}">
     {% else %}

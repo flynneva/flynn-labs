@@ -21,8 +21,20 @@ levels['professional'] = 'Professional'
 
 # sports
 sports = {}
-sports['basketball-men'] = 'Men\'s Basketball'
-sports['football'] = 'Football'
+
+ncaaSports = {}
+professionalSports = {}
+
+ncaaSports['basketball-men'] = 'Men\'s Basketball'
+ncaaSports['football'] = 'Football'
+
+professionalSports['nfl'] = 'NFL'
+professionalSports['nba'] = 'NBA'
+professionalSports['mlb'] = 'MLB'
+professionalSports['nhl'] = 'NHL'
+
+sports['ncaa'] = ncaaSports
+sports['professional'] = professionalSports
 
 # divisions
 divisions = {}
@@ -36,7 +48,14 @@ ncaaDivisions = {}
 ncaaDivisions['basketball-men'] = basketballMensDiv
 ncaaDivisions['football'] = footballDiv
 
+professionalDivisions = {}
+professionalDivisions['nfl'] = 'NFL'
+professionalDivisions['nba'] = 'NBA'
+professionalDivisions['mlb'] = 'MLB'
+professionalDivisions['nhl'] = 'NHL'
+
 divisions['ncaa'] = ncaaDivisions
+divisions['professional'] = professionalDivisions
 
 # finance topics
 financeTopics = {}
