@@ -58,14 +58,14 @@ def live_game(level, sport, division, game, gameID):
     scoreboard = ''
     boxScore = ''
     pbp = ''
-
   if (sport == 'basketball-men'):
     return render_template("basketball_game.html", level=level, levels=env.levels,
                          sports=env.sports, sport=sport, divisions=env.divisions,
                          division=division, game=game, gameID=gameID,
                          scoreboard=scoreboard, boxScore=boxScore, pbp=pbp)
   elif (sport == 'football'):
-    return render_template("football_game.html", level=level, sport=sport, divsions=env.divisions,
+    return render_template("football_game.html", level=level, levels=env.levels,
+                         sports=env.sports, sport=sport, divisions=env.divisions,
                          division=division, game=game, gameID=gameID, 
                          scoreboard=scoreboard, boxScore=boxScore, pbp=pbp)
   else:

@@ -1,26 +1,39 @@
 {% extends "base.html" %}
 {% block title %}Sports{% endblock %}
-{% block body %}
-<div>
-  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-    <div class="mdl-tabs__tab-bar">
+{% block mainBody %}
+<style>
+#levelGrid {
+  width: auto;
+  justify-content: center;
+  margin: 0;
+}
+#levelCell {
+  width: 100%;
+  margin: 0;
+}
+</style>
+<div id="levelGrid" class="mdl-grid">
+  <div id="levelCell" class="mdl-cell">
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        {% for level in levels %}
+        {% if loop.index|int() == 1 %}
+        <a href="/sports/{{ level }}" class="mdl-tabs__tab is-active">{{ levels[level] }}</a>
+        {% else %}
+        <a href="/sports/{{ level }}" class="mdl-tabs__tab">{{ levels[level] }}</a>
+        {% endif %}
+        {% endfor %}
+      </div>
       {% for level in levels %}
       {% if loop.index|int() == 1 %}
-      <a href="/sports/{{ level }}" class="mdl-tabs__tab is-active">{{ levels[level] }}</a>
+      <div class="mdl-tabs__panel is-active" id="{{ level }}">
       {% else %}
-      <a href="/sports/{{ level }}" class="mdl-tabs__tab">{{ levels[level] }}</a>
+      <div class="mdl-tabs__panel" id="{{ level }}">
       {% endif %}
+        {% block sportsBody %}{% endblock %}
+      </div>
       {% endfor %}
     </div>
-    {% for level in levels %}
-    {% if loop.index|int() == 1 %}
-    <div class="mdl-tabs__panel is-active" id="{{ level }}">
-    {% else %}
-    <div class="mdl-tabs__panel" id="{{ level }}">
-    {% endif %}
-      {% block sportsBody %}{% endblock %}
-    </div>
-    {% endfor %}
   </div>
 </div>
 {% endblock %}

@@ -1,94 +1,57 @@
-{% extends "sport.html" %}
-{% block head %}
-  {% assets "base_js" %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-  {% endassets %}
-{% endblock %}
+{% extends 'level.html' %}
+{% block sportBody %}
+<style>
+#table_title {
+  text-align: left;
+  font-size: 25px;
+  font-weight: 500;
+}
 
-{% block body %}
-<div>
- <style>
-    #sport .{{ sport }} {
-      background-color: #f1f1f1;
-    }
-  </style>
-
-  <div class="container">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script>
-    jQuery(document).ready(function($) {
-      $('*[data-href]').on('click', function() {
-        window.location = $(this).data("href");
-      });
-    });
-    </script>
-
-    <style>
-    [data-href] {
-      cursor: pointer;
-    }
-    #searchInput {
-      background-image: url('/static/img/searchicon.png'); /* Add a search icon to input */
-      background-position: 10px 12px; /* Position the search icon */
-      background-repeat: no-repeat; /* Do not repeat the icon image */
-      width: 100%; /* Full-width */
-      font-size: 16px; /* Increase font-size */
-      padding: 12px 20px 12px 40px; /* Add some padding */
-      border: 1px solid #ddd; /* Add a grey border */
-      margin-bottom: 12px; /* Add some space below the input */
-    }
-    {%for table in boxScore['tables'] %}
-    #{{ table['id'] }} {
-      border-collapse: collapse; /* Collapse borders */
-      width: 100%; /* Full-width */
-      border: 1px solid #ddd; /* Add a grey border */
-      font-size: 18px; /* Increase font-size */
-    }
-
-    #{{ table['id'] }} th, #{{ table['id'] }} td {
-      text-align: left; /* Left-align text */
-      padding: 12px; /* Add padding */
-    }
-
-    #{{ table['id'] }} tr {
-      /* Add a bottom border to all table rows */
-      border-bottom: 1px solid #ddd;
-    }
-
-    #{{ table['id'] }} th, #{{ table['id'] }} tr:hover {
-      /* Add a grey background color to the table header and on hover */
-      background-color: #f1f1f1;
-    }
-    {% endfor %}
-    </style>
-
-
-
-  <h1>{{ boxScore['meta']['description'] }}</h1>
-
-  <div class="container">
-    {%for table in boxScore['tables'] %}
-    <h3>{{ table['id'] }}</h3>
-    <table id="{{ table['id'] }}" style="width:100%">
-      <thead>
-          <tr>
-              <th>Player Name</th>
-              {%for colHeader in table['header'] %}
-              <th>{{ colHeader['display'] }}</th>
-              {%endfor%}
-          </tr>
-      </thead>
-      <tbody>
-        {%for playerStats in table['data'] %}
+#boxScore {
+  margin: auto;
+  padding: 8px;
+}
+</style>
+<div class="mdl-grid">
+  {%for table in boxScore['tables'] %}
+  <div id="boxScore" class="mdl-cell mdl-cell--6-col-tablet mdl-cell--10-col-desktop mdl-cell--stretch">
+  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+        <tr>        
+          {%for metaTeam in boxScore['meta']['teams'] %}
+          {%if table['headerColor']|string() == metaTeam['color']|string() %}
+          <th id="table_title" colspan="{{ table['header']|length }}">{{ boxScore['meta']['teams'][loop.index - 1]['shortName'] }} {{ table['header'][0]['display'] }}</th>
+          {%endif%}
+          {%endfor%}
         <tr>
-         {% for value in playerStats['row'] %}
-         <td>{{ value['display'] }}</td>
-         {%endfor%}
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric">First Name</th>
+          <th class="mdl-data-table__cell--non-numeric">Last Name</th>
+          {%for colHeader in team['playerHeader'] %}
+          <th>{{ team['playerHeader'][colHeader] }}</th>
+          {%endfor%}
         </tr>
+    </thead>
+    <tbody>
+      {%for playerStats in team['playerStats'] %}
+      <tr>
+        <td class="mdl-data-table__cell--non-numeric">{{ playerStats['firstName'] }}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{ playerStats['lastName'] }}</td>
+        {%for colHeader in team['playerHeader'] %}
+        <td>{{ playerStats[colHeader] }} </td>
         {%endfor%}
-      </tbody>
-    </table>
-    {%endfor%}
+      </tr>
+      {%endfor%}
+      <tr>
+        <td></td>
+        <td>Team Totals</td>
+        {%for colHeader in team['playerHeader'] %}
+        <td>{{ team['playerTotals'][colHeader] }}</td>
+        {%endfor%}
+      </tr> 
+    </tbody>
+  </table>
   </div>
+  {%endfor%}
 </div>
 {% endblock %}

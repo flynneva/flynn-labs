@@ -1,33 +1,42 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 
-{% block body %}
+{% block mainBody %}
 <style>
-.demo-card-wide.mdl-card {
-  width: 512px;
-  align-items: center;
+#homeGrid {
+  width: auto;
   justify-content: center;
+  margin: 0;
 }
-.demo-card-wide > .mdl-card__title {
+#homeCell {
+  width: auto;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+}
+.mdl-card {
+  align-items: center;
+  text-align: center;
+}
+.mdl-card__title {
   height: 176px;
+  align-items: center;
+}
+.mdl-card__title-text {
+  margin-top: 14px;
+  margin-bottom: 0px;
 }
 </style>
-<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-  <div class="mdl=card__title">
-    <h2 class="mdl-card__title-text">Welcome</h2>
+<div id="homeGrid" class="mdl-grid">
+  <div id="homeCell" class="mdl-cell">
+    <div class="mdl-card mdl-shadow--2dp">
+      <div class="mdl=card__title">
+        <h2 class="mdl-card__title-text">Welcome</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        Hope you enjoy your time here and find something useful. This site is just a hobby for me, so apologies if you find something broken or missing. Feel free to reach out via twitter, email, or github if you have any questions.
+      </div>
+    </div>
   </div>
-  <div class="mdl-card__supporting-text">
-    Hope you enjoy your time here and find something useful! This site is just a hobby, so apologies if you find something broken or missing.
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-      Get Started
-    </a>
-  </div>
-  <div class="mdl-card__menu">
-    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-      <i class="material-icons">share</i>
-    </button>
-  </div> 
 </div>
 {% endblock %}

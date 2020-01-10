@@ -37,6 +37,7 @@ def getBoxScore(gameID):
   gameURL = "https://data.ncaa.com/casablanca/game/"
   gameURL = gameURL + gameID + "/boxscore.json"
 
+  print(gameURL)
   try:
     boxScore = json.loads(urllib.request.urlopen(gameURL).read().decode())
   except:

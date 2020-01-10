@@ -14,24 +14,26 @@
   </head>
   <body>
   <style>
-  .demo-layout-transparent .mdl-layout__header,
-  .demo-layout-transparent .mdl-layout__drawer-button {
+  .mdl-layout__container {
+    width: device-width;
+  }
+  .mdl-layout, .mdl-layout__header,
+  .mdl-layout__drawer-button {
     color: black;
   }
-  .demo-layout-transparent .mdl-layout__content .page-content {
-    display: flex;
+  .mdl-layout, .mdl-layout__content .page-content {
     align-items: center;
     justify-content: center;
+  }  
+  .mdl-layout__content {
+    width: 100%;
   }
-  .demo-layout-transparent .mdl-layout__header-row,
-  .demo-layout-transparent .mdl-navigation__link {
+  .mdl-layout, .mdl-layout__header-row,
+  .mdl-navigation__link {
     color: black;
   }
-  .mdl-card {
-    margin: 8px;
-  }
   </style>
-  <div class="demo-layout-transparent mdl-layout mdl-js-layout" style="background: #FFFFFF">
+  <div class="mdl-layout mdl-js-layout" style="background: #FFFFFF">
     <header class="mdl-layout__header mdl-layout__header--transparent" id="baseNav">
       <div class="mdl-layout__header-row">
         <span class="mdl-layout-title">Flynn Labs</span>
@@ -57,10 +59,11 @@
     </div>
     <main class="mdl-layout__content">
       <div class="page-content">  
-        {% block body %}
+        {% block mainBody %}
         {% endblock %}
       </div>
     </main>
+  </div>
   </body>
   <footer class="footer">
     <p>© 2020 Evan Flynn</p>
