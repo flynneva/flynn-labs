@@ -1,24 +1,32 @@
 {% extends "base.html" %}
 {% block title %}Finance{% endblock %}
-{% block body %}
-<div>
-  <style>
-    #baseNav .{{ baseTopic }} {
-      background-color: #f1f1f1;
-    }
-  </style>
-  <h2>Finance</h2>
-  <div class="container">
-    <div class="header clearfix">
-     <nav id="finance">
-       <ul class="nav nav-pills pull-left">
-         {%for topic in financeTopics %}
-         <li class="{{ level }}" role="presentation"><a href="/finance/{{ topic }}">{{ financeTopics[topic] }}</a></li>
-         {%endfor%}
-       </ul>
-     </nav>
+{% block mainBody %}
+<style>
+#financeGrid {
+  width: auto;
+  justify-content: center;
+  margin: 0;
+}
+#financeCell {
+  width: auto;
+  margin: 0;
+}
+</style>
+<div id="financeGrid" class="mdl-grid">
+  <div id="financeCell" class="mdl-cell">
+    <h2>Finance</h2>
+    <div class="container">
+      <div class="header clearfix">
+       <nav id="finance">
+         <ul class="nav nav-pills pull-left">
+           {%for topic in financeTopics %}
+           <li class="{{ level }}" role="presentation"><a href="/finance/{{ topic }}">{{ financeTopics[topic] }}</a></li>
+           {%endfor%}
+         </ul>
+       </nav>
+      </div>
     </div>
+    {% block financeBody %} {% endblock%}
   </div>
-  {% block financeBody %} {% endblock%}
 </div>
 {% endblock %}

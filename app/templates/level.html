@@ -1,26 +1,41 @@
 {% extends "sports.html" %}
 {% block title %}{{ level }}{% endblock %}
 {% block sportsBody %}
-<div>
-  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-    <div class="mdl-tabs__tab-bar">
+<style>
+#sportGrid {
+  width: auto;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+#sportCell {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+</style>
+<div id="sportGrid"class="mdl-grid">
+  <div id="sportCell" class="mdl-cell">
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        {% for sport in sports[level] %}
+        {% if loop.index|int() == 1 %}
+        <a href="/sports/{{ level }}/{{ sport }}/{{ divisions[level][sport][0] }}" class="mdl-tabs__tab is-active">{{ sports[level][sport] }}</a>
+        {% else %}
+        <a href="/sports/{{ level }}/{{ sport }}/{{ divisions[level][sport][0] }}" class="mdl-tabs__tab">{{ sports[level][sport] }}</a>
+        {% endif %}
+        {% endfor %}
+      </div>
       {% for sport in sports[level] %}
       {% if loop.index|int() == 1 %}
-      <a href="/sports/{{ level }}/{{ sport }}/{{ divisions[level][sport][0] }}" class="mdl-tabs__tab is-active">{{ sports[level][sport] }}</a>
+      <div class="mdl-tabs__panel is-active" id="{{ sport }}">
       {% else %}
-      <a href="/sports/{{ level }}/{{ sport }}/{{ divisions[level][sport][0] }}" class="mdl-tabs__tab">{{ sports[level][sport] }}</a>
+      <div class="mdl-tabs__panel" id="{{ sport }}">
       {% endif %}
+        {% block sportBody %}{% endblock %}
+      </div>
       {% endfor %}
     </div>
-    {% for sport in sports[level] %}
-    {% if loop.index|int() == 1 %}
-    <div class="mdl-tabs__panel is-active" id="{{ sport }}">
-    {% else %}
-    <div class="mdl-tabs__panel" id="{{ sport }}">
-    {% endif %}
-      {% block sportBody %}{% endblock %}
-    </div>
-    {% endfor %}
   </div>
 </div>
 {% endblock %}

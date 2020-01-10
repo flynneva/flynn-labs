@@ -1,80 +1,105 @@
 {% extends "level.html" %}
 {% block sportBody %}
 <style>
-#scorecard {
-  margin-left: 2px;
-  margin-right: 2px;
-  padding: 1px;
+#scoreboardGrid {
+  padding: 0;
+  justify-content: center;
 }
-
-#scoretable {
-  width: 350px;
+#cell_for_table {
+  height: 100px;
+  width: 150px;
 }
 
 #cell_for_table a{
+  height: 100px;
+  width: 150px;
   position: absolute;
-  width: 350px;
-  height: 195px;
   z-index: 1;
 }
 
-#game_title {
-  text-align: left;
-  font-size: 20px;
-  font-weight: 750;
-  color: black;
+#scoretable {
+  height: 100%;
+  width: 100%;
 }
-#game_state, #game_state p {
-  line-height: auto;
-  margin: 0;
+
+#scoretable p, #scoretable tr {
+  height: 16px;
   padding: 0;
-  padding-right: 5px;
+  margin: 0;
+  line-height: 16px;
+}
+#scoretable td {
+  height: 16px;
+  padding: 0;
+  line-height: 16px;
+  padding-left: 8px;
+}
+#game_header_row, #game_header{
+  min-height: 10px;
+  height: 10px;
+  padding: 0;
+  margin: 0;
+  line-height: 10px;
+}
+#game_state, #game_title{
+  padding: 0;
+  margin: 0;
+  min-height: 0;
+  height: 10px;
+  line-height: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+#start_time {
   font-size: 10px;
-  font-weight: 750;
 }
-#team_name {
-  font-size: 15px;
-  font-weight: 550;
-  text-align: left;
-  margin: 0;
+#team_name, #record {
   padding: 0;
+  margin: 0;
+  text-align: left;
+  padding-left: 4px;
 }
 #record {
-  font-size: 12px;
-  font-weight: 300;
-  text-align: left;
-  margin: 0;
-  padding: 0;
+  font-size: 10px;
 }
 #score {
-  font-size: 22px;
-  font-weight: 500;
-  text-align: right;
-  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  height 20px;
   padding: 0;
-  padding-right: 20px;
+  margin: 0;
+  line-height: 20px;
+}
+#period {
+  font-size: 8px;
+  font-weight: 750;
+}
+#final_msg {
+  padding: 0;
+  margin: 0;
+  font-weight: 800;
 }
 </style>
-<div class="mdl-grid">
+<div id="scoreboardGrid" class="mdl-grid">
 {% for game in scoreboard['games'] %}
-<div class="mdl-grid" id="scorecard">
-  <div id="cell_for_table" class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop mdl-cell--stretch">
+  <div id="cell_for_table" class="mdl-cell">
     <a href="{{ division }}{{ game['game']['url'] }}"></a>
     <table id="scoretable" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-      <thead>
-        <tr bgcolor="#d3d3d3">
-          <th id="game_title">{{ game['game']['away']['names']['char6'] }} at {{ game['game']['home']['names']['char6'] }}</th>
-          <th id="game_state">
-            {% if game['game']['gameState']|string() == 'pre' %}
-            <p>{{ game['game']['startTime'] }}</p>
-            <p>{{ game['game']['startDate'] }}</p>
+      <thead id="game_header">
+        <tr bgcolor="#d3d3d3" id="game_header_row">
+          <th id="game_title" class="mdl-data-table__cell-non-numeric">
+            {% if game['game']['gameState']|string() == 'pre' %} 
+            <p id="start_time">{{ game['game']['startTime'] }} | {{ game['game']['startDate'] }}</p>
             {% elif game['game']['gameState']|string() == 'live' %}
-            <p>{{ game['game']['contestClock'] }}</p>
-            <p>{{ game['game']['currentPeriod'] }}</p>
+            <p id="clock">{{ game['game']['contestClock'] }} | {{ game['game']['currentPeriod'] }}</p>
             {% elif game['game']['gameState']|string() == 'final' %}
-            <p>{{ game['game']['finalMessage'] }}</p>
+            {% endif %}
+            </th>
+          <th id="game_state" class="mdl-data-table__cell-non-numeric">
+            {% if game['game']['gameState']|string() == 'final' %}
+            <p id="final_msg">{{ game['game']['finalMessage'] }}</p>
             {% elif game['game']['gameState']|string() == 'canceled' %}
-            <p>CANCELED</p>
+            <p id="canceled">CANCELED</p>
             {% endif %}
           </th>
         </tr>
@@ -85,27 +110,26 @@
         {% else %}
         <tr>
         {% endif %}
-          <td>
-            <p id="team_name">{{ game['game']['home']['names']['short'] }}</p>
+          <td class="mdl-data-table__cell-non-numeric">
+            <p id="team_name">{{ game['game']['home']['rank'] }} {{ game['game']['home']['names']['char6'] }}</p>
             <p id="record">{{ game['game']['home']['description'] }}</p>
           </td>
-          <td id="score">{{ game['game']['home']['score'] }}</td>
+          <td id="score" class="mdl-data-table__cell-non-numeric">{{ game['game']['home']['score'] }}</td>
         </tr>
         {% if game['game']['away']['winner']|string() == 'True' %}
         <tr bgcolor="#B4ECB4">
         {% else %}
         <tr>
         {% endif %}
-          <td>
-            <p id="team_name">{{ game['game']['away']['names']['short'] }}</p>
+          <td class="mdl-data-table__cell-non-numeric">
+            <p id="team_name">{{ game['game']['away']['rank'] }} {{ game['game']['away']['names']['char6'] }}</p>
             <p id="record">{{ game['game']['away']['description'] }}</p>
           </td>
-          <td id="score">{{ game['game']['away']['score'] }}</td>
+          <td id="score" class="mdl-data-table__cell-non-numeric">{{ game['game']['away']['score'] }}</td>
         </tr>
       </tbody>
     </table>
   </div>
-</div>
 {% endfor %}
 </div>
 {% endblock %}

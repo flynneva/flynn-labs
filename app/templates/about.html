@@ -1,8 +1,20 @@
 {% extends "base.html" %}
 {% block title %}About{% endblock %}
-{% block body %}
-<div>
-  <h1>About Flynn Labs</h1>
-  <p class="lead">I'll fill this in later but hey, welcome!</p>
+{% block mainBody %}
+<style>
+#aboutGrid {
+  width: auto;
+  justify-content: center;
+  margin: 0;
+}
+#aboutCell {
+  width: auto;
+  margin: 0;
+}
+</style>
+<div id="aboutGrid" class="mdl-grid">
+  <div id="aboutCell" class="mdl-cell">
+    <h1>About</h1>
+  </div>
 </div>
 {% endblock %}

@@ -1,14 +1,20 @@
 {% extends "base.html" %}
 {% block title %}Robotics{% endblock %}
-{% block body %}
+{% block mainBody %}
 <style>
-  #baseNav .{{ baseTopic }} {
-    background-color: #f1f1f1;
-  }
+#roboticsGrid {
+  width: auto;
+  justify-content: center;
+  margin: 0;
+}
+#roboticsCell {
+  width: auto;
+  margin: 0;
+}
 </style>
-
-<div>
-  <h1>Robotics</h1>
-  <p class="lead">Beep boop beep</p>
+<div id="roboticsGrid" class="mdl-grid">
+  <div id="roboticsCell" class="mdl-cell">
+    <h1>Robotics</h1>
+  </div>
 </div>
 {% endblock %}
