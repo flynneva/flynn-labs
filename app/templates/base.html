@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     {% block head %}
@@ -14,9 +14,6 @@
   </head>
   <body>
   <style>
-  .mdl-layout__container {
-    width: device-width;
-  }
   .mdl-layout, .mdl-layout__header,
   .mdl-layout__drawer-button {
     color: black;

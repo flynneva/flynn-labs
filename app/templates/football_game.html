@@ -10,47 +10,39 @@
 #boxScore {
   margin: auto;
   padding: 8px;
+  overflow-y: hidden;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 </style>
 <div class="mdl-grid">
   {%for table in boxScore['tables'] %}
   <div id="boxScore" class="mdl-cell mdl-cell--6-col-tablet mdl-cell--10-col-desktop mdl-cell--stretch">
-  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-    <thead>
-        <tr>        
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <thead>
+        <tr>
           {%for metaTeam in boxScore['meta']['teams'] %}
-          {%if table['headerColor']|string() == metaTeam['color']|string() %}
-          <th id="table_title" colspan="{{ table['header']|length }}">{{ boxScore['meta']['teams'][loop.index - 1]['shortName'] }} {{ table['header'][0]['display'] }}</th>
-          {%endif%}
-          {%endfor%}
+          {%if table['headerColor']|string() == metaTeam['color'] %}
+          <th id="table_title" colspan="{{ table['id'] }}">{{ metaTeam['shortName'] }} {{ table['header'][0]['display'] }}</th>
+          {% endif %}
+          {% endfor %}
+        </tr>
         <tr>
-        <tr>
-          <th class="mdl-data-table__cell--non-numeric">First Name</th>
-          <th class="mdl-data-table__cell--non-numeric">Last Name</th>
-          {%for colHeader in team['playerHeader'] %}
-          <th>{{ team['playerHeader'][colHeader] }}</th>
+          <td>Player Name</td>
+          {%for header in table['header'] %}
+          <td>{{ header['display'] }}</td>
           {%endfor%}
         </tr>
-    </thead>
-    <tbody>
-      {%for playerStats in team['playerStats'] %}
-      <tr>
-        <td class="mdl-data-table__cell--non-numeric">{{ playerStats['firstName'] }}</td>
-        <td class="mdl-data-table__cell--non-numeric">{{ playerStats['lastName'] }}</td>
-        {%for colHeader in team['playerHeader'] %}
-        <td>{{ playerStats[colHeader] }} </td>
+      </thead>
+      <tbody>
+        {%for data in table['data'] %}
+        <tr>
+        {%for row in data['row'] %}
+          <td>{{ row['display'] }}</td>
         {%endfor%}
-      </tr>
-      {%endfor%}
-      <tr>
-        <td></td>
-        <td>Team Totals</td>
-        {%for colHeader in team['playerHeader'] %}
-        <td>{{ team['playerTotals'][colHeader] }}</td>
+        </tr>
         {%endfor%}
-      </tr> 
-    </tbody>
-  </table>
+      </tbody>
+    </table>
   </div>
   {%endfor%}
 </div>
