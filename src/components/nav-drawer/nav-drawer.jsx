@@ -10,19 +10,27 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
+import SportsIcon from '@material-ui/icons/Sports';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import AndroidIcon from '@material-ui/icons/Android';
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-  },
-  item: {
-    padding: theme.spacing(2),
   },
   list: {
     width: 250,
   },
   fullList: {
     width: 'auto',
+  },
+  fabButton: {
+    margin: 0,
+    top: 20,
+    bottom: 'auto',
+    left: 20,
+    right: 'auto',
+    position: 'fixed',   
   },
 }));
 
@@ -53,7 +61,10 @@ function NavDrawer() {
       <List>
         {[ 'Home', 'Sports', 'Finance', 'Robotics'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index  % 2 === 0 ? <HomeIcon /> : <MenuIcon />}</ListItemIcon>
+            <ListItemIcon>
+              { index  === 0 ? <HomeIcon /> :
+                index === 1 ? <SportsIcon /> :
+                index === 2 ? <MonetizationOnIcon /> : <AndroidIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -63,16 +74,14 @@ function NavDrawer() {
   );
 
   return(
-    <div className={classes.root}>
-      <Grid container spacing={1}>
-        <Grid item xs={12} className={classes.item}>
-          <Fab onClick={toggleDrawer('left', true)}><MenuIcon /></Fab>
-          <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-            {menuList('left')}
-          </Drawer>
-        </Grid>
-      </Grid> 
-    </div>
+    <Grid container spacing={1}>
+      <Grid item>
+        <Fab className={classes.fabButton} onClick={toggleDrawer('left', true)}><MenuIcon /></Fab>
+        <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+          {menuList('left')}
+        </Drawer>
+      </Grid>
+    </Grid> 
   );
 }
 
