@@ -32,6 +32,10 @@ const useStyles = makeStyles(theme => ({
     right: 'auto',
     position: 'fixed',   
   },
+  drawerTitle: {
+    textAlign: 'left',
+    margin: theme.spacing(2),
+  }
 }));
 
 function NavDrawer() {
@@ -58,6 +62,7 @@ function NavDrawer() {
           onClick={toggleDrawer(side, false)}
           onKeyDown={toggleDrawer(side, false)}
     >
+      <h1 className={classes.drawerTitle}>Flynn Labs</h1>
       <List>
         {[ 'Home', 'Sports', 'Finance', 'Robotics'].map((text, index) => (
           <ListItem button key={text}>
