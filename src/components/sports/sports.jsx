@@ -5,7 +5,6 @@ function Sports () {
 
   return (
     <div>
-      <h2>Sports</h2>
       <SportsTabs />
     </div>
   );
