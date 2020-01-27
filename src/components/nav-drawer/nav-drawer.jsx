@@ -15,6 +15,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import SportsIcon from '@material-ui/icons/Sports';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import AndroidIcon from '@material-ui/icons/Android';
+import InfoIcon from '@material-ui/icons/Info';
+import ContactSupportIcon from '@material-ui/icons/ContactSupport';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -102,6 +104,14 @@ function NavDrawer() {
         ))}
       </List>
       <Divider />
+      <List component='nav'>
+        {[ 'About', 'Contact'].map((text, index) => (
+          <ListItemLink to={ index === 0 ? '/about' : '/contact' }
+                        icon={ index  === 0 ? <InfoIcon /> : <ContactSupportIcon /> }
+                        primary={text} />
+        ))}
+      </List>
+      
     </div>
   );
 

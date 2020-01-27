@@ -1,12 +1,11 @@
 import React from 'react';
 
-function Home () {
-
+function NcaaPanel () {
   return (
     <div>
-      <h2>Welcome</h2>
+      NCAA Panel
     </div>
   );
 }
 
-export default Home;
+export default NcaaPanel;
