@@ -6,8 +6,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from '../tab-panel/tab-panel';
-import NcaaPanel from '../ncaa-panel/ncaa-panel';
-import ProfessionalPanel from '../professional-panel/professional-panel';
+import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
+import SportsFootballIcon from '@material-ui/icons/SportsFootball';
+import SportsBaseballIcon from '@material-ui/icons/SportsBaseball';
+import SportsHockeyIcon from '@material-ui/icons/SportsHockey';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -51,12 +53,12 @@ function ProfessionalTabs() {
           indicatorColor="primary"
           textColor="primary"
           variant="fullWidth"
-          aria-label="sports-tabs"
+          aria-label="pro-tabs"
         >
-          <Tab label="NFL" {...a11yProps(0)} />
-          <Tab label="NBA" {...a11yProps(1)} />
-          <Tab label="MLB" {...a11yProps(2)} />
-          <Tab label="NHL" {...a11yProps(3)} />
+          <Tab icon={<SportsBasketballIcon />} {...a11yProps(0)} />
+          <Tab icon={<SportsFootballIcon />} {...a11yProps(1)} />
+          <Tab icon={<SportsBaseballIcon />} {...a11yProps(2)} />
+          <Tab icon={<SportsHockeyIcon />} {...a11yProps(3)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -64,10 +66,18 @@ function ProfessionalTabs() {
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-        <NcaaPanel value={value} index={0} dir={theme.direction} />
-        <ProfessionalPanel value={value} index={1} dir={theme.direction} />
-        <NcaaPanel value={value} index={2} dir={theme.direction} />
-        <ProfessionalPanel value={value} index={3} dir={theme.direction} />
+        <TabPanel value={value} index={0} dir={theme.direction}>
+          NFL 
+        </TabPanel>
+        <TabPanel value={value} index={1} dir={theme.direction}>
+          NBA
+        </TabPanel>
+        <TabPanel value={value} index={2} dir={theme.direction}>
+          MLB 
+        </TabPanel>
+        <TabPanel value={value} index={3} dir={theme.direction}>
+          NHL 
+        </TabPanel>
       </SwipeableViews>
     </div>
   );
