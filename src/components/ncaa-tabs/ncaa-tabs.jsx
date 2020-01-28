@@ -68,7 +68,6 @@ function NcaaTabs() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <p>Basketball</p>
           <Scoreboard />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>

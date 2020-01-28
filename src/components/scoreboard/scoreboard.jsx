@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
+import GameCard from '../game-card/game-card';
 
 const baseURL = 'casablanca/scoreboard/'
 const DEFAULT_QUERY = 'basketball-men/d1/2019/12/23/scoreboard.json'
@@ -28,12 +30,16 @@ class Scoreboard extends Component {
     const { games } = this.state;
 
     return (
-      <div>
-        <p>SCOREBOARD</p>
-        { games.map(game =>
-          <p>{game.game.title}</p>
-        )}
-      </div>
+      <Grid container spacing={1}>
+        { games.map(game => (
+          <Grid item spacing={2}>
+            <GameCard
+              homeTeam={game.game.home.names.char6} 
+              awayTeam={game.game.away.names.char6} 
+            />
+          </Grid>
+        ))}
+      </Grid>
     );
   }
 }
