@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import AppSwitch from '../app-switch/app-switch';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import BottomNav from '../bottom-nav/bottom-nav';
 

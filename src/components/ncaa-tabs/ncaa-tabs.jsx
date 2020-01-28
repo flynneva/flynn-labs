@@ -10,7 +10,7 @@ import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
 import SportsFootballIcon from '@material-ui/icons/SportsFootball';
 import SportsBaseballIcon from '@material-ui/icons/SportsBaseball';
 import SportsHockeyIcon from '@material-ui/icons/SportsHockey';
-
+import Scoreboard from '../scoreboard/scoreboard';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -68,7 +68,8 @@ function NcaaTabs() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          Basketball 
+          <p>Basketball</p>
+          <Scoreboard />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           Football
