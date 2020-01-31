@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import GameCard from '../game-card/game-card';
 
 const baseURL = 'casablanca/scoreboard/'
-const DEFAULT_QUERY = 'basketball-men/d1/2019/12/23/scoreboard.json'
 
 class Scoreboard extends Component {
   constructor(props) {
@@ -15,7 +14,15 @@ class Scoreboard extends Component {
   }
 
   componentDidMount() {
-    fetch(baseURL + DEFAULT_QUERY, {
+    var url = baseURL + 
+              this.props.sport + '/' +
+              this.props.division + '/' +
+              this.props.year + '/' +
+              this.props.month + '/' +
+              this.props.day + '/' + 'scoreboard.json';
+
+    console.log(url);
+    fetch(url, {
         crossDomain: true,
         method: 'GET',
         headers: { 'Content-Type': 'application/json'},
@@ -28,14 +35,24 @@ class Scoreboard extends Component {
 
   render() {
     const { games } = this.state;
+    const { sport, division} = this.props;
 
     return (
       <Grid container spacing={1}>
         { games.map(game => (
           <Grid item spacing={2}>
             <GameCard
-              homeTeam={game.game.home.names.char6} 
-              awayTeam={game.game.away.names.char6} 
+              homeName={game.game.home.names.char6}
+              awayName={game.game.away.names.char6}
+              gameStatus={ game.game.gameState }
+              currentClock={ game.game.contestClock }
+              currentPeriod={ game.game.currentPeriod }
+              homeScore={ game.game.home.score }
+              homeRank={ game.game.home.rank }
+              awayScore={ game.game.away.score }
+              awayRank={ game.game.away.rank }
+              startDate={ game.game.startDate }
+              startTime={ game.game.startTime } 
             />
           </Grid>
         ))}

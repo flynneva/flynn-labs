@@ -37,6 +37,8 @@ function NcaaTabs() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
+  const today = new Date();
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -68,7 +70,11 @@ function NcaaTabs() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <Scoreboard />
+          <Scoreboard sport='basketball-men'
+                      division='d1'
+                      day={ ('0' + today.getDate()).slice(-2) }
+                      month={ ('0' + today.getMonth() + 1).slice(-2) }
+                      year={ today.getFullYear() } />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           Football
