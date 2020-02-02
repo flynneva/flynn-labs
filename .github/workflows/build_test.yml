@@ -1,8 +1,11 @@
-name: Node.js GAE Build, Test and Deploy
+name: Node.js Build and Test
 
 on:
   push:
-    branches:
+    branches-ignore:
+      - master
+  pull_request:
+    branches-ignore:
       - master
 
 jobs:
@@ -21,9 +24,3 @@ jobs:
    # - run: npm test
       env:
         CI: true
-    - uses: actions-hub/gcloud@271.0.0
-      env:
-        PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
-        APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-      with:
-        args: app deploy app.yaml
