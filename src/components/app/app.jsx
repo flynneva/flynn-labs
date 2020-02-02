@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
     height: '90vh',
     width: '100%',
     textAlign: 'center',
+    paddingBottom: 0,
   },
 }));
 
@@ -25,7 +26,7 @@ function App() {
         <Paper elevation={1} className={classes.paper}>
           <AppSwitch />
         </Paper>
-        <BottomNav className={classes.bottomNav}/>
+        <BottomNav />
       </div>
     </Router>
   );
