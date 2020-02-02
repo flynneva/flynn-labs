@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import GameCard from '../game-card/game-card';
 
-const baseURL = 'http://data.ncaa.com/casablanca/scoreboard/'
+const baseURL = 'casablanca/scoreboard/'
 
 class Scoreboard extends Component {
   constructor(props) {
@@ -23,9 +23,9 @@ class Scoreboard extends Component {
 
     console.log(url);
     fetch(url, {
-        crossDomain: true,
         method: 'GET',
-        headers: { 'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json'},
         body: JSON.stringify()
       })
       .then(response => response.json())
