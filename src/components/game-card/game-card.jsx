@@ -194,13 +194,13 @@ class GameCard extends Component {
     // deterime what the home team row should be
     let homeTeam;
     homeTeam = (
-        <Grid item xs style={homeStyle} spacing={2}>
+        <Grid item xs style={homeStyle}>
           <Grid item xs container>
             <Grid item xs style={homeRankStyle}>
               {this.props.homeRank}
             </Grid>
             <Grid item container xs={6} direction="column" style={homeDetailsStyle}>
-              <Grid item xs style={homeNameStyle} spacing={0}> 
+              <Grid item xs style={homeNameStyle}> 
                 {this.props.homeName}
               </Grid>
               <Grid item xs style={homeRecordStyle}>
@@ -216,7 +216,7 @@ class GameCard extends Component {
     // deterime what the away team row should be
     let awayTeam;
     awayTeam = (
-        <Grid item xs style={awayStyle} spacing={2}>
+        <Grid item xs style={awayStyle}>
           <Grid item xs container>
             <Grid item xs style={awayRankStyle}>
               {this.props.awayRank}
@@ -236,7 +236,7 @@ class GameCard extends Component {
         </Grid>);
     // wrap this component in a Grid component and add your spacing there
     return (
-      <Card style={cardStyle} spacing={0}>
+      <Card style={cardStyle}>
         <CardContent style={cardContentStyle}>
           <Grid container spacing={1}>
             {header}
