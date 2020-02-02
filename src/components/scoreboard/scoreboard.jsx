@@ -19,7 +19,7 @@ class Scoreboard extends Component {
               this.props.division + '/' +
               this.props.year + '/' +
               this.props.month + '/' +
-              this.props.day + '/' + 'scoreboard.json';
+              this.props.day + '/scoreboard.json';
 
     console.log(url);
     fetch(url, {
@@ -35,7 +35,6 @@ class Scoreboard extends Component {
 
   render() {
     const { games } = this.state;
-    const { sport, division} = this.props;
 
     return (
       <Grid container spacing={1}>
@@ -48,8 +47,10 @@ class Scoreboard extends Component {
               currentClock={ game.game.contestClock }
               currentPeriod={ game.game.currentPeriod }
               homeScore={ game.game.home.score }
+              homeRecord={ game.game.home.description }
               homeRank={ game.game.home.rank }
               awayScore={ game.game.away.score }
+              awayRecord={ game.game.away.description }
               awayRank={ game.game.away.rank }
               startDate={ game.game.startDate }
               startTime={ game.game.startTime } 

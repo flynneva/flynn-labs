@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 
 class GameCard extends Component {
  
   render () {
     
     const cardStyle = {
-      height: 85,
+      height: 100,
       width: 150,
     };
    
@@ -26,14 +20,8 @@ class GameCard extends Component {
       padding: 0,
     };
 
-    const gameStyle = {
-      width: 'auto',
-      height: 'auto',
-      margin: 1,
-      padding: 2,
-    };
-
     const headerStyle = {
+      color: 'eeeeee',
       height: 18,
       width: 'auto',
       fontSize: 12,
@@ -42,6 +30,18 @@ class GameCard extends Component {
       padding: 0,
     };
 
+    const dateStyle = {
+      fontSize: 11,
+      margin: 0,
+      padding: 0,
+    };
+
+    const timeStyle = {
+      fontSize: 11,
+      margin: 0,
+      padding: 0,
+    };
+    
     const clockStyle = {
       height: 18,
       width: '',
@@ -70,23 +70,26 @@ class GameCard extends Component {
       padding: 0,
     };
 
-    const nameStyle = {
-      width: 110,
-      height: 'auto',
-      justifyContent: 'left',
-      margin: 1,
-    };
-
-    const scoreStyle = {
-      flexGrow: 1,
-      margin: 0,
-      justifyContent: 'right',
-    };
-
-    const homeNameStyle = {
+    const homeDetailsStyle = {
       textAlign: 'left',
       margin: 0,
-      padding: 1,
+      padding: 0,
+    };
+    
+    const homeNameStyle = {
+      fontSize: 16,
+      textAlign: 'left',
+      lineHeight: 1,
+      margin: 0,
+      paddingTop: 5,
+    };
+
+    const homeRecordStyle = {
+      fontSize: 10,
+      textAlign: 'left',
+      marginLeft: 0,
+      padding: 0,
+      paddingBottom: 4,
     };
 
     const homeRankStyle = {
@@ -97,16 +100,34 @@ class GameCard extends Component {
     };
 
     const homeScoreStyle = {
+      fontSize: 18,
+      textAlign: 'center',
+      margin: 0,
+      padding: 0,
+    };
+    
+    const awayDetailsStyle = {
+      textAlign: 'left',
       margin: 0,
       padding: 0,
     };
     
     const awayNameStyle = {
+      fontSize: 16,
       textAlign: 'left',
+      lineHeight: 1,
       margin: 0,
-      padding: 1,
+      padding: 0,
+      paddingTop: 4,
     };
     
+    const awayRecordStyle = {
+      fontSize: 10,
+      textAlign: 'left',
+      marginLeft: 0,
+      padding: 0,
+    };
+
     const awayRankStyle = {
       fontSize: 11,
       textAlign: 'right',
@@ -122,17 +143,42 @@ class GameCard extends Component {
     // determine what header should be
     let header;
     if (this.props.gameStatus === 'live') {
-      header = (
-        <Grid item xs style={headerStyle}>
-          <Grid item xs container>
-            <Grid item xs style={clockStyle}>
-              {this.props.currentClock}
+      if (this.props.currentPeriod === 'HALF') {
+        header = (
+          <Grid item xs style={headerStyle}>
+            <Grid item xs container>
+              <Grid item xs style={periodStyle}>
+                HALF TIME
+              </Grid>
             </Grid>
-            <Grid item xs style={periodStyle}>
-              {this.props.currentPeriod}
+            <Divider />
+          </Grid>);
+      } else {
+        header = (
+          <Grid item xs style={headerStyle} color='#eeeeee'>
+            <Grid item xs container>
+              <Grid item xs style={clockStyle}>
+                {this.props.currentClock}
+              </Grid>
+              <Grid item xs style={periodStyle}>
+                {this.props.currentPeriod}
+              </Grid>
+            </Grid>
+            <Divider />
+          </Grid>);
+      }
+    } else if (this.props.gameStatus === 'pre') {
+      header = (
+        <Grid item xs style={headerStyle} color='#eeeeee'>
+         <Grid item xs container> 
+           <Grid item xs style={timeStyle}>
+              { this.props.startTime }
+            </Grid>
+            <Grid item xs style={dateStyle}>
+              { this.props.startDate }
             </Grid>
           </Grid>
-          <Divider />
+        <Divider />
         </Grid>);
     } else {
       header = ( 
@@ -153,8 +199,13 @@ class GameCard extends Component {
             <Grid item xs style={homeRankStyle}>
               {this.props.homeRank}
             </Grid>
-            <Grid item xs={6} style={homeNameStyle}>
-              {this.props.homeName}
+            <Grid item container xs={6} direction="column" style={homeDetailsStyle}>
+              <Grid item xs style={homeNameStyle} spacing={0}> 
+                {this.props.homeName}
+              </Grid>
+              <Grid item xs style={homeRecordStyle}>
+                {this.props.homeRecord}
+              </Grid>
             </Grid>
             <Grid item xs={4} style={homeScoreStyle}>
               {this.props.homeScore}
@@ -170,8 +221,13 @@ class GameCard extends Component {
             <Grid item xs style={awayRankStyle}>
               {this.props.awayRank}
             </Grid>
-            <Grid item xs={6} style={awayNameStyle}>
-              {this.props.awayName}
+            <Grid item container xs={6} direction="column" style={awayDetailsStyle}>
+              <Grid item xs style={awayNameStyle}> 
+                {this.props.awayName}
+              </Grid>
+              <Grid item xs style={awayRecordStyle}>
+                {this.props.awayRecord}
+              </Grid>
             </Grid>
             <Grid item xs={4} style={awayScoreStyle}>
               {this.props.awayScore}
