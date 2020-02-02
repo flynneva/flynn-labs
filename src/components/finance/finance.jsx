@@ -26,7 +26,7 @@ function Finance () {
     <Grid container className={classes.root} spacing={1}>
       <Grid item xs={12}>
         <Grid container className={classes.grid} justify='center' spacing={2}>
-          <Grid item xs={8} justify='center'>
+          <Grid item xs={10} justify='center'>
             <Card className={classes.card}>
               <CardContent>
                 <h2>Finance</h2>
