@@ -19,7 +19,7 @@ jobs:
       env:
         CI: true
     - run: ls
-    - uses: actions-hub@gcloud@271.0.0
+    - uses: actions-hub/gcloud@271.0.0
       env:
         PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
         APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPILICATION_CREDENTIALS }}
