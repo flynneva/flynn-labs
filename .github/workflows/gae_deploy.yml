@@ -1,4 +1,4 @@
-name: Node.JS CI
+name: Node.js GAE Build, Test and Deploy
 
 on:
   push:
