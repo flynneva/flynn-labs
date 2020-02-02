@@ -1,4 +1,4 @@
-name: CI
+name: Node.JS CI
 
 on: [push]
 
@@ -6,15 +6,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [8.x, 10.x, 12.x]
         
     steps:
-    - name: install and build
+    - uses: actions/checkout@v2
+    - name: install and build Node.js
+      uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '12.x'
     - run: npm install
     - run: npm run build --if-present
     - run: npm test
