@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import GameCard from '../game-card/game-card';
 
-const baseURL = '/casablanca/scoreboard/'
+const baseURL = 'http://data.ncaa.com/casablanca/scoreboard/'
 
 class Scoreboard extends Component {
   constructor(props) {
