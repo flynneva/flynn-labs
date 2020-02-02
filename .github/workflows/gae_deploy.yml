@@ -1,4 +1,4 @@
-name: CI
+name: Node.JS CI
 
 on: [push]
 
@@ -6,16 +6,26 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+        
     steps:
-    - name: Publish app to Google App Engine
-      uses: zxyle/publish-gae-action@v2.2
+    - uses: actions/checkout@v2
+    - name: install and build Node.js
+      uses: actions/setup-node@v1
       with:
+        node-version: '12.x'
+    - run: npm install
+    - run: npm run build --if-present
+   # - run: npm test
+      env:
+        CI: true
+    
+    
+    #  with:
         # The service account email which will be used for authentication.
-        service_account_email: flynn-labs@appspot.gserviceaccount.com
+     #   service_account_email: flynn-labs@appspot.gserviceaccount.com
         # The service account key which will be used for authentication.
-        service_account_key: secret.GAE_SERVICE_KEY
+      #  service_account_key: secret.GAE_SERVICE_KEY
         # GAE project id
-        project_id: flynn-labs
+       # project_id: flynn-labs
         # GAE variables to be written to the app.yaml file
         #gae_variables: # optional
