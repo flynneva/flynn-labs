@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import GameCard from '../game-card/game-card';
 
-const baseURL = 'casablanca/scoreboard/'
+const baseURL = '/casablanca/scoreboard/'
 
 class Scoreboard extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class Scoreboard extends Component {
     return (
       <Grid container spacing={1}>
         { games.map(game => (
-          <Grid item spacing={2}>
+          <Grid item key={ game.game.gameID }>
             <GameCard
               homeName={game.game.home.names.char6}
               awayName={game.game.away.names.char6}
@@ -53,7 +53,7 @@ class Scoreboard extends Component {
               awayRecord={ game.game.away.description }
               awayRank={ game.game.away.rank }
               startDate={ game.game.startDate }
-              startTime={ game.game.startTime } 
+              startTime={ game.game.startTime }
             />
           </Grid>
         ))}
