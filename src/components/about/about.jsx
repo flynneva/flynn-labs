@@ -32,7 +32,7 @@ function About () {
     <Grid container className={classes.root} spacing={1}>
       <Grid item xs={12}>
         <Grid container className={classes.grid} justify='center' spacing={2}>
-          <Grid item xs={10} justify='center'>
+          <Grid item xs={10}>
             <Card className={classes.card}>
               <CardContent justify='left' className={classes.cardContent}>
                 <h2>About</h2>
@@ -41,9 +41,9 @@ function About () {
                 <p>Depending on what you're interested in, feel free to check out more of this website or follow the links below. Thanks again for even reading this!</p>
               </CardContent>
               <CardActions className={classes.cardActions}>
-                <Button variant='extended' size="medium" startIcon={<GitHubIcon />} href='https://github.com/flynneva'>Github</Button>
-                <Button variant='extended' size="medium" startIcon={<LinkedInIcon />} href='https://www.linkedin.com/in/evan-flynn-466b6a62/'>LinkedIn</Button>
-                <Button variant='extended' size="medium" startIcon={<TwitterIcon />} href='https://twitter.com/flynneva_'>Twitter</Button>
+                <Button size="medium" startIcon={<GitHubIcon />} href='https://github.com/flynneva'>Github</Button>
+                <Button size="medium" startIcon={<LinkedInIcon />} href='https://www.linkedin.com/in/evan-flynn-466b6a62/'>LinkedIn</Button>
+                <Button size="medium" startIcon={<TwitterIcon />} href='https://twitter.com/flynneva_'>Twitter</Button>
               </CardActions>
             </Card>
           </Grid>

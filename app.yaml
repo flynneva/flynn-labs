@@ -13,3 +13,7 @@ handlers:
   - url: .*
     static_files: build/index.html
     upload: build/index.html
+
+  - url: /sports
+    http_headers:
+      Access-Control-Allow-Origin: http://data.ncaa.com
