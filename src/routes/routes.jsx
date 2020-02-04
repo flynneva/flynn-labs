@@ -1,13 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from '../home/home';
-import About from '../about/about';
-import Contact from '../contact/contact';
-import Sports from '../sports/sports';
-import Finance from '../finance/finance';
-import Robotics from '../robotics/robotics';
+import Home from '../components/home/home';
+import About from '../components/about/about';
+import Contact from '../components/contact/contact';
+import Sports from '../components/sports/sports';
+import Finance from '../components/finance/finance';
+import Robotics from '../components/robotics/robotics';
 
-function AppSwitch () {
+function Routes () {
     return (
         <Switch>
             <Route exact path="/" component={Home} />
@@ -20,4 +20,4 @@ function AppSwitch () {
     );
 }
 
-export default AppSwitch;
+export default Routes;
