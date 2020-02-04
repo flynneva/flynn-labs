@@ -9,49 +9,57 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import AndroidIcon from '@material-ui/icons/Android';
 
 const useStyles = makeStyles({
-  root: {
-    width: '98%',
-    position: 'fixed',
-    bottom: 0,
-  },
+    root: {
+        width: '98%',
+        position: 'fixed',
+        bottom: 0
+    }
 });
 
-function BottomNav() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState('home');
+function BottomNav () {
+    const classes = useStyles();
+    const [value, setValue] = React.useState('home');
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
-  return (
-    <BottomNavigation
-      value={value}
-      onChange={handleChange}
-      className={classes.root}
-    >
-      <BottomNavigationAction component={Link}
-                              to='/'
-                              label="Home"
-                              value='home'
-                              icon={<HomeIcon />} />
-      <BottomNavigationAction component={Link}
-                              to='/sports'
-                              label="Sports" 
-                              value='sports'
-                              icon={<SportsIcon />} />
-      <BottomNavigationAction component={Link}
-                              to='/finance'
-                              label="Finance"
-                              value='finance'
-                              icon={<MonetizationOnIcon />} />
-      <BottomNavigationAction component={Link}
-                              to='/robotics'
-                              label="Robotics"
-                              value='robotics'
-                              icon={<AndroidIcon />} />
-    </BottomNavigation>
-  );
+    return (
+        <BottomNavigation
+            value={value}
+            onChange={handleChange}
+            className={classes.root}
+        >
+            <BottomNavigationAction
+                component={Link}
+                to="/"
+                label="Home"
+                value="home"
+                icon={<HomeIcon />}
+            />
+            <BottomNavigationAction
+                component={Link}
+                to="/sports"
+                label="Sports"
+                value="sports"
+                icon={<SportsIcon />}
+            />
+            <BottomNavigationAction
+                component={Link}
+                to="/finance"
+                label="Finance"
+                value="finance"
+                icon={<MonetizationOnIcon />}
+            />
+            <BottomNavigationAction
+                component={Link}
+                to="/robotics"
+                label="Robotics"
+                value="robotics"
+                icon={<AndroidIcon />}
+            />
+        </BottomNavigation>
+    );
 }
 
 export default BottomNav;
