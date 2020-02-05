@@ -1,15 +1,22 @@
+const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+
+const port = process.env.PORT || 8080;
 
 module.exports = {
   entry: {
-    home: './src/index.js'
+    'js/app': ['./src/index.js'],
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist/'),
+    publicPath: '/',
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader']
+        use: ['babel-loader']
       },
       {
         test: /\.css$/,
@@ -17,23 +24,22 @@ module.exports = {
         use: {
           loader: "css-loader"
         }
-      },
-      {
-        test: /\.html$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "html-loader"
-        }
       }
     ]
   },
   resolve: {
     extensions: [".js", ".jsx"]
   },
+  devServer: {
+    host: 'localhost',
+    port: port,
+    historyApiFallback: true,
+    open: true
+  },
   plugins: [
     new HtmlWebPackPlugin({
       template: "./src/index.html",
-      filename: "./index.html"
+      filename: "index.html"
     })
   ]
 };
