@@ -41,18 +41,17 @@ function Home () {
                                 </p>
                             </CardContent>
                             <CardActions className={classes.cardActions}>
-                                <Button size="medium" startIcon={<InfoIcon />} href="about">
-                  About
+                                <Button size="medium" startIcon={<InfoIcon />} href="/about">
+                                  About
                                 </Button>
-                                <Button size="medium" startIcon={<HelpIcon />} href="contact">
-                  Contact
+                                <Button size="medium" startIcon={<HelpIcon />} href="/contact">
+                                  Contact
                                 </Button>
                                 <Button
                                     size="medium"
                                     startIcon={<GitHubIcon />}
-                                    href="https://github.com/flynneva"
-                                >
-                  Github
+                                    href="https://github.com/flynneva">
+                                  Github
                                 </Button>
                             </CardActions>
                         </Card>
