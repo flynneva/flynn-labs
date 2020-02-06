@@ -3,13 +3,13 @@ runtime: nodejs10
 service: default
 
 handlers:
-  - url: /static
-    static_dir: build/static
+  - url: /public
+    static_dir: public
 
   - url: /(.*\.(json|ico|js))$
-    static_files: build/\1
-    upload: build/.*\.(json|ico|js)$
+    static_files: dist/\1
+    upload: dist/.*\.(json|ico|js)$
 
   - url: .*
-    static_files: build/index.html
-    upload: build/index.html
+    static_files: dist/index.html
+    upload: dist/index.html
