@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -41,17 +42,21 @@ function Home () {
                                 </p>
                             </CardContent>
                             <CardActions className={classes.cardActions}>
-                                <Button size="medium" startIcon={<InfoIcon />} href="/about">
+                                <Button size="medium" startIcon={<InfoIcon />}
+                                        component={Link}
+                                        to="/about">
                                   About
                                 </Button>
-                                <Button size="medium" startIcon={<HelpIcon />} href="/contact">
+                                <Button size="medium" startIcon={<HelpIcon />}
+                                        component={Link}
+                                        to="/contact">
                                   Contact
                                 </Button>
                                 <Button
                                     size="medium"
                                     startIcon={<GitHubIcon />}
-                                    href="https://github.com/flynneva">
-                                  Github
+                                    href="https://github.com/flynneva/flynn-labs">
+                                  Source Code
                                 </Button>
                             </CardActions>
                         </Card>

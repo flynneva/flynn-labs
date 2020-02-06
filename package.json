@@ -2,9 +2,13 @@
   "name": "flynn-labs",
   "version": "1.0.0",
   "description": "Flynn Labs website",
+  "main": "index.js",
+  "entrypoint": "node server.js",
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production",
+    "bundle": "webpack --config webpack.config.js",
+    "prestart": "npm run bundle",
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
     "format": "prettier --write \"src/**/**/*.jsx\"",
     "lint": "eslint --fix \"src/**/**/*.jsx\"",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,18 +31,21 @@
     "@babel/preset-react": "^7.8.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.4.2",
     "eslint": "^6.8.0",
     "eslint-config-react": "^1.1.7",
     "eslint-loader": "^3.0.3",
     "eslint-plugin-react": "^7.18.3",
+    "express": "^4.17.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "prettier": "1.19.1",
     "prop-types": "^15.7.2",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.2"
+    "webpack-dev-server": "^3.10.2",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.1",

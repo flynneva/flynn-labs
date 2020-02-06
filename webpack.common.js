@@ -1,14 +1,10 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
-const port = process.env.PORT || 8080;
-
-'use strict';
-
 module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
+  entry: {
+    app: './src/index.js',
   },
   module: {
     rules: [
@@ -29,16 +25,15 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx"]
   },
-  devServer: {
-    host: 'localhost',
-    port: port,
-    historyApiFallback: true,
-    open: true
-  },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "index.html"
+      template: 'src/index.html',
+      favicon: 'public/favicon.ico'
     })
-  ]
+  ],
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
 };
