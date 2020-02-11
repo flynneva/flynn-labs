@@ -4,10 +4,11 @@
   "description": "Flynn Labs website",
   "main": "index.js",
   "entrypoint": "node server.js",
+  "proxy": "https://data.ncaa.com",
   "scripts": {
-    "bundle": "webpack --config webpack.config.js",
-    "prestart": "npm run bundle",
     "start": "webpack-dev-server --open --config webpack.dev.js",
+    "react-start": "react-scripts start",
+    "prod-start": "node server.js",
     "build": "webpack --config webpack.prod.js",
     "format": "prettier --write \"src/**/**/*.jsx\"",
     "lint": "eslint --fix \"src/**/**/*.jsx\"",
@@ -50,11 +51,26 @@
   "dependencies": {
     "@material-ui/core": "^4.9.1",
     "@material-ui/icons": "^4.9.1",
+    "module-alias": "^2.2.2",
     "path": "^0.12.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.3.1",
     "react-swipeable-views": "^0.13.8",
-    "regl-worldview": "^0.4.0"
+    "regl-worldview": "^0.4.0",
+    "request": "^2.88.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -56,7 +56,7 @@ function Home () {
                                     size="medium"
                                     startIcon={<GitHubIcon />}
                                     href="https://github.com/flynneva/flynn-labs">
-                                  Source Code
+                                  Source
                                 </Button>
                             </CardActions>
                         </Card>

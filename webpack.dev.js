@@ -1,3 +1,4 @@
+var path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
@@ -9,6 +10,8 @@ module.exports = merge(common, {
   devServer: {
     host: 'localhost',
     port: port,
-    contentBase: './dist',
+    headers: {
+      'Access-Control-Allow-Origin': 'http://localhost:8080'
+    }
   },
 });
