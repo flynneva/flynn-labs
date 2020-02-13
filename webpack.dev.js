@@ -1,3 +1,4 @@
+var path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
@@ -7,8 +8,14 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    host: 'localhost',
+    index: 'index.html',
     port: port,
-    contentBase: './dist',
+    proxy: {
+      context: () => true,
+      '**': {
+        target: 'https://data.ncaa.com/',
+        changeOrigin: true,
+      }
+    },
   },
 });

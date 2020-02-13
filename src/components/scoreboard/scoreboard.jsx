@@ -14,26 +14,31 @@ class Scoreboard extends Component {
 
     componentDidMount () {
         var url =
-      baseURL +
-      this.props.sport +
-      '/' +
-      this.props.division +
-      '/' +
-      this.props.year +
-      '/' +
-      this.props.month +
-      '/' +
-      this.props.day +
-      '/scoreboard.json';
+                  baseURL +
+                  this.props.sport +
+                  '/' +
+                  this.props.division +
+                  '/' +
+                  this.props.year +
+                  '/' +
+                  this.props.month +
+                  '/' +
+                  this.props.day +
+                  '/scoreboard.json';
 
         console.log(url);
         fetch(url, {
-            method: 'GET',
-            mode: 'cors',
-            body: JSON.stringify()
-        })
-            .then(response => response.text())
-            .then(text => console.log(text))
+              method: 'GET',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify()
+            })
+            .then(response => response.json())
+            .then(data => {
+              this.setState({ games: data.games })
+            })
             .catch(error => {
                 console.log(error);
             });

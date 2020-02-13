@@ -46,7 +46,7 @@ function Robotics () {
                                 <h2>Robotics</h2>
                                 <Grid container>
                                     <Grid item xs={12}>
-                                        <p>Here is a quick little demo until I get around to doing something with this page...</p>
+                                        <p>Here is a quick little demo until I get around to doing something with this page...NOTE: this doesnt work on mobile yet so check it out on a desktop if you have a chance.</p>
                                     </Grid>
                                     <Grid item xs={12} className={classes.worldView}>
                                         <Worldview>
