@@ -8,10 +8,14 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    host: 'localhost',
+    index: 'index.html',
     port: port,
-    headers: {
-      'Access-Control-Allow-Origin': 'http://localhost:8080'
-    }
+    proxy: {
+      context: () => true,
+      '**': {
+        target: 'https://data.ncaa.com/',
+        changeOrigin: true,
+      }
+    },
   },
 });

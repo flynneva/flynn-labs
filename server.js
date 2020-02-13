@@ -1,4 +1,4 @@
-const request = require('request');
+const proxy = require('http-proxy-middleware');
 const express = require('express');
 const path = require('path');
 
@@ -9,6 +9,7 @@ const HTML_FILE = path.join(DIST_DIR, 'index.html');
 const targetUrl = 'https://data.ncaa.com';
 
 app.use(express.static(DIST_DIR));
+app.use('*', proxy( { target: targetUrl, changeOrigin: true }));
 
 //require('./src/server/routes')(app);
 
