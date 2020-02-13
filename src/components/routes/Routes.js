@@ -6,6 +6,7 @@ import Contact from '../contact/contact';
 import Sports from '../sports/sports';
 import Finance from '../finance/finance';
 import Robotics from '../robotics/robotics';
+import Error from '../error/Error';
 
 function AppRoutes () {
     return (
@@ -16,6 +17,7 @@ function AppRoutes () {
             <Route path="/sports" component={Sports} />
             <Route path="/finance" component={Finance} />
             <Route path="/robotics" component={Robotics} />
+            <Route path="/error" component={Error} />
         </Switch>
     );
 }
