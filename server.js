@@ -6,7 +6,7 @@ const app = express();
 const DIST_DIR = path.resolve(path.join(__dirname, 'dist'));
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
-const targetUrl = 'https://data.ncaa.com';
+const targetUrl = 'http://data.ncaa.com';
 
 app.set('trust proxy', true);
 app.use(express.static(DIST_DIR));
