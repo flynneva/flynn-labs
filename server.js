@@ -8,9 +8,13 @@ const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
 const targetUrl = 'http://data.ncaa.com';
 
-app.set('trust proxy', true);
 app.use(express.static(DIST_DIR));
-app.use('*', proxy( { target: targetUrl, changeOrigin: true }));
+app.use( '*',
+         proxy({
+           target: targetUrl,
+           changeOrigin: true
+         })
+);
 
 //require('./src/server/routes')(app);
 

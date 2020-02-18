@@ -3,8 +3,7 @@ runtime: nodejs10
 service: default
 
 handlers:
-  - url: /sports/.*
-    script: auto
+  - url: /.*
 
   - url: /public
     static_dir: public
