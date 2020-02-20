@@ -1,4 +1,4 @@
-const proxy = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const express = require('express');
 const path = require('path');
 
@@ -6,11 +6,11 @@ const app = express();
 const DIST_DIR = path.resolve(path.join(__dirname, 'dist'));
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
-const targetUrl = 'http://data.ncaa.com';
+const targetUrl = 'https://data.ncaa.com';
 
 app.use(express.static(DIST_DIR));
 app.use( '*',
-         proxy({
+         createProxyMiddleware({
            target: targetUrl,
            changeOrigin: true
          })
