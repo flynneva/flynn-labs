@@ -2,17 +2,11 @@
 runtime: nodejs10
 #service: default
 
-#handlers:
-#  - url: /(.*\.json)$
-#    script: server.js
-#
-#  - url: /public
-#    static_dir: public
-#
-#  - url: /(.*\.(ico|js))$
-#    static_files: dist/\1
-#    upload: dist/.*\.(ico|js)$
-#
-#  - url: .*
-#    static_files: dist/index.html
-#    upload: dist/index.html
+handlers:
+  - url: /(.*\.(ico|js))$
+    static_files: dist/\1
+    upload: dist/.*\.(ico|js)$
+
+  - url: .*
+    static_files: dist/index.html
+    upload: dist/index.html
