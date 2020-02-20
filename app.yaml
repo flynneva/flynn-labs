@@ -3,9 +3,6 @@ runtime: nodejs10
 #service: default
 
 handlers:
-  - url: /casablanca/.*
-    script: auto
-
   - url: /(.*\.(ico|js))$
     static_files: dist/\1
     upload: dist/.*\.(ico|js)$
