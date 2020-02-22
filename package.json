@@ -3,16 +3,13 @@
   "version": "1.0.0",
   "description": "Flynn Labs website",
   "main": "index.js",
-  "entrypoint": "node server.js",
-  "proxy": "https://data.ncaa.com",
+  "proxy": "http://localhost:8080",
   "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "react-start": "react-scripts start",
-    "prod-start": "node server.js",
-    "build": "webpack --config webpack.prod.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "format": "prettier --write \"src/**/**/*.jsx\"",
     "lint": "eslint --fix \"src/**/**/*.jsx\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "react-scripts test"
   },
   "repository": {
     "type": "git",
