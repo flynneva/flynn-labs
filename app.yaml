@@ -1,12 +1,1 @@
-#env: standard
 runtime: nodejs10
-#service: default
-
-handlers:
-  - url: /(.*\.(ico|js))$
-    static_files: build/\1
-    upload: build/.*\.(ico|js)$
-
-  - url: .*
-    static_files: build/index.html
-    upload: build/index.html
