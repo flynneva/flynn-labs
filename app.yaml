@@ -4,9 +4,9 @@ runtime: nodejs10
 
 handlers:
   - url: /(.*\.(ico|js))$
-    static_files: dist/\1
-    upload: dist/.*\.(ico|js)$
+    static_files: build/\1
+    upload: build/.*\.(ico|js)$
 
   - url: .*
-    static_files: dist/index.html
-    upload: dist/index.html
+    static_files: build/index.html
+    upload: build/index.html

@@ -3,12 +3,12 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const DIST_DIR = path.resolve(path.join(__dirname, 'dist'));
-const HTML_FILE = path.join(DIST_DIR, 'index.html');
+const BUILD_DIR = path.resolve(path.join(__dirname, 'build'));
+const HTML_FILE = path.join(BUILD_DIR, 'index.html');
 
 const targetUrl = 'https://data.ncaa.com/';
 
-app.use(express.static(DIST_DIR));
+app.use(express.static(BUILD_DIR));
 app.use( '/',
          createProxyMiddleware({
            target: targetUrl,
