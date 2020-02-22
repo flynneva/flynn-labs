@@ -29,12 +29,12 @@ class Scoreboard extends Component {
         console.log(url);
         fetch(url, {
               method: 'GET',
-              body: JSON.stringify()
+              //body: JSON.stringify()
             })
-            .then(response => response.json())
-            .then(data => {
-              console.log(data)
-            })
+            .then(response => response.text())
+            .then(text => console.log(text))
+            //.then(response => response.json())
+            //.then(data => {
             //  this.setState({ games: data.games })
             //})
             .catch(error => {
