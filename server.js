@@ -11,10 +11,13 @@ const targetUrl = 'http://data.ncaa.com/';
 app.set('trust proxy', true);
 
 app.use(express.static(BUILD_DIR));
-app.use( '/*',
+app.use( '/ncaa_api',
          createProxyMiddleware({
            target: targetUrl,
-           changeOrigin: true
+           changeOrigin: true,
+           pathRewrite: {
+             '^/ncaa_api/': '/'
+           }
          })
 );
 
