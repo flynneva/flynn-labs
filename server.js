@@ -8,8 +8,10 @@ const HTML_FILE = path.join(BUILD_DIR, 'index.html');
 
 const targetUrl = 'https://data.ncaa.com/';
 
+app.set('trust proxy', true);
+
 app.use(express.static(BUILD_DIR));
-app.use( '/',
+app.use( '/*',
          createProxyMiddleware({
            target: targetUrl,
            changeOrigin: true
