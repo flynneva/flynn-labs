@@ -1,9 +1,12 @@
 runtime: nodejs10
 
 handlers:
-  - url: /(.*\.(ico|js|json))$
+  - url: /ncaa_api/.*
+    script: auto
+
+  - url: /(.*\.(ico|js))$
     static_files: build/\1
-    upload: build/.*\.(ico|js|json)$
+    upload: build/.*\.(ico|js)$
 
   - url: .*
     static_files: build/index.html
