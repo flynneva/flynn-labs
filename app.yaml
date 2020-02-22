@@ -3,9 +3,6 @@ runtime: nodejs10
 #service: default
 
 handlers:
-  - url: /sports/.*
-    script: auto
-
   - url: /(.*\.(ico|js))$
     static_files: build/\1
     upload: build/.*\.(ico|js)$
