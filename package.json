@@ -4,6 +4,7 @@
   "description": "Flynn Labs website",
   "main": "index.js",
   "proxy": "http://localhost:8080",
+  "entrypoint": "node server.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
