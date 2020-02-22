@@ -33,8 +33,10 @@ class Scoreboard extends Component {
             })
             .then(response => response.json())
             .then(data => {
-              this.setState({ games: data.games })
+              console.log(data)
             })
+            //  this.setState({ games: data.games })
+            //})
             .catch(error => {
                 console.log(error);
             });
