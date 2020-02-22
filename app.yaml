@@ -4,7 +4,7 @@ runtime: nodejs10
 
 handlers:
   - url: /sports/.*
-    scripts: auto
+    script: auto
 
   - url: /(.*\.(ico|js))$
     static_files: build/\1
