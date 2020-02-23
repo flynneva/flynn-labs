@@ -144,6 +144,8 @@ class GameCard extends Component {
         };
 
         const awayScoreStyle = {
+            fontSize: 18,
+            textAlign: 'center',
             margin: 0,
             padding: 0
         };
