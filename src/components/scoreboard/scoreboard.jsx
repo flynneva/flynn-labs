@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import GameCard from '../game-card/game-card';
-
 const baseURL = '/ncaa_api/casablanca/scoreboard/';
 
 class Scoreboard extends Component {
@@ -44,7 +43,7 @@ class Scoreboard extends Component {
         const { games } = this.state;
 
         return (
-            <Grid container spacing={1}>
+            <Grid container spacing={2} justify='center'>
                 {games.map(game => (
                     <Grid item key={game.game.gameID}>
                         <GameCard
