@@ -9,6 +9,7 @@ import Worldview, { Cubes, Axes} from 'regl-worldview';
 const useStyles = makeStyles(theme => ({
     grid: {
         justifyContent: 'center',
+        height: '100vh',
     },
     item: {
       textAlign: 'center',

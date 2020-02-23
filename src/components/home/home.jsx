@@ -13,6 +13,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 const useStyles = makeStyles(theme => ({
     grid: {
         justifyContent: 'center',
+        height: '100vh',
     },
     item: {
       textAlign: 'center',

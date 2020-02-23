@@ -11,6 +11,7 @@ import InfoIcon from '@material-ui/icons/Info';
 const useStyles = makeStyles(theme => ({
     grid: {
         justifyContent: 'center',
+        height: '100vh',
     },
     item: {
       textAlign: 'center',
