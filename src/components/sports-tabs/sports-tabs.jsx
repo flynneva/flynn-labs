@@ -11,8 +11,8 @@ import ProfessionalTabs from '../professional-tabs/professional-tabs';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        backgroundColor: theme.palette.background.paper,
-        width: 'auto'
+        width: 'auto',
+        padding: 0,
     }
 }));
 

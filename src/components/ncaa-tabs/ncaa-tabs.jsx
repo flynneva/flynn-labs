@@ -14,9 +14,8 @@ import Scoreboard from '../scoreboard/scoreboard';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        backgroundColor: theme.palette.background.paper,
         width: 'auto'
-    }
+    },
 }));
 
 TabPanel.propTypes = {

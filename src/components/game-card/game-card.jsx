@@ -28,6 +28,16 @@ class GameCard extends Component {
             padding: 0
         };
 
+        const headerFinalStyle = {
+            height: 18,
+            width: 'auto',
+            fontSize: 12,
+            fontWeight: 'bold',
+            textAlign: 'right',
+            margin: 8,
+            padding: 0
+        };
+        
         const dateStyle = {
             fontSize: 11,
             margin: 0,
@@ -146,7 +156,7 @@ class GameCard extends Component {
                     <Grid item xs style={headerStyle}>
                         <Grid item xs container>
                             <Grid item xs style={periodStyle}>
-                HALF TIME
+                                HALF TIME
                             </Grid>
                         </Grid>
                         <Divider />
@@ -183,7 +193,7 @@ class GameCard extends Component {
             );
         } else {
             header = (
-                <Grid item xs style={headerStyle}>
+                <Grid item xs style={headerFinalStyle}>
                     {this.props.gameStatus === 'final' ?
                         'FINAL' :
                         this.props.gameStatus === 'postponed' ?
