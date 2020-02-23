@@ -33,6 +33,9 @@ module.exports = {
     extensions: [".js", ".jsx"]
   },
   devServer: {
+    hot: true,
+    inline: true,
+    contentBase: ['./src', './dist'],
     proxy: {
       '/ncaa_api': {
         target: 'https://data.ncaa.com',
