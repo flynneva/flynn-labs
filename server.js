@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const BUILD_DIR = path.resolve(path.join(__dirname, 'build'));
+const BUILD_DIR = path.resolve(path.join(__dirname, 'dist'));
 const HTML_FILE = path.join(BUILD_DIR, 'index.html');
 
 const targetUrl = 'http://data.ncaa.com/';
