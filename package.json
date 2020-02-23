@@ -6,8 +6,8 @@
   "proxy": "http://localhost:8080",
   "entrypoint": "node server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "webpack-dev-server --config webpack.config.js --mode development ",
+    "build": "webpack --config webpack.config.js --mode production",
     "format": "prettier --write \"src/**/**/*.jsx\"",
     "lint": "eslint --fix \"src/**/**/*.jsx\"",
     "test": "react-scripts test"
