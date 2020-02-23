@@ -1,28 +1,28 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Worldview, { Cubes, Axes } from "regl-worldview";
+import Worldview, { Cubes, Axes} from 'regl-worldview';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1
-    },
     grid: {
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
-    card: {},
+    item: {
+      textAlign: 'center',
+      margin: '8px',
+    },
     cardActions: {
         justifyContent: 'center'
     },
     worldView: {
-        height: 500
+      height: '50vh',
     }
 }));
 
-function Robotics () {
+function Home () {
     const classes = useStyles();
 
     const markers = [
@@ -35,34 +35,29 @@ function Robotics () {
             color: { r: 1, g: 0, b: 1, a: 0.9 }
         }
     ];
-
+   
     return (
-        <Grid container className={classes.root} spacing={1}>
-            <Grid item xs={12}>
-                <Grid container className={classes.grid} justify="center" spacing={2}>
-                    <Grid item xs={10}>
-                        <Card className={classes.card}>
-                            <CardContent>
-                                <h2>Robotics</h2>
-                                <Grid container>
-                                    <Grid item xs={12}>
-                                        <p>Here is a quick little demo until I get around to doing something with this page...NOTE: this doesnt work on mobile yet so check it out on a desktop if you have a chance.</p>
-                                    </Grid>
-                                    <Grid item xs={12} className={classes.worldView}>
-                                        <Worldview>
-                                            <Cubes>{ markers }</Cubes>
-                                            <Axes />
-                                        </Worldview>
-                                    </Grid>
-                                </Grid>
-                            </CardContent>
-                            <CardActions className={classes.cardActions} />
-                        </Card>
+    <Grid container className={classes.grid} justify="center" spacing={0}>
+        <Grid item xs={12} className={classes.item}>
+            <Card className={classes.card}>
+                <CardContent>
+                    <h2>Robotics</h2>
+                    <Grid container>
+                      <Grid item xs={12}>
+                          <p>Here is a quick little demo until I get around to doing something with this page...NOTE: this doesnt work on mobile yet so check it out on a desktop if you have a chance.</p>
+                      </Grid>
+                      <Grid item xs={12} className={classes.worldView}>
+                        <Worldview>
+                            <Cubes>{ markers }</Cubes>
+                            <Axes />
+                        </Worldview>
+                      </Grid>
                     </Grid>
-                </Grid>
-            </Grid>
+                </CardContent>
+            </Card>
         </Grid>
+    </Grid>
     );
 }
 
-export default Robotics;
+export default Home;

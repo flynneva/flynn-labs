@@ -7,14 +7,10 @@ import BottomNav from '../bottom-nav/bottom-nav';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        margin: theme.spacing(1)
+      backgroundColor: '#eeeeee',
+      width: '100%',
+      height: '100vh',
     },
-    paper: {
-        height: '90vh',
-        width: '100%',
-        textAlign: 'center',
-        paddingBottom: 0
-    }
 }));
 
 function App () {
@@ -23,9 +19,7 @@ function App () {
     return (
         <Router>
             <div className={classes.root}>
-                <Paper elevation={1} className={classes.paper}>
-                    <Routes />
-                </Paper>
+                <Routes />
                 <BottomNav />
             </div>
         </Router>

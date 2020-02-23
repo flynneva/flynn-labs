@@ -29,8 +29,6 @@ class GameCard extends Component {
         };
 
         const headerFinalStyle = {
-            color: 'eeeeee',
-            backgroundColor: 'ffffff',
             height: 18,
             width: 'auto',
             fontSize: 12,
