@@ -5,6 +5,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
+    path: __dirname + '/dist',
   },
   module: {
     rules: [
@@ -18,10 +19,29 @@ module.exports = {
         exclude: /node_modules/,
         use: [ "css-loader" ]
       },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader'
+          }
+        ]
+      }
     ],
   },
   resolve: {
     extensions: [".js", ".jsx"]
+  },
+  devServer: {
+    proxy: {
+      '/ncaa_api': {
+        target: 'https://data.ncaa.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/ncaa_api': '',
+        }
+      }
+    },
   },
   plugins: [
     new HtmlWebPackPlugin({
