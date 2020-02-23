@@ -26,7 +26,7 @@ class Scoreboard extends Component {
                   this.props.day +
                   '/scoreboard.json';
 
-        console.log(url);
+        //console.log(url);
         fetch(url, {
               method: 'GET',
               body: JSON.stringify()
