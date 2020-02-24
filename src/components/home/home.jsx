@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -10,27 +9,26 @@ import InfoIcon from '@material-ui/icons/Info';
 import HelpIcon from '@material-ui/icons/Help';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
-const useStyles = makeStyles(theme => ({
-    grid: {
+function Home () {
+
+    const gridStyle = {
         justifyContent: 'center',
         height: '100vh',
-    },
-    item: {
+    };
+
+    const itemStyle = {
       textAlign: 'center',
       margin: '8px',
-    },
-    cardActions: {
-        justifyContent: 'center'
-    }
-}));
+    };
 
-function Home () {
-    const classes = useStyles();
+    const cardActionsStyle = {
+        justifyContent: 'center'
+    };
 
     return (
-    <Grid container className={classes.grid} justify="center" spacing={0}>
-        <Grid item xs={12} className={classes.item}>
-            <Card className={classes.card}>
+    <Grid container style={gridStyle} justify="center" spacing={0}>
+        <Grid item xs={12} style={itemStyle}>
+            <Card>
                 <CardContent>
                     <h2>Welcome</h2>
                     <p>
@@ -40,7 +38,7 @@ function Home () {
                       twitter, email, or github if you have any questions
                     </p>
                 </CardContent>
-                <CardActions className={classes.cardActions}>
+                <CardActions style={cardActionsStyle}>
                     <Button size="medium" startIcon={<InfoIcon />}
                             component={Link}
                             to="/about">

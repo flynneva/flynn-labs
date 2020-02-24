@@ -3,12 +3,18 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import { Link } from 'react-router-dom';
 
 class GameCard extends Component {
     render () {
         const cardStyle = {
+            margin: '8px',
             height: 100,
             width: 150
+        };
+
+        const linkStyle = {
+            textDecoration: 'none'
         };
 
         const cardContentStyle = {
@@ -265,8 +271,11 @@ class GameCard extends Component {
                 </Grid>
             </Grid>
         );
+        let gameUrl;
+        gameUrl = '/sports/ncaa' + this.props.gameID;
         // wrap this component in a Grid component and add your spacing there
         return (
+          <Link to={gameUrl} style={linkStyle}>
             <Card style={cardStyle}>
                 <CardContent style={cardContentStyle}>
                     <Grid container spacing={1}>
@@ -280,6 +289,7 @@ class GameCard extends Component {
                     </Grid>
                 </CardContent>
             </Card>
+          </Link>
         );
     }
 }

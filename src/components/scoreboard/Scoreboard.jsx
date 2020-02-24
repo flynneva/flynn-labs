@@ -41,12 +41,13 @@ class Scoreboard extends Component {
 
     render () {
         const { games } = this.state;
-
+       
         return (
-            <Grid container spacing={2} justify='center'>
+            <Grid container spacing={0} justify='center'>
                 {games.map(game => (
                     <Grid item key={game.game.gameID}>
                         <GameCard
+                            gameID={game.game.url}
                             homeName={game.game.home.names.char6}
                             awayName={game.game.away.names.char6}
                             gameStatus={game.game.gameState}
