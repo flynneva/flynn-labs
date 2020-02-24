@@ -34,7 +34,6 @@ function App () {
                   <Route exact path="/error"><Error /></Route>
                 </Switch>
                 <BottomNav />
-
             </div>
         </Router>
     );

@@ -11,12 +11,12 @@ function Sports () {
 
     const gridStyle = {
       height: '100vh',
+      width: '100%',
       margin: 0,
       padding: 0,
     };
 
     const titleStyle = {
-      width: '75%',
       textAlign: 'center',
     };
 
@@ -25,27 +25,29 @@ function Sports () {
     };
  
     return (
-        <div>
-            <Switch>
-              <Route exact path={path}>
-                <Grid container spacing={0} direction='column' justify='center' alignItems='center' style={gridStyle}>
-                  <Grid item style={titleStyle}>
-                    <Typography variant="h6" gutterBottom>
-                      Select the level of sport you would like to see
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Link to={`${url}/ncaa`} style={linkStyle}>
-                      <Button size="large" variant="contained">NCAA</Button>
-                    </Link>
-                  </Grid>
-                </Grid>
-              </Route>           
-              <Route path={`${path}/:level`}>
-                <SportLevel />
-              </Route>
-            </Switch>
-        </div>
+      <Switch>
+        <Route exact path={path}>
+          <Grid container spacing={0} direction='column' justify='center' alignItems='center' style={gridStyle}>
+            <Grid item style={titleStyle}>
+              <Typography variant="h6" gutterBottom>
+                Select a level of sport
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Link to={`${url}/ncaa`} style={linkStyle}>
+                <Button size="large" variant="contained">NCAA</Button>
+              </Link>
+            </Grid>
+          </Grid>
+        </Route>           
+        <Route path={`${path}/:level`}>
+          <Grid container spacing={0} direction='column' justify='center' alignItems='center' style={gridStyle}>
+            <Grid item style={titleStyle}>
+              <SportLevel />
+            </Grid>
+          </Grid>
+        </Route>
+      </Switch>
     );
 }
 

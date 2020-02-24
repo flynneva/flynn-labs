@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import GameCard from '../game-card/game-card';
+
 const baseURL = '/ncaa_api/casablanca/scoreboard/';
 
 class Scoreboard extends Component {
@@ -41,10 +44,16 @@ class Scoreboard extends Component {
 
     render () {
         const { games } = this.state;
-       
+        
+        const theme = createMuiTheme();
+
+        const gridStyle = {
+        };
+ 
         return (
-            <Grid container spacing={0} justify='center'>
+            <Grid container spacing={0} justify='center' alignItems='flex-start' style={gridStyle}>
                 {games.map(game => (
+                  <ThemeProvider theme={theme}>
                     <Grid item key={game.game.gameID}>
                         <GameCard
                             gameID={game.game.url}
@@ -63,6 +72,7 @@ class Scoreboard extends Component {
                             startTime={game.game.startTime}
                         />
                     </Grid>
+                  </ThemeProvider>
                 ))}
             </Grid>
         );

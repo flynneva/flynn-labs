@@ -26,27 +26,25 @@ function SportLevel () {
     };
  
     return (
-        <div>
-            <Switch>
-              <Route exact path={path}>
-                <Grid container spacing={0} direction='column' justify='center' alignItems='center' style={gridStyle}>
-                  <Grid item style={titleStyle}>
-                    <Typography variant="h6" gutterBottom>
-                      Great! Now select the sport
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Link to={`${url}/basketball-men`} style={linkStyle}>
-                      <Button size="large" variant="contained">Men's Basketball</Button>
-                    </Link>
-                  </Grid>
-                </Grid>
-              </Route>           
-              <Route path={`${path}/:sport`}>
-                <Sport />
-              </Route>
-            </Switch>
-        </div>
+      <Switch>
+        <Route exact path={path}>
+          <Grid container spacing={0} direction='column' justify='center' alignItems='center' style={gridStyle}>
+            <Grid item style={titleStyle}>
+              <Typography variant="h6" gutterBottom>
+                Great! Now select a sport
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Link to={`${url}/basketball-men`} style={linkStyle}>
+                <Button size="large" variant="contained">Men's Basketball</Button>
+              </Link>
+            </Grid>
+          </Grid>
+        </Route>           
+        <Route path={`${path}/:sport`}>
+          <Sport />
+        </Route>
+      </Switch>
     );
 }
 

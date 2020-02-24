@@ -11,7 +11,6 @@ function Sport () {
     let { sport } = useParams();
 
     const gridStyle = {
-      height: '100vh',
       margin: 0,
       padding: 0,
     };
@@ -30,13 +29,15 @@ function Sport () {
         <div>
             <Switch>
               <Route exact path={path}>
+                <Grid container style={gridStyle} justify='center'>
                 <Scoreboard
                         sport={sport}
                         division="d1"
                         day={('0' + today.getDate()).slice(-2)}
                         month={('0' + (today.getMonth() + 1)).slice(-2)}
                         year={today.getFullYear()} />
-              </Route>           
+                </Grid>
+              </Route>
             </Switch>
         </div>
     );
