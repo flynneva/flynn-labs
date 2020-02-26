@@ -13,10 +13,6 @@ class GameCard extends Component {
             width: 150
         };
 
-        const linkStyle = {
-            textDecoration: 'none'
-        };
-
         const cardContentStyle = {
             height: 'auto',
             width: 'auto',
@@ -272,25 +268,25 @@ class GameCard extends Component {
             </Grid>
         );
         let gameUrl;
-        gameUrl = '/sports/ncaa' + this.props.gameID;
+        gameUrl = '/sports/ncaa/' + this.props.sport +  this.props.gameID;
         // wrap this component in a Grid component and add your spacing there
         return (
-          <Link to={gameUrl} style={linkStyle}>
-            <Card style={cardStyle}>
-                <CardContent style={cardContentStyle}>
-                    <Grid container spacing={1}>
-                        {header}
-                    </Grid>
-                    <Grid container spacing={1}>
-                        {homeTeam}
-                    </Grid>
-                    <Grid container spacing={1}>
-                        {awayTeam}
-                    </Grid>
-                </CardContent>
-            </Card>
-          </Link>
-        );
+            <Grid item component={Link} to={gameUrl} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+              <Card style={cardStyle}>
+                  <CardContent style={cardContentStyle}>
+                      <Grid container spacing={1}>
+                          {header}
+                      </Grid>
+                      <Grid container spacing={1}>
+                          {homeTeam}
+                      </Grid>
+                      <Grid container spacing={1}>
+                          {awayTeam}
+                      </Grid>
+                  </CardContent>
+              </Card>
+            </Grid>
+         );
     }
 }
 

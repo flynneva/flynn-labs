@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Scoreboard from '../scoreboard/Scoreboard';
+import GamePage from '../game-page/GamePage';
 
 function Sport () {
     let { path, url } = useRouteMatch();
@@ -26,20 +27,23 @@ function Sport () {
 
     const today = new Date();
     return (
-        <div>
-            <Switch>
-              <Route exact path={path}>
-                <Grid container style={gridStyle} justify='center'>
-                <Scoreboard
-                        sport={sport}
-                        division="d1"
-                        day={('0' + today.getDate()).slice(-2)}
-                        month={('0' + (today.getMonth() + 1)).slice(-2)}
-                        year={today.getFullYear()} />
-                </Grid>
-              </Route>
-            </Switch>
-        </div>
+      <Switch>
+        <Route exact path={path}>
+          <Grid container style={gridStyle} justify='center'>
+            <Grid item>
+               <Scoreboard
+                      sport={sport}
+                      division="d1"
+                      day={('0' + today.getDate()).slice(-2)}
+                      month={('0' + (today.getMonth() + 1)).slice(-2)}
+                      year={today.getFullYear()} />
+            </Grid>
+          </Grid>
+        </Route>
+        <Route path={`${path}/game/:id`}>
+          <GamePage />
+        </Route>
+      </Switch>
     );
 }
 
