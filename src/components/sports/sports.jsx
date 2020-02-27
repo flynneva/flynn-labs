@@ -41,11 +41,7 @@ function Sports () {
           </Grid>
         </Route>           
         <Route path={`${path}/:level`}>
-          <Grid container spacing={0} direction='column' justify='center' alignItems='center' style={gridStyle}>
-            <Grid item style={titleStyle}>
-              <SportLevel />
-            </Grid>
-          </Grid>
+          <SportLevel />
         </Route>
       </Switch>
     );

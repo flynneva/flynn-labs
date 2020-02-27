@@ -4,6 +4,8 @@ import { withRouter } from 'react-router';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import BoxScore from '../boxscore/BoxScore';
+import GameBanner from '../game-banner/GameBanner';
+
 const baseURL = '/ncaa_api/casablanca/game/';
 
 class GamePage extends Component {
@@ -54,22 +56,16 @@ class GamePage extends Component {
         }
 
         return (
-            <Grid container spacing={0} justify='center' alignItems='flex-start' style={gridStyle}>
-              <Grid item>
-                <p>{this.state.gameInfo.home.names.short}</p>
-                <p>{this.state.gameInfo.home.color}</p>
-                <p>{this.state.gameInfo.home.rank}</p>
-                <p>{this.state.gameInfo.home.record}</p>
-                <p>{this.state.gameInfo.home.score}</p>
-              </Grid>
-              <Grid item>
-                <p>{this.state.gameInfo.away.names.short}</p>
-                <p>{this.state.gameInfo.away.color}</p>
-                <p>{this.state.gameInfo.away.rank}</p>
-                <p>{this.state.gameInfo.away.record}</p>
-                <p>{this.state.gameInfo.away.score}</p>
-              </Grid>
-            </Grid>
+          <GameBanner homeName={this.state.gameInfo.home.names.short}
+                      homeRecord={this.state.gameInfo.home.record}
+                      homeColor={this.state.gameInfo.home.color}
+                      homeRank={this.state.gameInfo.home.rank}
+                      homeScore={this.state.gameInfo.home.score}
+                      awayName={this.state.gameInfo.away.names.short}
+                      awayRecord={this.state.gameInfo.away.record}
+                      awayColor={this.state.gameInfo.away.color}
+                      awayRank={this.state.gameInfo.away.rank}
+                      awayScore={this.state.gameInfo.away.score} />
         );
     }
 }
