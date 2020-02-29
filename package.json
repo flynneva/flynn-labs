@@ -57,6 +57,7 @@
     "react-swipeable-views": "^0.13.8",
     "regl-worldview": "^0.4.0",
     "request": "^2.88.0",
+    "tinycolor2": "^1.4.1",
     "webpack": "^4.41.5",
     "webpack-merge": "^4.2.2"
   },

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import GameCard from '../game-card/game-card';
+
 const baseURL = '/ncaa_api/casablanca/scoreboard/';
 
 class Scoreboard extends Component {
@@ -41,27 +42,32 @@ class Scoreboard extends Component {
 
     render () {
         const { games } = this.state;
-
+        
+        const gridStyle = {
+        };
+ 
         return (
-            <Grid container spacing={2} justify='center'>
+            <Grid container spacing={0} justify='center' alignItems='flex-start' style={gridStyle}>
                 {games.map(game => (
-                    <Grid item key={game.game.gameID}>
-                        <GameCard
-                            homeName={game.game.home.names.char6}
-                            awayName={game.game.away.names.char6}
-                            gameStatus={game.game.gameState}
-                            currentClock={game.game.contestClock}
-                            currentPeriod={game.game.currentPeriod}
-                            homeScore={game.game.home.score}
-                            homeRecord={game.game.home.description}
-                            homeRank={game.game.home.rank}
-                            awayScore={game.game.away.score}
-                            awayRecord={game.game.away.description}
-                            awayRank={game.game.away.rank}
-                            startDate={game.game.startDate}
-                            startTime={game.game.startTime}
-                        />
-                    </Grid>
+                  <Grid item key={game.game.gameID}>
+                      <GameCard
+                          sport={this.props.sport}
+                          gameID={game.game.url}
+                          homeName={game.game.home.names.char6}
+                          awayName={game.game.away.names.char6}
+                          gameStatus={game.game.gameState}
+                          currentClock={game.game.contestClock}
+                          currentPeriod={game.game.currentPeriod}
+                          homeScore={game.game.home.score}
+                          homeRecord={game.game.home.description}
+                          homeRank={game.game.home.rank}
+                          awayScore={game.game.away.score}
+                          awayRecord={game.game.away.description}
+                          awayRank={game.game.away.rank}
+                          startDate={game.game.startDate}
+                          startTime={game.game.startTime}
+                      />
+                  </Grid>
                 ))}
             </Grid>
         );

@@ -1,50 +1,47 @@
 import React from 'react';
 import { Switch, Route, Link, useParams, useRouteMatch } from 'react-router-dom';
-import BreadCrumbs from '@material-ui/core/Breadcrumbs';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import SportLevel from '../sport-level/SportLevel';
+import Sport from '../sport/Sport';
 
-function Sports () {
+function SportLevel () {
     let { path, url } = useRouteMatch();
+
+    let { level } = useParams();
 
     const gridStyle = {
       height: '100vh',
-      width: '100%',
       margin: 0,
       padding: 0,
     };
 
     const titleStyle = {
+      width: '75%',
       textAlign: 'center',
     };
 
-    const linkStyle = {
-      textDecoration: 'none',
-    };
- 
     return (
       <Switch>
         <Route exact path={path}>
           <Grid container spacing={0} direction='column' justify='center' alignItems='center' style={gridStyle}>
             <Grid item style={titleStyle}>
               <Typography variant="h6" gutterBottom>
-                Select a level of sport
+                Great! Now select a sport
               </Typography>
             </Grid>
             <Grid item>
-              <Link to={`${url}/ncaa`} style={linkStyle}>
-                <Button size="large" variant="contained">NCAA</Button>
+              <Link to={`${url}/basketball-men`}>
+                <Button size="large" variant="contained">Men's Basketball</Button>
               </Link>
             </Grid>
           </Grid>
         </Route>           
-        <Route path={`${path}/:level`}>
-          <SportLevel />
+        <Route path={`${path}/:sport`}>
+          <Sport />
         </Route>
       </Switch>
     );
 }
 
-export default Sports;
+export default SportLevel;
