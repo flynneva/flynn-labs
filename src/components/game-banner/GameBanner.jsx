@@ -55,7 +55,6 @@ class GameBanner extends Component {
           padding: 0,
           width: '100%',
           height: '75px',
-          top: '50px',
         }
          
         const homeStyle = {

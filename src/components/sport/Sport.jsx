@@ -12,6 +12,7 @@ function Sport () {
     let { sport } = useParams();
 
     const gridStyle = {
+      height: '100vh',
       margin: 0,
       padding: 0,
     };

@@ -49,6 +49,12 @@ class GamePage extends Component {
         const theme = createMuiTheme();
 
         const gridStyle = {
+          height: '100vh',
+          width: '100%',
+        };
+        
+        const itemStyle = {
+          width: '100vh',
         };
 
         if (!this.state.gameInfo.id) {
@@ -56,7 +62,9 @@ class GamePage extends Component {
         }
 
         return (
-          <GameBanner homeName={this.state.gameInfo.home.names.short}
+          <Grid container spacing={0} style={gridStyle}>
+            <Grid item style={itemStyle}>
+              <GameBanner homeName={this.state.gameInfo.home.names.short}
                       homeRecord={this.state.gameInfo.home.record}
                       homeColor={this.state.gameInfo.home.color}
                       homeRank={this.state.gameInfo.home.rank}
@@ -66,6 +74,8 @@ class GamePage extends Component {
                       awayColor={this.state.gameInfo.away.color}
                       awayRank={this.state.gameInfo.away.rank}
                       awayScore={this.state.gameInfo.away.score} />
+            </Grid>
+          </Grid>
         );
     }
 }
