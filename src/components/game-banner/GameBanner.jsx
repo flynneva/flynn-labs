@@ -110,8 +110,8 @@ class GameBanner extends Component {
           width: '50%',
           margin: 0,
           padding: 0,
-          backgroundColor: this.props.homeColor,
-          color: this.state.homeTextColor,
+          backgroundColor: this.props.awayColor,
+          color: this.state.awayTextColor,
         }
        
         const awayDetailsStyle = {
