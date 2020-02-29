@@ -64,12 +64,12 @@ class GamePage extends Component {
         return (
           <Grid container spacing={0} style={gridStyle}>
             <Grid item style={itemStyle}>
-              <GameBanner homeName={this.state.gameInfo.home.names.short}
+              <GameBanner homeName={this.state.gameInfo.home.names['6Char']}
                       homeRecord={this.state.gameInfo.home.record}
                       homeColor={this.state.gameInfo.home.color}
                       homeRank={this.state.gameInfo.home.rank}
                       homeScore={this.state.gameInfo.home.score}
-                      awayName={this.state.gameInfo.away.names.short}
+                      awayName={this.state.gameInfo.away.names['6Char']}
                       awayRecord={this.state.gameInfo.away.record}
                       awayColor={this.state.gameInfo.away.color}
                       awayRank={this.state.gameInfo.away.rank}
