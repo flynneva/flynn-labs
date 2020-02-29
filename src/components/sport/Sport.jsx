@@ -12,9 +12,10 @@ function Sport () {
     let { sport } = useParams();
 
     const gridStyle = {
-      height: '100vh',
+      height: '100%',
       margin: 0,
       padding: 0,
+      marginBottom: '75px',
     };
 
     const titleStyle = {

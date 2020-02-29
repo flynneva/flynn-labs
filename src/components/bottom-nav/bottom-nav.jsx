@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from '@material-ui/icons/Home';
-import SportsIcon from '@material-ui/icons/Sports';
+import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import AndroidIcon from '@material-ui/icons/Android';
 
@@ -24,39 +24,44 @@ function BottomNav () {
         setValue(newValue);
     };
 
+    const navStyle = {
+      height: '75px',
+    }
+
     return (
         <BottomNavigation
             value={value}
             onChange={handleChange}
             className={classes.root}
+            style={navStyle}
         >
             <BottomNavigationAction
                 component={Link}
                 to="/"
                 label="Home"
                 value="home"
-                icon={<HomeIcon />}
+                icon={<HomeIcon style={{ fontSize: 27 }} />}
             />
             <BottomNavigationAction
                 component={Link}
-                to="/sports"
-                label="Sports"
-                value="sports"
-                icon={<SportsIcon />}
+                to="/sports/ncaa/basketball-men/"
+                label="Basketball"
+                value="basketball"
+                icon={<SportsBasketballIcon style={{ fontSize: 27 }} />}
             />
             <BottomNavigationAction
                 component={Link}
                 to="/finance"
                 label="Finance"
                 value="finance"
-                icon={<MonetizationOnIcon />}
+                icon={<MonetizationOnIcon style={{ fontSize: 27 }} />}
             />
             <BottomNavigationAction
                 component={Link}
                 to="/robotics"
                 label="Robotics"
                 value="robotics"
-                icon={<AndroidIcon />}
+                icon={<AndroidIcon style={{ fontSize: 27 }} />}
             />
         </BottomNavigation>
     );
