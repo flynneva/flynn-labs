@@ -1,35 +1,15 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import { Link } from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
-import tinycolor from 'tinycolor2';
 
-class GameBanner extends Component {
+class ClockBanner extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            homeTextColor: null,
-            awayTextColor: null,
+          test: null,
         };
     }
  
-    componentDidMount () {
-        if(tinycolor(this.props.homeColor).isLight()) {
-          this.setState({ homeTextColor: '#000000' });
-        } else {
-          this.setState({ homeTextColor: '#ffffff' });
-        }
-   
-        if(tinycolor(this.props.awayColor).isLight()) {
-          this.setState({ awayTextColor: '#000000' });
-        } else {
-          this.setState({ awayTextColor: '#ffffff' });
-        }
-    }
-
     render () {
 
         if(!this.state.homeTextColor) {
@@ -56,23 +36,6 @@ class GameBanner extends Component {
           padding: 0,
           width: '100%',
           height: '75px',
-        }
-        
-        const clockWrapper = {
-          margin: 0,
-          padding: 0,
-          width: '100%',
-          height: '25px',
-        }
-        
-        const clockStyle = {
-          backgroundColor: '#ffffff',
-          margin: 0,
-          padding: 0,
-          width: '25%',
-          height: '25px',
-          textAlign: 'center',
-          paddingTop: 4,
         }
          
         const homeStyle = {
@@ -194,66 +157,15 @@ class GameBanner extends Component {
             </Grid>
         );
         
-        let awayTeam;
-        awayTeam = (
-            <Grid item xs style={awayStyle}>
-                <Grid item xs container>
-                    <Grid item xs={3} style={awayScoreStyle}>
-                        {this.props.awayScore}
-                    </Grid>
-                    <Grid item xs={7} style={awayDetailsStyle}>
-                        <Grid item xs style={awayNameStyle}>
-                            {this.props.awayName}
-                        </Grid>
-                        <Grid item xs style={awayRecordStyle}>
-                            {this.props.awayRecord}
-                        </Grid>
-                    </Grid>
-                    <Grid item xs style={awayRankStyle}>
-                        {this.props.awayRank}
-                    </Grid>
-                </Grid>
-            </Grid>
-        );
-
-        let clockBanner;
-        if (this.props.gameState === 'live' ) {
-          if (this.props.period === 'HALF') {
-            // it's halftime....
-            clockBanner = (
-              <Grid item xs justify='center'>
-                HALF TIME
-              </Grid>
-            );
-          } else {
-            // game is live
-            clockBanner = (
-              <Grid container spacing={0}>
-                <Grid item xs justify='center'>
-                 {this.props.gameClock}
-                </Grid>
-                <Grid item xs justify='center'>
-                 {this.props.gamePeriod}
-                </Grid>
-              </Grid>
-            );
-          }
-        }
-
+        // wrap this component in a Grid component and add your spacing there
         return (
-          <Grid container spacing={0}>
             <Grid container spacing={0} style={bannerStyle}>
-              {homeTeam}
-              {awayTeam}
+              <Grid item>
+                CLOCK
+              </Grid>
             </Grid>
-            <Grid container spacing={0} justify='center' style={clockWrapper}>
-              <Paper elevation={2} style={clockStyle}>
-                {clockBanner}
-              </Paper>
-            </Grid>
-          </Grid>
          );
     }
 }
 
-export default GameBanner;
+export default ClockBanner;

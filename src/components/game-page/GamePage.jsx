@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import BoxScore from '../boxscore/BoxScore';
 import GameBanner from '../game-banner/GameBanner';
+import ClockBanner from '../clock-banner/ClockBanner';
 
 const baseURL = '/ncaa_api/casablanca/game/';
 
@@ -64,16 +65,25 @@ class GamePage extends Component {
         return (
           <Grid container spacing={0} style={gridStyle}>
             <Grid item style={itemStyle}>
-              <GameBanner homeName={this.state.gameInfo.home.names['6Char']}
+              <GameBanner homeName={this.state.gameInfo.home.names['short']}
                       homeRecord={this.state.gameInfo.home.record}
                       homeColor={this.state.gameInfo.home.color}
                       homeRank={this.state.gameInfo.home.rank}
                       homeScore={this.state.gameInfo.home.score}
-                      awayName={this.state.gameInfo.away.names['6Char']}
+                      awayName={this.state.gameInfo.away.names['short']}
                       awayRecord={this.state.gameInfo.away.record}
                       awayColor={this.state.gameInfo.away.color}
                       awayRank={this.state.gameInfo.away.rank}
-                      awayScore={this.state.gameInfo.away.score} />
+                      awayScore={this.state.gameInfo.away.score}
+                      gameState={this.state.gameInfo.status.gameState}
+                      gameClock={this.state.gameInfo.status.clock}
+                      gamePeriod={this.state.gameInfo.status.currentPeriod}
+                      startTime={this.state.gameInfo.status.startTime}
+                      winner={this.state.gameInfo.status.winner}
+                      network={this.state.gameInfo.status.network}
+                      venueCity={this.state.gameInfo.venue.City}
+                      venueName={this.state.gameInfo.venue.Name}
+                      venueState={this.state.gameInfo.venue.State} />
             </Grid>
           </Grid>
         );
