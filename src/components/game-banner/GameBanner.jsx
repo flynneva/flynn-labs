@@ -51,17 +51,24 @@ class GameBanner extends Component {
           padding: 0,
         }
         
+        const pageStyle = {
+          margin: 0,
+          padding: 0,
+          width: '100vw',
+          height: '100px',
+        }
+        
         const bannerStyle = {
           margin: 0,
           padding: 0,
-          width: '100%',
+          width: '100vw',
           height: '75px',
         }
         
         const clockWrapper = {
           margin: 0,
           padding: 0,
-          width: '100%',
+          width: '100vw',
           height: '25px',
         }
         
@@ -228,11 +235,11 @@ class GameBanner extends Component {
           } else {
             // game is live
             clockBanner = (
-              <Grid container spacing={0}>
-                <Grid item xs justify='center'>
+              <Grid container spacing={0} justify='center'>
+                <Grid item xs>
                  {this.props.gameClock}
                 </Grid>
-                <Grid item xs justify='center'>
+                <Grid item xs>
                  {this.props.gamePeriod}
                 </Grid>
               </Grid>
@@ -241,7 +248,7 @@ class GameBanner extends Component {
         }
 
         return (
-          <Grid container spacing={0}>
+          <Grid container spacing={0} style={pageStyle}>
             <Grid container spacing={0} style={bannerStyle}>
               {homeTeam}
               {awayTeam}

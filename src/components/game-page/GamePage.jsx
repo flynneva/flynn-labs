@@ -13,13 +13,14 @@ class GamePage extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            gameUrl: '', 
             gameInfo: {},
-            boxscore: [],
-            pbp: null,
-            preview: null,
-            recap: null,
-            scoring_summary: null,
-            team_stats: null,
+            boxscore: {},
+            pbp: {},
+            preview: {},
+            recap: {},
+            scoring_summary: {},
+            team_stats: {},
         };
     }
 
@@ -27,8 +28,8 @@ class GamePage extends Component {
         const id = this.props.match.params.id;
         
         var game_url = baseURL + id + '/';
+        this.setState({ gameUrl: game_url});
         var game_info_url = game_url + 'gameInfo.json';
-        var boxscore_url = game_url + 'boxscore.json';
         var pbp_url = game_url + 'pbp.json';
         var pbp_url = game_url + 'pbp.json';
         
@@ -39,23 +40,42 @@ class GamePage extends Component {
         .then(response => response.json())
         .then(data => {
           this.setState({ gameInfo: data });
-          console.log(data);
         })
         .catch(error => {
             console.log(error);
         });
     }
 
+    getBoxScore () {
+        if(this.state.gameInfo.tabs.boxscore) {
+          var boxscore_url = this.state.gameUrl + 'boxscore.json';
+          fetch(boxscore_url, {
+                method: 'GET',
+                body: JSON.stringify()
+          })
+          .then(response => response.json())
+          .then(data => {
+            this.setState({ boxscore: data });
+            console.log(data);
+          })
+          .catch(error => {
+              console.log(error);
+          });
+        }
+    }
+ 
     render () {
         const theme = createMuiTheme();
 
         const gridStyle = {
-          height: '100vh',
-          width: '100%',
+          height: '100%',
+          minHeight: '100vh',
+          width: '100vw',
         };
         
         const itemStyle = {
-          width: '100vh',
+          margin: 0,
+          padding: 0,
         };
 
         if (!this.state.gameInfo.id) {
@@ -84,6 +104,9 @@ class GamePage extends Component {
                       venueCity={this.state.gameInfo.venue.City}
                       venueName={this.state.gameInfo.venue.Name}
                       venueState={this.state.gameInfo.venue.State} />
+            </Grid>
+            <Grid item>
+              <BoxScore />
             </Grid>
           </Grid>
         );
