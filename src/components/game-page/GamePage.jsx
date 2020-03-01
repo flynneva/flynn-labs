@@ -13,6 +13,7 @@ class GamePage extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            renderBoxScore: false,
             gameUrl: '', 
             gameInfo: {},
             boxscore: {},
@@ -22,6 +23,22 @@ class GamePage extends Component {
             scoring_summary: {},
             team_stats: {},
         };
+    }
+
+    getBoxScore () {
+      var boxscore_url = this.state.gameUrl + 'boxscore.json';
+      fetch(boxscore_url, {
+            method: 'GET',
+            body: JSON.stringify()
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ boxscore: data });
+        this.setState({ renderBoxScore: true });
+      })
+      .catch(error => {
+          console.log(error);
+      });
     }
 
     componentDidMount () {
@@ -40,30 +57,15 @@ class GamePage extends Component {
         .then(response => response.json())
         .then(data => {
           this.setState({ gameInfo: data });
+          if(data.tabs.boxscore) {
+            this.getBoxScore();
+          }
         })
         .catch(error => {
             console.log(error);
         });
     }
 
-    getBoxScore () {
-        if(this.state.gameInfo.tabs.boxscore) {
-          var boxscore_url = this.state.gameUrl + 'boxscore.json';
-          fetch(boxscore_url, {
-                method: 'GET',
-                body: JSON.stringify()
-          })
-          .then(response => response.json())
-          .then(data => {
-            this.setState({ boxscore: data });
-            console.log(data);
-          })
-          .catch(error => {
-              console.log(error);
-          });
-        }
-    }
- 
     render () {
         const theme = createMuiTheme();
 
@@ -71,19 +73,61 @@ class GamePage extends Component {
           height: '100%',
           minHeight: '100vh',
           width: '100vw',
+          paddingBottom: '75px',
+        };
+        
+        const innerGridStyle = {
+          height: '100%',
+          width: '100vw',
         };
         
         const itemStyle = {
           margin: 0,
           padding: 0,
+          height: '120px',
+        };
+        
+        const gameDetailsStyle = {
+          margin: 0,
+          padding: 0,
+          width: '100vw',
         };
 
         if (!this.state.gameInfo.id) {
           return null;
         }
 
+        let boxScore;
+        let homeMetaData;
+        let awayMetaData;
+        let homeBoxScore;
+        let awayBoxScore;
+        if(this.state.boxscore.inputMD5Sum) {
+          if (this.state.boxscore.meta.teams['0'].homeTeam) {
+            // home team is team 0
+            homeMetaData = this.state.boxscore.meta.teams['0'];
+            awayMetaData = this.state.boxscore.meta.teams['1'];         
+          } else {
+            homeMetaData = this.state.boxscore.meta.teams['1'];
+            awayMetaData = this.state.boxscore.meta.teams['0'];
+          }
+  
+          homeBoxScore = this.state.boxscore.teams['0'];         
+          awayBoxScore = this.state.boxscore.teams['1'];
+       
+          if(this.state.renderBoxScore) {
+            boxScore = (
+              <BoxScore homeInfo={homeMetaData}
+                        awayInfo={awayMetaData}
+                        homeBox={homeBoxScore}
+                        awayBox={awayBoxScore} />
+            );
+          }
+        }
+     
         return (
-          <Grid container spacing={0} style={gridStyle}>
+        <Grid container spacing={0} style={gridStyle}>
+          <Grid container spacing={0} style={innerGridStyle}>
             <Grid item style={itemStyle}>
               <GameBanner homeName={this.state.gameInfo.home.names['short']}
                       homeRecord={this.state.gameInfo.home.record}
@@ -105,10 +149,11 @@ class GamePage extends Component {
                       venueName={this.state.gameInfo.venue.Name}
                       venueState={this.state.gameInfo.venue.State} />
             </Grid>
-            <Grid item>
-              <BoxScore />
+            <Grid item container spacing={0} justify='center' style={gameDetailsStyle}>
+              {boxScore} 
             </Grid>
           </Grid>
+        </Grid>
         );
     }
 }
