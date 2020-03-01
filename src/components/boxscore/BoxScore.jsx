@@ -88,20 +88,143 @@ class BoxScore extends Component {
           fontWeight: 'bold',
           margin: 0,
           padding: 0,
+          paddingLeft: 4,
+          paddingRight: 4,
         };
         
         const nameHeaderStyle = {
           backgroundColor: '#eeeeee',
           fontWeight: 'bold',
+          minWidth: '125px',
           margin: 0,
           padding: 0,
           paddingLeft: 8,
         };
         
-        const dataCellStyle = {
+        const nameCellStyle = {
           margin: 0,
           padding: 0,
         };
+        
+        const dataCellStyle = {
+          textAlign: 'right',
+          margin: 0,
+          padding: 0,
+        };
+        
+        const totalTitleCellStyle = {
+          backgroundColor: '#ffc738',
+          fontSize: 16,
+          fontWeight: 'bold',
+          margin: 0,
+          padding: 0,
+          paddingLeft: 16,
+        };
+        
+        const totalNameStyle = {
+          backgroundColor: '#bfbfbf',
+          fontWeight: 'bold',
+          minWidth: '125px',
+          margin: 0,
+          padding: 0,
+          paddingLeft: 8,
+        };
+        
+        const totalHeaderStyle = {
+          backgroundColor: '#bfbfbf',
+          fontWeight: 'bold',
+          minWidth: '50px',
+          margin: 0,
+          padding: 0,
+          paddingLeft: 4,
+          paddingRight: 4,
+        };
+
+        const homeTeamCellStyle = {
+          color: this.state.homeTextColor,
+          backgroundColor: this.props.homeInfo.color,
+          fontWeight: 'bold',
+          margin: 0,
+          padding: 0,
+        };
+
+        const awayTeamCellStyle = {
+          color: this.state.awayTextColor,
+          backgroundColor: this.props.awayInfo.color,
+          fontWeight: 'bold',
+          margin: 0,
+          padding: 0,
+        };
+        
+        let totalStats;
+        if (this.props.homeInfo && this.props.homeBox) {
+          totalStats = (
+            <Grid item style={boxScoreStyle}>
+              <TableContainer component={Paper}>
+                <Table size="small" aria-label="Boxscore Totals Table" style={tableStyle}>
+                  <TableHead>
+                    <TableRow style={tableTitle}>
+                      <TableCell style={totalTitleCellStyle} colSpan={15}>Team Totals</TableCell>
+                    </TableRow>
+                    <TableRow style={headerStyle}>
+                      <TableCell style={totalNameStyle}>Team</TableCell>
+                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.points}</TableCell>
+                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.fieldGoalsMade}</TableCell>
+                      <TableCell style={totalHeaderStyle}>FG %</TableCell>
+                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.threePointsMade}</TableCell>
+                      <TableCell style={totalHeaderStyle}>3PT %</TableCell>
+                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.freeThrowsMade}</TableCell>
+                      <TableCell style={totalHeaderStyle}>FT %</TableCell>
+                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.totalRebounds}</TableCell>
+                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.offensiveRebounds}</TableCell>
+                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.assists}</TableCell>
+                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.personalFouls}</TableCell>
+                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.steals}</TableCell>
+                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.turnovers}</TableCell>
+                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.blockedShots}</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell style={homeTeamCellStyle}>{this.props.homeInfo.shortName}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.points}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.fieldGoalsMade}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.fieldGoalPercentage}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.threePointsMade}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.threePointPercentage}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.freeThrowsMade}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.freeThrowPercentage}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.totalRebounds}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.offensiveRebounds}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.assists}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.personalFouls}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.steals}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.turnovers}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.blockedShots}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell style={awayTeamCellStyle}>{this.props.awayInfo.shortName}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.points}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.fieldGoalsMade}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.fieldGoalPercentage}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.threePointsMade}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.threePointPercentage}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.freeThrowsMade}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.freeThrowPercentage}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.totalRebounds}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.offensiveRebounds}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.assists}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.personalFouls}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.steals}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.turnovers}</TableCell>
+                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.blockedShots}</TableCell>
+                    </TableRow>
+                  </TableBody> 
+                </Table>
+              </TableContainer>
+            </Grid>
+         ); 
+        }
 
         let homeStats;
         if (this.props.homeInfo && this.props.homeBox) {
@@ -109,7 +232,7 @@ class BoxScore extends Component {
           homeStats = (
                 <Grid item style={boxScoreStyle}>
                   <TableContainer component={Paper}>
-                    <Table size="small" aria-label="a dense table" style={tableStyle}>
+                    <Table size="small" aria-label="Home Box Score" style={tableStyle}>
                       <TableHead>
                         <TableRow style={tableTitle}>
                           <TableCell style={homeTitleCellStyle} colSpan={13}>{this.props.homeInfo.shortName} {this.props.homeInfo.nickName}</TableCell>
@@ -133,7 +256,7 @@ class BoxScore extends Component {
                       <TableBody>
                         {this.props.homeBox.playerStats.map((player, index) => (
                           <TableRow hover key={index}>
-                            <TableCell>{player.firstName} {player.lastName}</TableCell>
+                            <TableCell style={nameCellStyle}>{player.firstName} {player.lastName}</TableCell>
                             <TableCell style={dataCellStyle}>{player.position}</TableCell>
                             <TableCell style={dataCellStyle}>{player.points}</TableCell>
                             <TableCell style={dataCellStyle}>{player.fieldGoalsMade}</TableCell>
@@ -185,7 +308,7 @@ class BoxScore extends Component {
                       <TableBody>
                         {this.props.awayBox.playerStats.map((player, index) => (
                           <TableRow hover key={index}>
-                            <TableCell>{player.firstName} {player.lastName}</TableCell>
+                            <TableCell style={nameCellStyle}>{player.firstName} {player.lastName}</TableCell>
                             <TableCell style={dataCellStyle}>{player.position}</TableCell>
                             <TableCell style={dataCellStyle}>{player.points}</TableCell>
                             <TableCell style={dataCellStyle}>{player.fieldGoalsMade}</TableCell>
@@ -208,6 +331,7 @@ class BoxScore extends Component {
         }
         return (
           <Grid container spacing={1} style={gridStyle}>
+            {totalStats}
             {homeStats}
             {awayStats}
           </Grid>
