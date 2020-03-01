@@ -225,10 +225,10 @@ class GameBanner extends Component {
 
         let clockBanner;
         if (this.props.gameState === 'live' ) {
-          if (this.props.period === 'HALF') {
+          if (this.props.gamePeriod === 'HALF') {
             // it's halftime....
             clockBanner = (
-              <Grid item xs justify='center'>
+              <Grid item xs justify='center' style={{ fontWeight: 'bold' }}>
                 HALF TIME
               </Grid>
             );
@@ -245,6 +245,25 @@ class GameBanner extends Component {
               </Grid>
             );
           }
+        } else if (this.props.gameState === 'final') {
+          // game is over
+          clockBanner = (
+              <Grid item xs justify='center' style={{ fontWeight: 'bold' }}>
+                FINAL
+              </Grid>
+            );
+        } else if (this.props.gameState === 'pre') {
+          // game hasnt started
+          clockBanner = (
+              <Grid container spacing={0} justify='center'>
+                <Grid item xs>
+                 {this.props.startTime}
+                </Grid>
+                <Grid item xs>
+                 {this.props.venueCity}, {this.props.venueState}
+                </Grid>
+              </Grid>
+            );
         }
 
         return (

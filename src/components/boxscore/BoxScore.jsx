@@ -112,7 +112,7 @@ class BoxScore extends Component {
                     <Table size="small" aria-label="a dense table" style={tableStyle}>
                       <TableHead>
                         <TableRow style={tableTitle}>
-                          <TableCell style={homeTitleCellStyle} colSpan={13}>{this.props.homeInfo.shortName}</TableCell>
+                          <TableCell style={homeTitleCellStyle} colSpan={13}>{this.props.homeInfo.shortName} {this.props.homeInfo.nickName}</TableCell>
                         </TableRow>
                         <TableRow style={headerStyle}>
                           <TableCell style={nameHeaderStyle}>Player Name</TableCell>
@@ -164,7 +164,7 @@ class BoxScore extends Component {
                     <Table size="small" aria-label="Away Boxscore" style={tableStyle}>
                       <TableHead>
                         <TableRow style={tableTitle}>
-                          <TableCell style={awayTitleCellStyle} colSpan={13}>{this.props.awayInfo.shortName}</TableCell>
+                          <TableCell style={awayTitleCellStyle} colSpan={13}>{this.props.awayInfo.shortName} {this.props.awayInfo.nickName}</TableCell>
                         </TableRow>
                         <TableRow style={headerStyle}>
                           <TableCell style={nameHeaderStyle}>Player Name</TableCell>
