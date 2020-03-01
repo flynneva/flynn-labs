@@ -111,9 +111,15 @@ class GamePage extends Component {
             homeMetaData = this.state.boxscore.meta.teams['1'];
             awayMetaData = this.state.boxscore.meta.teams['0'];
           }
-  
-          homeBoxScore = this.state.boxscore.teams['0'];         
-          awayBoxScore = this.state.boxscore.teams['1'];
+
+          if (homeMetaData.id === this.state.boxscore.teams['0'].teamId) {
+            // home team is first in list 
+            homeBoxScore = this.state.boxscore.teams['0'];         
+            awayBoxScore = this.state.boxscore.teams['1'];
+          } else {
+            homeBoxScore = this.state.boxscore.teams['1'];         
+            awayBoxScore = this.state.boxscore.teams['0'];
+          } 
        
           if(this.state.renderBoxScore) {
             boxScore = (
