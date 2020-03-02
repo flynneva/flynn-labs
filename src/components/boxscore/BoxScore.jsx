@@ -86,6 +86,7 @@ class BoxScore extends Component {
         const headerCellStyle = {
           backgroundColor: '#eeeeee',
           fontWeight: 'bold',
+          minWidth: '50px',
           margin: 0,
           padding: 0,
           paddingLeft: 4,

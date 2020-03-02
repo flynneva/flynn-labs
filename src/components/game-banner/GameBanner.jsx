@@ -225,7 +225,7 @@ class GameBanner extends Component {
 
         let clockBanner;
         if (this.props.gameState === 'live' ) {
-          if (this.props.gamePeriod === 'HALF') {
+          if (this.props.gamePeriod === 'Half') {
             // it's halftime....
             clockBanner = (
               <Grid item xs justify='center' style={{ fontWeight: 'bold' }}>
