@@ -87,6 +87,7 @@ class BoxScore extends Component {
           backgroundColor: '#eeeeee',
           fontWeight: 'bold',
           minWidth: '50px',
+          textAlign: 'center',
           margin: 0,
           padding: 0,
           paddingLeft: 4,
@@ -97,9 +98,9 @@ class BoxScore extends Component {
           backgroundColor: '#eeeeee',
           fontWeight: 'bold',
           minWidth: '125px',
+          textAlign: 'center',
           margin: 0,
           padding: 0,
-          paddingLeft: 8,
         };
         
         const nameCellStyle = {
@@ -126,15 +127,16 @@ class BoxScore extends Component {
           backgroundColor: '#bfbfbf',
           fontWeight: 'bold',
           minWidth: '125px',
+          textAlign: 'center',
           margin: 0,
           padding: 0,
-          paddingLeft: 8,
         };
         
         const totalHeaderStyle = {
           backgroundColor: '#bfbfbf',
           fontWeight: 'bold',
           minWidth: '50px',
+          textAlign: 'center',
           margin: 0,
           padding: 0,
           paddingLeft: 4,
@@ -165,10 +167,15 @@ class BoxScore extends Component {
                 <Table size="small" aria-label="Boxscore Totals Table" style={tableStyle}>
                   <TableHead>
                     <TableRow style={tableTitle}>
-                      <TableCell style={totalTitleCellStyle} colSpan={15}>Team Totals</TableCell>
+                      <TableCell style={totalTitleCellStyle} colSpan={20}>Team Totals</TableCell>
                     </TableRow>
                     <TableRow style={headerStyle}>
                       <TableCell style={totalNameStyle}>Team</TableCell>
+                      <TableCell style={totalHeaderStyle}>eFG%</TableCell>
+                      <TableCell style={totalHeaderStyle}>TOV%</TableCell>
+                      <TableCell style={totalHeaderStyle}>ORB%</TableCell>
+                      <TableCell style={totalHeaderStyle}>DRB%</TableCell>
+                      <TableCell style={totalHeaderStyle}>FTR</TableCell>
                       <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.points}</TableCell>
                       <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.fieldGoalsMade}</TableCell>
                       <TableCell style={totalHeaderStyle}>FG %</TableCell>
@@ -188,6 +195,11 @@ class BoxScore extends Component {
                   <TableBody>
                     <TableRow>
                       <TableCell style={homeTeamCellStyle}>{this.props.homeInfo.shortName}</TableCell>
+                      <TableCell style={dataCellStyle}>0.0</TableCell>
+                      <TableCell style={dataCellStyle}>0.0</TableCell>
+                      <TableCell style={dataCellStyle}>0.0</TableCell>
+                      <TableCell style={dataCellStyle}>0.0</TableCell>
+                      <TableCell style={dataCellStyle}>0.0</TableCell>
                       <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.points}</TableCell>
                       <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.fieldGoalsMade}</TableCell>
                       <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.fieldGoalPercentage}</TableCell>
@@ -205,6 +217,11 @@ class BoxScore extends Component {
                     </TableRow>
                     <TableRow>
                       <TableCell style={awayTeamCellStyle}>{this.props.awayInfo.shortName}</TableCell>
+                      <TableCell style={dataCellStyle}>0.0</TableCell>
+                      <TableCell style={dataCellStyle}>0.0</TableCell>
+                      <TableCell style={dataCellStyle}>0.0</TableCell>
+                      <TableCell style={dataCellStyle}>0.0</TableCell>
+                      <TableCell style={dataCellStyle}>0.0</TableCell>
                       <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.points}</TableCell>
                       <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.fieldGoalsMade}</TableCell>
                       <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.fieldGoalPercentage}</TableCell>
