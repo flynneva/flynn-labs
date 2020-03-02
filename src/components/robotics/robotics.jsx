@@ -1,56 +1,64 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Worldview, { Cubes, Axes} from 'regl-worldview';
-
-const useStyles = makeStyles(theme => ({
-    grid: {
-        justifyContent: 'center',
-        height: '100vh',
-    },
-    item: {
-      textAlign: 'center',
-      margin: '8px',
-    },
-    cardActions: {
-        justifyContent: 'center'
-    },
-    worldView: {
-      height: '50vh',
-    }
-}));
+import Worldview, { Spheres, Axes} from 'regl-worldview';
 
 function Home () {
-    const classes = useStyles();
 
-    const markers = [
-        {
-            pose: {
-                orientation: { x: 0, y: 0, z: 0, w: 1 },
-                position: { x: 0, y: 0, z: 0 }
-            },
-            scale: { x: 15, y: 15, z: 15 },
-            color: { r: 1, g: 0, b: 1, a: 0.9 }
+    let markers = [];
+    
+    const x = 5;
+    const y = 5;
+    const z = 5;
+    const step = 5;
+    for(let i = -((x+step)/2); i <= x;  i++) {
+      for(let j = -((y+step)/2); j <= y; j++) {
+        for(let k = -((z+step)/2); k <= z; k++) {
+           markers.push({
+                pose: {
+                    orientation: { x: 0, y: 0, z: 0, w: 1 },
+                    position: { x: i * step, y: j* step, z: k * step }
+                },
+                scale: { x: 1, y: 1, z: 1 },
+                color: { r: 0, g: 1, b: 1, a: 0.9 }
+           });
         }
-    ];
+      }
+    }
+//    markers = [
+//        {
+//            pose: {
+//                orientation: { x: 0, y: 0, z: 0, w: 1 },
+//                position: { x: 5, y: 5, z: 5 }
+//            },
+//            scale: { x: 1, y: 1, z: 1 },
+//            color: { r: 0, g: 1, b: 1, a: 0.9 }
+//        }
+//    ];
+
+    const gridStyle = {
+      width: '100vw',
+      height: '100%',
+      minHeight: '100vh',  
+    }
    
     return (
-    <Grid container className={classes.grid} justify="center" spacing={0}>
-        <Grid item xs={12} className={classes.item}>
-            <Card className={classes.card}>
+    <Grid container justify="center" spacing={1} style={gridStyle}>
+        <Grid item xs={11}>
+            <Card>
                 <CardContent>
-                    <Typography variant='h4'>Robotics</Typography>
-                    <Grid container>
+                    <Typography variant='h4' style={{ textAlign: 'center' }}>Robotics</Typography>
+                    <br></br>
+                    <Grid container spacing={3}>
                       <Grid item xs={12}>
-                          <Typography variant='body2'>Here is a quick little demo until I get around to doing something with this page...NOTE: this doesnt work on mobile yet so check it out on a desktop if you have a chance.</Typography>
+                          <Typography variant='body2' style={{ textAlign: 'center' }}>Here is a quick little demo until I get around to doing something with this page...NOTE: this doesnt work on mobile yet so check it out on a desktop if you have a chance.</Typography>
                       </Grid>
-                      <Grid item xs={12} className={classes.worldView}>
+                      <Grid item xs={12} style={{ height: 500, marginBottom: 8 }}>
                         <Worldview>
-                            <Cubes>{ markers }</Cubes>
+                            <Spheres>{ markers }</Spheres>
                             <Axes />
                         </Worldview>
                       </Grid>
