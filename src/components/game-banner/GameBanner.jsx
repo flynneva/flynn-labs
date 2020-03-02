@@ -69,18 +69,17 @@ class GameBanner extends Component {
         const clockWrapper = {
           margin: 0,
           padding: 0,
-          width: '100vw',
-          height: '25px',
         }
         
         const clockStyle = {
-          backgroundColor: '#ffffff',
           margin: 0,
           padding: 0,
-          width: '30%',
-          height: '25px',
+        }
+        
+        const venueStyle = {
+          margin: 0,
+          padding: 0,
           textAlign: 'center',
-          paddingTop: 4,
         }
          
         const homeStyle = {
@@ -113,12 +112,10 @@ class GameBanner extends Component {
         };
 
         const homeRecordStyle = {
-            fontSize: 11,
+            fontSize: 13,
             textAlign: 'left',
             marginLeft: 0,
             padding: 0,
-            paddingBottom: 0,
-            paddingTop: 2,
         };
 
         const homeScoreStyle = {
@@ -160,12 +157,10 @@ class GameBanner extends Component {
         };
 
         const awayRecordStyle = {
-            fontSize: 11,
+            fontSize: 13,
             textAlign: 'right',
             marginLeft: 0,
             padding: 0,
-            paddingBottom: 0,
-            paddingTop: 2,
         };
 
         const awayScoreStyle = {
@@ -253,12 +248,12 @@ class GameBanner extends Component {
             clockBanner = (
               <Grid container spacing={0} justify='center'>
                 <Grid item xs>
-                  <Typography variant='body2'>
+                  <Typography variant='body2' style={{ fontWeight: 'bold' }}>
                     {this.props.gameClock}
                   </Typography>
                 </Grid>
                 <Grid item xs>
-                  <Typography variant='body2'>
+                  <Typography variant='body2' style={{ fontWeight: 'bold' }}>
                     {this.props.gamePeriod}
                   </Typography>
                 </Grid>
@@ -269,7 +264,7 @@ class GameBanner extends Component {
           // game is over
           clockBanner = (
               <Grid item xs justify='center' style={{ fontWeight: 'bold' }}>
-                  <Typography variant='body2'>
+                  <Typography variant='body2' style={{ fontWeight: 'bold' }}>
                     FINAL
                   </Typography>
               </Grid>
@@ -278,13 +273,13 @@ class GameBanner extends Component {
           // game hasnt started
           clockBanner = (
               <Grid container spacing={0} justify='center'>
-                <Grid item xs style={{ margin: 0, padding: 0 }}>
-                  <Typography variant='body2'>
+                <Grid item xs style={{ margin: 0, padding: 0, paddingLeft: 8 }}>
+                  <Typography variant='body2' style={{ fontWeight: 'bold' }}>
                     {this.props.startTime}
                   </Typography>
                 </Grid>
-                <Grid item xs style={{ margin: 0, padding: 0 }}>
-                  <Typography variant='body2'>
+                <Grid item xs style={{ textAlign: 'right', margin: 0, padding: 0, paddingRight: 8 }}>
+                  <Typography variant='body2' style={{ fontWeight: 'bold' }}>
                     {this.props.venueCity}, {this.props.venueState}
                   </Typography>
                 </Grid>
@@ -292,16 +287,32 @@ class GameBanner extends Component {
             );
         }
 
+        let venueBanner;
+        venueBanner = (
+          <Grid container spacing={0} justify='center'>
+            <Typography variant='body2' style={{ fontWeight: 'bold' }}>
+              {this.props.venueName}
+            </Typography>
+          </Grid>
+        );
+
         return (
           <Grid container spacing={0} style={pageStyle}>
             <Grid container spacing={0} style={bannerStyle}>
               {homeTeam}
               {awayTeam}
             </Grid>
-            <Grid container spacing={0} justify='center' style={clockWrapper}>
-              <Paper elevation={2} style={clockStyle}>
-                {clockBanner}
-              </Paper>
+            <Grid container spacing={0} direction='column' style={{ width: '100vw', height: '50px' }}>
+              <Grid container justify='center' spacing={0}>
+                <Paper elevation={0} style={{ margin: 0, padding: 0, width: '30%', backgroundColor: '#bfbfbf' }}>
+                  {clockBanner}
+                </Paper>
+              </Grid>
+              <Grid container justify='center' spacing={0}>
+                <Paper elevation={0} style={{ margin: 0, padding: 0, width: '25%', backgroundColor: '#bfbfbf' }}>
+                  {venueBanner}
+                </Paper>
+              </Grid>  
             </Grid>
           </Grid>
          );

@@ -96,22 +96,6 @@ class GameCard extends Component {
             paddingTop: 5,
         };
 
-        const homeStyle = {
-            margin: 0,
-            padding: 0
-        };
-
-        const awayStyle = {
-            margin: 0,
-            padding: 0
-        };
-
-        const homeDetailsStyle = {
-            textAlign: 'left',
-            margin: 0,
-            padding: 0
-        };
-
         const homeNameStyle = {
             fontSize: 16,
             textAlign: 'left',
@@ -132,7 +116,8 @@ class GameCard extends Component {
             fontSize: 11,
             textAlign: 'right',
             marginTop: 5,
-            marginRight: 4
+            paddingRight: 2,
+            paddingLeft: 2,
         };
 
         const homeScoreStyle = {
@@ -169,7 +154,8 @@ class GameCard extends Component {
             fontSize: 11,
             textAlign: 'right',
             marginTop: 5,
-            marginRight: 4
+            paddingRight: 2,
+            paddingLeft: 2,
         };
 
         const awayScoreStyle = {
@@ -248,68 +234,62 @@ class GameCard extends Component {
         // deterime what the home team row should be
         let homeTeam;
         homeTeam = (
-            <Grid item xs style={homeStyle}>
-                <Grid item xs container>
-                    <Grid item xs>
-                      <Typography variant='body2' style={homeRankStyle}>
-                        {this.props.homeRank}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={6} direction="column" style={homeDetailsStyle}>
-                        <Grid item xs>
-                          <Typography variant='body2' style={homeNameStyle}>
-                            {this.props.homeName}
-                          </Typography>
-                        </Grid>
-                        <Grid item xs>
-                          <Typography variant='body2' style={homeRecordStyle}>
-                            {this.props.homeRecord}
-                          </Typography>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={4}>
-                      <Typography variant='body2' style={homeScoreStyle}>
-                        {this.props.homeScore}
-                      </Typography>
-                    </Grid>
+            <Grid container spacing={0} style={{ margin: 0, padding: 0 }}>
+              <Grid item xs={2}>
+                <Typography variant='body2' style={homeRankStyle}>
+                  {this.props.homeRank}
+                </Typography>
+              </Grid>
+              <Grid item xs={7}>
+                <Grid container spacing={0} direction="column" style={{ margin: 0, padding: 0 }}>
+                  <Grid item xs>
+                    <Typography variant='body2' style={homeNameStyle}>
+                      {this.props.homeName}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs>
+                    <Typography variant='body2' style={homeRecordStyle}>
+                      {this.props.homeRecord}
+                    </Typography>
+                  </Grid>
                 </Grid>
+              </Grid>
+              <Grid item xs={3}> 
+                <Typography variant='body2' style={homeScoreStyle}>
+                  {this.props.homeScore}
+                </Typography>
+              </Grid>
             </Grid>
         );
 
         // deterime what the away team row should be
         let awayTeam;
         awayTeam = (
-            <Grid item xs style={awayStyle}>
-                <Grid item xs container>
-                    <Grid item xs style={{ margin: 0, padding: 0 }}>
-                      <Typography variant='body2' style={awayRankStyle}>
-                        {this.props.awayRank}
+            <Grid container spacing={0} style={{ margin: 0, padding: 0 }}>
+              <Grid item xs={2}>
+                <Typography variant='body2' style={awayRankStyle}>
+                  {this.props.awayRank}
+                </Typography>
+              </Grid>
+              <Grid item xs={7}>
+                <Grid container direction="column" spacing={0}>
+                    <Grid item xs>
+                      <Typography variant='body2' style={awayNameStyle}>
+                        {this.props.awayName}
                       </Typography>
                     </Grid>
-                    <Grid
-                        item
-                        container
-                        xs={6}
-                        direction="column"
-                        style={awayDetailsStyle}
-                    >
-                        <Grid item xs>
-                          <Typography variant='body2' style={awayNameStyle}>
-                            {this.props.awayName}
-                          </Typography>
-                        </Grid>
-                        <Grid item xs>
-                          <Typography variant='body2' style={awayRecordStyle}>
-                            {this.props.awayRecord}
-                          </Typography>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={4}>
-                      <Typography variant='body2' style={awayScoreStyle}>
-                        {this.props.awayScore}
+                    <Grid item xs>
+                      <Typography variant='body2' style={awayRecordStyle}>
+                        {this.props.awayRecord}
                       </Typography>
                     </Grid>
                 </Grid>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant='body2' style={awayScoreStyle}>
+                  {this.props.awayScore}
+                </Typography>
+              </Grid>
             </Grid>
         );
         let gameUrl;
@@ -319,7 +299,7 @@ class GameCard extends Component {
             <Grid item component={Link} to={gameUrl} style={{ color: 'inherit', textDecoration: 'inherit'}}>
               <Paper elevation={2} style={cardStyle}>  
                 <Grid container spacing={0}>
-                  <Grid item spacing={0} style={headerGridStyle}>
+                  <Grid container spacing={0} style={headerGridStyle}>
                     {header}
                     <Divider />
                   </Grid>

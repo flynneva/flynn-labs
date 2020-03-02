@@ -32,6 +32,7 @@ function Home () {
             <Card className={classes.card}>
                 <CardContent>
                     <Typography variant='h4'>Finance</Typography>
+                    <br></br>
                     <Typography variant='body2'>This page still needs some work....give me some time to get it working and check back soon!</Typography>
                 </CardContent>
                 <CardActions className={classes.cardActions}>

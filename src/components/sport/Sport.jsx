@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Scoreboard from '../scoreboard/Scoreboard';
 import GamePage from '../game-page/GamePage';
+import SearchScoreboard from '../search-scoreboard/SearchScoreboard';
 
 function Sport () {
     let { path, url } = useRouteMatch();
@@ -29,10 +30,14 @@ function Sport () {
     };
 
     const today = new Date();
+
     return (
       <Switch>
         <Route exact path={path}>
-          <Grid container style={gridStyle} justify='center'>
+          <Grid container justify='center' style={{ position: 'fixed', top: 16 }}>
+            <SearchScoreboard />
+          </Grid>
+          <Grid container style={gridStyle} justify='center' direction='column'>
             <Grid item>
                <Scoreboard
                       sport={sport}
