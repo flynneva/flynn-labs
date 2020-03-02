@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Worldview, { Cubes, Axes} from 'regl-worldview';
@@ -42,10 +43,10 @@ function Home () {
         <Grid item xs={12} className={classes.item}>
             <Card className={classes.card}>
                 <CardContent>
-                    <h2>Robotics</h2>
+                    <Typography variant='h4'>Robotics</Typography>
                     <Grid container>
                       <Grid item xs={12}>
-                          <p>Here is a quick little demo until I get around to doing something with this page...NOTE: this doesnt work on mobile yet so check it out on a desktop if you have a chance.</p>
+                          <Typography variant='body2'>Here is a quick little demo until I get around to doing something with this page...NOTE: this doesnt work on mobile yet so check it out on a desktop if you have a chance.</Typography>
                       </Grid>
                       <Grid item xs={12} className={classes.worldView}>
                         <Worldview>

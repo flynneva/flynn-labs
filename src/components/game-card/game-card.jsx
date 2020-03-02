@@ -16,8 +16,9 @@ class GameCard extends Component {
         };
 
         const headerGridStyle = {
-            height: 30,
+            height: 26,
             width: '100%',
+            backgroundColor: '#bfbfbf',
             margin: 0,
             padding: 0
         };
@@ -38,7 +39,7 @@ class GameCard extends Component {
         };
         
         const headerStyle = {
-            height: 18,
+            height: 25,
             width: 'auto',
             fontSize: 12,
             textAlign: 'right',
@@ -59,14 +60,20 @@ class GameCard extends Component {
         
         const dateStyle = {
             fontSize: 11,
+            textAlign: 'right',
             margin: 0,
-            padding: 0
+            padding: 0,
+            paddingRight: 8,
+            paddingTop: 6,
         };
 
         const timeStyle = {
             fontSize: 11,
+            textAlign: 'left',
             margin: 0,
-            padding: 0
+            padding: 0,
+            paddingLeft: 8,
+            paddingTop: 6,
         };
 
         const clockStyle = {
@@ -185,13 +192,12 @@ class GameCard extends Component {
                               </Typography>
                             </Grid>
                         </Grid>
-                        <Divider />
                     </Grid>
                 );
             } else {
                 header = (
-                    <Grid item xs style={headerStyle} color="#eeeeee">
-                        <Grid item xs container>
+                    <Grid item xs style={headerStyle}>
+                        <Grid item xs container style={headerStyle}>
                             <Grid item xs style={{ margin: 0, padding: 0 }}>
                               <Typography variant='body2' style={clockStyle}>
                                 {this.props.currentClock}
@@ -203,14 +209,13 @@ class GameCard extends Component {
                               </Typography>
                             </Grid>
                         </Grid>
-                        <Divider />
                     </Grid>
                 );
             }
         } else if (this.props.gameStatus === 'pre') {
             header = (
-                <Grid item xs style={headerStyle} color="#eeeeee">
-                    <Grid item xs container>
+                <Grid item xs style={headerStyle}>
+                    <Grid item xs container style={headerStyle}>
                         <Grid item xs style={{ margin: 0, padding: 0 }}>
                           <Typography variant='body2' style={timeStyle}>
                             {this.props.startTime}
@@ -222,7 +227,6 @@ class GameCard extends Component {
                           </Typography>
                         </Grid>
                     </Grid>
-                    <Divider />
                 </Grid>
             );
         } else {
@@ -237,7 +241,6 @@ class GameCard extends Component {
                                 'CANCELED' :
                                 this.props.gameStatus}
                   </Typography>
-                  <Divider />
                 </Grid>
             );
         }
@@ -316,13 +319,14 @@ class GameCard extends Component {
             <Grid item component={Link} to={gameUrl} style={{ color: 'inherit', textDecoration: 'inherit'}}>
               <Paper elevation={2} style={cardStyle}>  
                 <Grid container spacing={0}>
-                  <Grid container spacing={1} style={headerGridStyle}>
-                      {header}
+                  <Grid item spacing={0} style={headerGridStyle}>
+                    {header}
+                    <Divider />
                   </Grid>
-                  <Grid container spacing={1} style={homeGridStyle}>
+                  <Grid container spacing={0} style={homeGridStyle}>
                       {homeTeam}
                   </Grid>
-                  <Grid container spacing={1} style={awayGridStyle}>
+                  <Grid container spacing={0} style={awayGridStyle}>
                       {awayTeam}
                   </Grid>
                 </Grid>

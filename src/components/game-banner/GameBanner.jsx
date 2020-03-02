@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -76,7 +77,7 @@ class GameBanner extends Component {
           backgroundColor: '#ffffff',
           margin: 0,
           padding: 0,
-          width: '25%',
+          width: '30%',
           height: '25px',
           textAlign: 'center',
           paddingTop: 4,
@@ -97,19 +98,18 @@ class GameBanner extends Component {
         };
   
         const homeNameStyle = {
-            fontSize: 18,
+            fontSize: 25,
             textAlign: 'left',
-            lineHeight: 1,
             margin: 0,
-            paddingTop: 21,
+            paddingTop: 19,
         };
 
         const homeRankStyle = {
-            fontSize: 13,
+            fontSize: 15,
             fontWeight: 'bold',
             textAlign: 'right',
-            marginTop: 22,
-            marginRight: 5,
+            marginTop: 26,
+            marginRight: 8,
         };
 
         const homeRecordStyle = {
@@ -122,13 +122,12 @@ class GameBanner extends Component {
         };
 
         const homeScoreStyle = {
-            fontSize: 27,
+            fontSize: 38,
             textAlign: 'center',
             margin: 0,
             padding: 0,
-            paddingTop: 18,
-            paddingRight: 2,
-            
+            paddingTop: 14,
+            paddingLeft: 2,
         };
 
         const awayStyle = {
@@ -146,19 +145,18 @@ class GameBanner extends Component {
         };
   
         const awayNameStyle = {
-            fontSize: 18,
+            fontSize: 25,
             textAlign: 'right',
-            lineHeight: 1,
             margin: 0,
-            paddingTop: 21,
+            paddingTop: 19,
         };
 
         const awayRankStyle = {
-            fontSize: 13,
+            fontSize: 15,
             fontWeight: 'bold',
             textAlign: 'left',
-            marginTop: 22,
-            marginLeft: 5,
+            marginTop: 26,
+            marginLeft: 8,
         };
 
         const awayRecordStyle = {
@@ -171,11 +169,11 @@ class GameBanner extends Component {
         };
 
         const awayScoreStyle = {
-            fontSize: 27,
+            fontSize: 38,
             textAlign: 'center',
             margin: 0,
             padding: 0,
-            paddingTop: 18,
+            paddingTop: 14,
             paddingLeft: 2,
         };
 
@@ -183,19 +181,27 @@ class GameBanner extends Component {
         homeTeam = (
             <Grid item xs style={homeStyle}>
                 <Grid item xs container>
-                    <Grid item xs style={homeRankStyle}>
+                    <Grid item xs style={{ margin: 0, padding: 0 }}>
+                      <Typography variant='body2' style={homeRankStyle}>
                         {this.props.homeRank}
+                      </Typography>
                     </Grid>
                     <Grid item xs={7} style={homeDetailsStyle}>
-                        <Grid item xs style={homeNameStyle}>
+                        <Grid item xs style={{ margin: 0, padding: 0 }}>
+                          <Typography variant='h4' style={homeNameStyle}>
                             {this.props.homeName}
+                          </Typography>
                         </Grid>
-                        <Grid item xs style={homeRecordStyle}>
+                        <Grid item xs style={{ margin: 0, padding: 0 }}>
+                          <Typography variant='body2' style={homeRecordStyle}>
                             {this.props.homeRecord}
+                          </Typography>
                         </Grid>
                     </Grid>
-                    <Grid item xs={3} style={homeScoreStyle}>
+                    <Grid item xs={3} style={{ margin: 0, padding: 0 }}>
+                      <Typography variant='h2' style={homeScoreStyle}>
                         {this.props.homeScore}
+                      </Typography>
                     </Grid>
                 </Grid>
             </Grid>
@@ -205,19 +211,27 @@ class GameBanner extends Component {
         awayTeam = (
             <Grid item xs style={awayStyle}>
                 <Grid item xs container>
-                    <Grid item xs={3} style={awayScoreStyle}>
+                    <Grid item xs={3} style={{ margin: 0, padding: 0 }}>
+                      <Typography variant='h2' style={awayScoreStyle}>
                         {this.props.awayScore}
+                      </Typography>
                     </Grid>
                     <Grid item xs={7} style={awayDetailsStyle}>
-                        <Grid item xs style={awayNameStyle}>
+                        <Grid item xs style={{ margin: 0, padding: 0 }}>
+                          <Typography variant='h4' style={awayNameStyle}>
                             {this.props.awayName}
+                          </Typography>
                         </Grid>
-                        <Grid item xs style={awayRecordStyle}>
+                        <Grid item xs style={{ margin: 0, padding: 0}}>
+                          <Typography variant='body2' style={awayRecordStyle}>
                             {this.props.awayRecord}
+                          </Typography>
                         </Grid>
                     </Grid>
-                    <Grid item xs style={awayRankStyle}>
+                    <Grid item xs style={{ margin: 0, padding: 0 }}>
+                      <Typography variant='body2' style={awayRankStyle}>
                         {this.props.awayRank}
+                      </Typography>
                     </Grid>
                 </Grid>
             </Grid>
@@ -228,8 +242,10 @@ class GameBanner extends Component {
           if (this.props.gamePeriod === 'Half') {
             // it's halftime....
             clockBanner = (
-              <Grid item xs justify='center' style={{ fontWeight: 'bold' }}>
-                HALF TIME
+              <Grid item xs justify='center'>
+                <Typography variant='body2' style={{ fontWeight: 'bold' }}>
+                  HALF TIME
+                </Typography>
               </Grid>
             );
           } else {
@@ -237,10 +253,14 @@ class GameBanner extends Component {
             clockBanner = (
               <Grid container spacing={0} justify='center'>
                 <Grid item xs>
-                 {this.props.gameClock}
+                  <Typography variant='body2'>
+                    {this.props.gameClock}
+                  </Typography>
                 </Grid>
                 <Grid item xs>
-                 {this.props.gamePeriod}
+                  <Typography variant='body2'>
+                    {this.props.gamePeriod}
+                  </Typography>
                 </Grid>
               </Grid>
             );
@@ -249,18 +269,24 @@ class GameBanner extends Component {
           // game is over
           clockBanner = (
               <Grid item xs justify='center' style={{ fontWeight: 'bold' }}>
-                FINAL
+                  <Typography variant='body2'>
+                    FINAL
+                  </Typography>
               </Grid>
             );
         } else if (this.props.gameState === 'pre') {
           // game hasnt started
           clockBanner = (
               <Grid container spacing={0} justify='center'>
-                <Grid item xs>
-                 {this.props.startTime}
+                <Grid item xs style={{ margin: 0, padding: 0 }}>
+                  <Typography variant='body2'>
+                    {this.props.startTime}
+                  </Typography>
                 </Grid>
-                <Grid item xs>
-                 {this.props.venueCity}, {this.props.venueState}
+                <Grid item xs style={{ margin: 0, padding: 0 }}>
+                  <Typography variant='body2'>
+                    {this.props.venueCity}, {this.props.venueState}
+                  </Typography>
                 </Grid>
               </Grid>
             );

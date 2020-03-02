@@ -151,9 +151,9 @@ class GamePage extends Component {
                       startTime={this.state.gameInfo.status.startTime}
                       winner={this.state.gameInfo.status.winner}
                       network={this.state.gameInfo.status.network}
-                      venueCity={this.state.gameInfo.venue.City}
-                      venueName={this.state.gameInfo.venue.Name}
-                      venueState={this.state.gameInfo.venue.State} />
+                      venueCity={this.state.gameInfo.venue.city}
+                      venueName={this.state.gameInfo.venue.name}
+                      venueState={this.state.gameInfo.venue.state} />
             </Grid>
             <Grid item container spacing={0} justify='center' style={gameDetailsStyle}>
               {boxScore} 
