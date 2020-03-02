@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -30,13 +31,13 @@ function Home () {
         <Grid item xs={12} style={itemStyle}>
             <Card>
                 <CardContent>
-                    <h2>Welcome</h2>
-                    <p>
+                    <Typography variant='h4' gutterBottom>Welcome</Typography>
+                    <Typography variant='body1' gutterBottom>
                       Hope you enjoy your time here and find something useful. This
                       site is just a hobby for me, so apologies if you find
                       something broken or missing. Feel free to reach out via
                       twitter, email, or github if you have any questions
-                    </p>
+                    </Typography>
                 </CardContent>
                 <CardActions style={cardActionsStyle}>
                     <Button size="medium" startIcon={<InfoIcon />}
