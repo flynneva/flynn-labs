@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -167,75 +168,320 @@ class BoxScore extends Component {
                 <Table size="small" aria-label="Boxscore Totals Table" style={tableStyle}>
                   <TableHead>
                     <TableRow style={tableTitle}>
-                      <TableCell style={totalTitleCellStyle} colSpan={20}>Team Totals</TableCell>
+                      <TableCell style={totalTitleCellStyle} colSpan={20}>
+                        <Typography variant='h4' style={totalTitleCellStyle}>
+                          Team Totals
+                        </Typography>
+                      </TableCell>
                     </TableRow>
                     <TableRow style={headerStyle}>
-                      <TableCell style={totalNameStyle}>Team</TableCell>
-                      <TableCell style={totalHeaderStyle}>eFG%</TableCell>
-                      <TableCell style={totalHeaderStyle}>TOV%</TableCell>
-                      <TableCell style={totalHeaderStyle}>ORB%</TableCell>
-                      <TableCell style={totalHeaderStyle}>DRB%</TableCell>
-                      <TableCell style={totalHeaderStyle}>FTR</TableCell>
-                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.points}</TableCell>
-                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.fieldGoalsMade}</TableCell>
-                      <TableCell style={totalHeaderStyle}>FG %</TableCell>
-                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.threePointsMade}</TableCell>
-                      <TableCell style={totalHeaderStyle}>3PT %</TableCell>
-                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.freeThrowsMade}</TableCell>
-                      <TableCell style={totalHeaderStyle}>FT %</TableCell>
-                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.totalRebounds}</TableCell>
-                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.offensiveRebounds}</TableCell>
-                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.assists}</TableCell>
-                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.personalFouls}</TableCell>
-                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.steals}</TableCell>
-                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.turnovers}</TableCell>
-                      <TableCell style={totalHeaderStyle}>{this.props.homeBox.playerHeader.blockedShots}</TableCell>
+                      <TableCell style={totalNameStyle}>
+                        <Typography variant='body2' style={totalNameStyle}>
+                          Team
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          eFG%
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>  
+                          TOV%
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          ORB%
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          DRB%
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          FTR
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          {this.props.homeBox.playerHeader.points}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                         {this.props.homeBox.playerHeader.fieldGoalsMade}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          FG %
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          {this.props.homeBox.playerHeader.threePointsMade}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          3PT %
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          {this.props.homeBox.playerHeader.freeThrowsMade}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          FT %
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          {this.props.homeBox.playerHeader.totalRebounds}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          {this.props.homeBox.playerHeader.offensiveRebounds}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          {this.props.homeBox.playerHeader.assists}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          {this.props.homeBox.playerHeader.personalFouls}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          {this.props.homeBox.playerHeader.steals}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          {this.props.homeBox.playerHeader.turnovers}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          {this.props.homeBox.playerHeader.blockedShots}
+                        </Typography>
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     <TableRow>
-                      <TableCell style={homeTeamCellStyle}>{this.props.homeInfo.shortName}</TableCell>
-                      <TableCell style={dataCellStyle}>0.0</TableCell>
-                      <TableCell style={dataCellStyle}>0.0</TableCell>
-                      <TableCell style={dataCellStyle}>0.0</TableCell>
-                      <TableCell style={dataCellStyle}>0.0</TableCell>
-                      <TableCell style={dataCellStyle}>0.0</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.points}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.fieldGoalsMade}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.fieldGoalPercentage}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.threePointsMade}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.threePointPercentage}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.freeThrowsMade}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.freeThrowPercentage}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.totalRebounds}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.offensiveRebounds}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.assists}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.personalFouls}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.steals}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.turnovers}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.homeBox.playerTotals.blockedShots}</TableCell>
+                      <TableCell style={awayeamCellStyle}>
+                        <Typography variant='body2' style={awayTeamCellStyle}>
+                          {this.props.awayInfo.shortName}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.points}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.fieldGoalsMade}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.fieldGoalPercentage}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.threePointsMade}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.threePointPercentage}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.freeThrowsMade}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.freeThrowPercentage}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.totalRebounds}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.offensiveRebounds}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.assists}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.personalFouls}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.steals}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.turnovers}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.blockedShots}
+                        </Typography>
+                      </TableCell>
                     </TableRow>
                     <TableRow>
-                      <TableCell style={awayTeamCellStyle}>{this.props.awayInfo.shortName}</TableCell>
-                      <TableCell style={dataCellStyle}>0.0</TableCell>
-                      <TableCell style={dataCellStyle}>0.0</TableCell>
-                      <TableCell style={dataCellStyle}>0.0</TableCell>
-                      <TableCell style={dataCellStyle}>0.0</TableCell>
-                      <TableCell style={dataCellStyle}>0.0</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.points}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.fieldGoalsMade}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.fieldGoalPercentage}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.threePointsMade}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.threePointPercentage}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.freeThrowsMade}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.freeThrowPercentage}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.totalRebounds}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.offensiveRebounds}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.assists}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.personalFouls}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.steals}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.turnovers}</TableCell>
-                      <TableCell style={dataCellStyle}>{this.props.awayBox.playerTotals.blockedShots}</TableCell>
+                      <TableCell style={homeTeamCellStyle}>
+                        <Typography variant='body2' style={homeTeamCellStyle}>
+                          {this.props.homeInfo.shortName}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.points}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.fieldGoalsMade}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.fieldGoalPercentage}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.threePointsMade}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.threePointPercentage}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.freeThrowsMade}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.freeThrowPercentage}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.totalRebounds}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.offensiveRebounds}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.assists}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.personalFouls}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.steals}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.turnovers}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {this.props.awayBox.playerTotals.blockedShots}
+                        </Typography>
+                      </TableCell>
+                    
                     </TableRow>
                   </TableBody> 
                 </Table>
@@ -253,10 +499,18 @@ class BoxScore extends Component {
                     <Table size="small" aria-label="Home Box Score" style={tableStyle}>
                       <TableHead>
                         <TableRow style={tableTitle}>
-                          <TableCell style={homeTitleCellStyle} colSpan={13}>{this.props.homeInfo.shortName} {this.props.homeInfo.nickName}</TableCell>
+                          <TableCell style={homeTitleCellStyle} colSpan={13}>
+                            <Typography variant='h6' style={homeTitleCellStyle}>
+                              {this.props.homeInfo.shortName} {this.props.homeInfo.nickName}
+                            </Typography>
+                          </TableCell>
                         </TableRow>
                         <TableRow style={headerStyle}>
-                          <TableCell style={nameHeaderStyle}>Player Name</TableCell>
+                          <TableCell style={{ margin: 0, padding: 0}}>
+                            <Typography variant='body2' style={nameHeaderStyle}> 
+                              Player Name
+                            </Typography>
+                          </TableCell>
                           <TableCell style={headerCellStyle}>{this.props.homeBox.playerHeader.position}</TableCell>
                           <TableCell style={headerCellStyle}>{this.props.homeBox.playerHeader.points}</TableCell>
                           <TableCell style={headerCellStyle}>{this.props.homeBox.playerHeader.fieldGoalsMade}</TableCell>
@@ -305,7 +559,11 @@ class BoxScore extends Component {
                     <Table size="small" aria-label="Away Boxscore" style={tableStyle}>
                       <TableHead>
                         <TableRow style={tableTitle}>
-                          <TableCell style={awayTitleCellStyle} colSpan={13}>{this.props.awayInfo.shortName} {this.props.awayInfo.nickName}</TableCell>
+                          <TableCell style={awayTitleCellStyle} colSpan={13}>
+                            <Typography variant='h6' style={awayTitleCellStyle}>
+                              {this.props.awayInfo.shortName} {this.props.awayInfo.nickName}
+                            </Typography>
+                          </TableCell>
                         </TableRow>
                         <TableRow style={headerStyle}>
                           <TableCell style={nameHeaderStyle}>Player Name</TableCell>
