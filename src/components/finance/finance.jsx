@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
@@ -30,8 +31,8 @@ function Home () {
         <Grid item xs={12} className={classes.item}>
             <Card className={classes.card}>
                 <CardContent>
-                    <h2>Finance</h2>
-                    <p>This page still needs some work....give me some time to get it working and check back soon!</p>
+                    <Typography variant='h4'>Finance</Typography>
+                    <Typography variant='body2'>This page still needs some work....give me some time to get it working and check back soon!</Typography>
                 </CardContent>
                 <CardActions className={classes.cardActions}>
                     <Button size="medium" startIcon={<InfoIcon />}
