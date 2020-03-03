@@ -107,6 +107,7 @@ class BoxScore extends Component {
         const nameCellStyle = {
           margin: 0,
           padding: 0,
+          paddingLeft: 4,
         };
         
         const dataCellStyle = {
@@ -150,6 +151,7 @@ class BoxScore extends Component {
           fontWeight: 'bold',
           margin: 0,
           padding: 0,
+          paddingLeft: 4,
         };
 
         const awayTeamCellStyle = {
@@ -158,6 +160,7 @@ class BoxScore extends Component {
           fontWeight: 'bold',
           margin: 0,
           padding: 0,
+          paddingLeft: 4,
         };
         
         let totalStats;
@@ -278,7 +281,7 @@ class BoxScore extends Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    <TableRow>
+                    <TableRow hover>
                       <TableCell style={awayTeamCellStyle}>
                         <Typography variant='body2' style={awayTeamCellStyle}>
                           {this.props.awayInfo.shortName}
@@ -380,7 +383,7 @@ class BoxScore extends Component {
                         </Typography>
                       </TableCell>
                     </TableRow>
-                    <TableRow>
+                    <TableRow hover>
                       <TableCell style={homeTeamCellStyle}>
                         <Typography variant='body2' style={homeTeamCellStyle}>
                           {this.props.homeInfo.shortName}

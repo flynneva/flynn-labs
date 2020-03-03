@@ -100,6 +100,7 @@ class GameBanner extends Component {
             fontSize: 25,
             textAlign: 'left',
             margin: 0,
+            padding: 0,
             paddingTop: 19,
         };
 
@@ -108,7 +109,7 @@ class GameBanner extends Component {
             fontWeight: 'bold',
             textAlign: 'right',
             marginTop: 26,
-            marginRight: 8,
+            marginRight: 6,
         };
 
         const homeRecordStyle = {
@@ -145,6 +146,7 @@ class GameBanner extends Component {
             fontSize: 25,
             textAlign: 'right',
             margin: 0,
+            padding: 0,
             paddingTop: 19,
         };
 
@@ -153,7 +155,7 @@ class GameBanner extends Component {
             fontWeight: 'bold',
             textAlign: 'left',
             marginTop: 26,
-            marginLeft: 8,
+            marginLeft: 6,
         };
 
         const awayRecordStyle = {
@@ -304,12 +306,12 @@ class GameBanner extends Component {
             </Grid>
             <Grid container spacing={0} direction='column' style={{ width: '100vw', height: '50px' }}>
               <Grid container justify='center' spacing={0}>
-                <Paper elevation={0} style={{ margin: 0, padding: 0, width: '30%', minWidth: '100px', backgroundColor: '#bfbfbf' }}>
+                <Paper elevation={0} style={{ margin: 0, padding: 0, width: '75%', minWidth: '100px', backgroundColor: '#bfbfbf' }}>
                   {clockBanner}
                 </Paper>
               </Grid>
               <Grid container justify='center' spacing={0}>
-                <Paper elevation={0} style={{ margin: 0, padding: 0, width: '25%', minWidth: '75px', backgroundColor: '#bfbfbf' }}>
+                <Paper elevation={0} style={{ margin: 0, padding: 0, paddingLeft: 8, paddingRight: 8, minWidth: '75px', backgroundColor: '#bfbfbf' }}>
                   {venueBanner}
                 </Paper>
               </Grid>  
