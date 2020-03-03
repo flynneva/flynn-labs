@@ -79,7 +79,7 @@ class GameBanner extends Component {
         const venueStyle = {
           margin: 0,
           padding: 0,
-          textAlign: 'center',          
+          textAlign: 'center',
         }
          
         const homeStyle = {
