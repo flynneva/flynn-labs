@@ -17,6 +17,7 @@ function Sport () {
       minHeight: '100vh',
       margin: 0,
       padding: 0,
+      paddingTop: 16,
       marginBottom: '75px',
     };
 

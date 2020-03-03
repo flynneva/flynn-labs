@@ -13,7 +13,8 @@ function SearchScoreboard() {
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-    width: 400,
+    width: '30%',
+    minWidth: '240px',
   }
 
   const inputStyle = {
