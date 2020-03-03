@@ -279,7 +279,7 @@ class BoxScore extends Component {
                   </TableHead>
                   <TableBody>
                     <TableRow>
-                      <TableCell style={awayeamCellStyle}>
+                      <TableCell style={awayTeamCellStyle}>
                         <Typography variant='body2' style={awayTeamCellStyle}>
                           {this.props.awayInfo.shortName}
                         </Typography>
