@@ -248,12 +248,12 @@ class GameBanner extends Component {
             clockBanner = (
               <Grid container spacing={0} justify='center'>
                 <Grid item xs>
-                  <Typography variant='body2' style={{ fontWeight: 'bold' }}>
+                  <Typography variant='body2' style={{ textAlign: 'center', fontWeight: 'bold' }}>
                     {this.props.gameClock}
                   </Typography>
                 </Grid>
                 <Grid item xs>
-                  <Typography variant='body2' style={{ fontWeight: 'bold' }}>
+                  <Typography variant='body2' style={{ textAlign: 'center', fontWeight: 'bold' }}>
                     {this.props.gamePeriod}
                   </Typography>
                 </Grid>
@@ -263,8 +263,8 @@ class GameBanner extends Component {
         } else if (this.props.gameState === 'final') {
           // game is over
           clockBanner = (
-              <Grid item xs justify='center' style={{ fontWeight: 'bold' }}>
-                  <Typography variant='body2' style={{ fontWeight: 'bold' }}>
+              <Grid item xs style={{ fontWeight: 'bold' }}>
+                  <Typography variant='body2' style={{ textAlign: 'center', fontWeight: 'bold' }}>
                     FINAL
                   </Typography>
               </Grid>
@@ -304,12 +304,12 @@ class GameBanner extends Component {
             </Grid>
             <Grid container spacing={0} direction='column' style={{ width: '100vw', height: '50px' }}>
               <Grid container justify='center' spacing={0}>
-                <Paper elevation={0} style={{ margin: 0, padding: 0, width: '30%', backgroundColor: '#bfbfbf' }}>
+                <Paper elevation={0} style={{ margin: 0, padding: 0, width: '30%', minWidth: '100px', backgroundColor: '#bfbfbf' }}>
                   {clockBanner}
                 </Paper>
               </Grid>
               <Grid container justify='center' spacing={0}>
-                <Paper elevation={0} style={{ margin: 0, padding: 0, width: '25%', backgroundColor: '#bfbfbf' }}>
+                <Paper elevation={0} style={{ margin: 0, padding: 0, width: '25%', minWidth: '75px', backgroundColor: '#bfbfbf' }}>
                   {venueBanner}
                 </Paper>
               </Grid>  
