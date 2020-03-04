@@ -41,7 +41,8 @@ class BoxScore extends Component {
 
         const gridStyle = {
           margin: '8px',
-          width: '95vw',
+          width: '100vw',
+          justifyContent: 'center',
         };
      
         const boxScoreStyle = {
@@ -51,7 +52,7 @@ class BoxScore extends Component {
         const tableStyle = {
           margin: 0,
           padding: 0,
-          minWidth: '95vw',
+          minWidth: '50vw',
         };
         
         const tableTitle = {
@@ -87,7 +88,6 @@ class BoxScore extends Component {
         const headerCellStyle = {
           backgroundColor: '#eeeeee',
           fontWeight: 'bold',
-          minWidth: '50px',
           textAlign: 'center',
           margin: 0,
           padding: 0,
@@ -137,12 +137,12 @@ class BoxScore extends Component {
         const totalHeaderStyle = {
           backgroundColor: '#bfbfbf',
           fontWeight: 'bold',
-          minWidth: '50px',
           textAlign: 'center',
           margin: 0,
           padding: 0,
           paddingLeft: 4,
           paddingRight: 4,
+          whiteSpace: 'nowrap',
         };
 
         const homeTeamCellStyle = {
@@ -162,18 +162,18 @@ class BoxScore extends Component {
           padding: 0,
           paddingLeft: 4,
         };
-        
-        let totalStats;
+       
+        let tempoFree;
         if (this.props.homeInfo && this.props.homeBox) {
-          totalStats = (
+          tempoFree = (
             <Grid item style={boxScoreStyle}>
               <TableContainer component={Paper}>
-                <Table size="small" aria-label="Boxscore Totals Table" style={tableStyle}>
+                <Table size="small" aria-label="Tempo-Free Stats Table" style={tableStyle}>
                   <TableHead>
                     <TableRow style={tableTitle}>
                       <TableCell style={totalTitleCellStyle} colSpan={20}>
                         <Typography variant='h4' style={totalTitleCellStyle}>
-                          Team Totals
+                          Tempo Free
                         </Typography>
                       </TableCell>
                     </TableRow>
@@ -206,6 +206,100 @@ class BoxScore extends Component {
                       <TableCell style={totalHeaderStyle}>
                         <Typography variant='body2' style={totalHeaderStyle}>
                           FTR
+                        </Typography>
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow hover>
+                      <TableCell style={homeTeamCellStyle}>
+                        <Typography variant='body2' style={homeTeamCellStyle}>
+                          {this.props.homeInfo.shortName}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow hover>
+                      <TableCell style={awayTeamCellStyle}>
+                        <Typography variant='body2' style={awayTeamCellStyle}>
+                          {this.props.awayInfo.shortName}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          0.0
+                        </Typography>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody> 
+                </Table>
+              </TableContainer>
+            </Grid>
+          );
+        }
+ 
+        let totalStats;
+        if (this.props.homeInfo && this.props.homeBox) {
+          totalStats = (
+            <Grid item style={boxScoreStyle}>
+              <TableContainer component={Paper}>
+                <Table size="small" aria-label="Boxscore Totals Table" style={tableStyle}>
+                  <TableHead>
+                    <TableRow style={tableTitle}>
+                      <TableCell style={totalTitleCellStyle} colSpan={20}>
+                        <Typography variant='h4' style={totalTitleCellStyle}>
+                          Team Totals
+                        </Typography>
+                      </TableCell>
+                    </TableRow>
+                    <TableRow style={headerStyle}>
+                      <TableCell style={totalNameStyle}>
+                        <Typography variant='body2' style={totalNameStyle}>
+                          Team
                         </Typography>
                       </TableCell>
                       <TableCell style={totalHeaderStyle}>
@@ -289,31 +383,6 @@ class BoxScore extends Component {
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          0.0
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={dataCellStyle}>
-                        <Typography variant='body2' style={dataCellStyle}>
-                          0.0
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={dataCellStyle}>
-                        <Typography variant='body2' style={dataCellStyle}>
-                          0.0
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={dataCellStyle}>
-                        <Typography variant='body2' style={dataCellStyle}>
-                          0.0
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={dataCellStyle}>
-                        <Typography variant='body2' style={dataCellStyle}>
-                          0.0
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={dataCellStyle}>
-                        <Typography variant='body2' style={dataCellStyle}>
                           {this.props.homeBox.playerTotals.points}
                         </Typography>
                       </TableCell>
@@ -387,31 +456,6 @@ class BoxScore extends Component {
                       <TableCell style={awayTeamCellStyle}>
                         <Typography variant='body2' style={awayTeamCellStyle}>
                           {this.props.awayInfo.shortName}
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={dataCellStyle}>
-                        <Typography variant='body2' style={dataCellStyle}>
-                          0.0
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={dataCellStyle}>
-                        <Typography variant='body2' style={dataCellStyle}>
-                          0.0
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={dataCellStyle}>
-                        <Typography variant='body2' style={dataCellStyle}>
-                          0.0
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={dataCellStyle}>
-                        <Typography variant='body2' style={dataCellStyle}>
-                          0.0
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={dataCellStyle}>
-                        <Typography variant='body2' style={dataCellStyle}>
-                          0.0
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
@@ -610,6 +654,7 @@ class BoxScore extends Component {
         }
         return (
           <Grid container spacing={1} style={gridStyle}>
+            {tempoFree}
             {totalStats}
             {homeStats}
             {awayStats}
