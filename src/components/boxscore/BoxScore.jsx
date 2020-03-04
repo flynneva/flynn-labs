@@ -93,6 +93,7 @@ class BoxScore extends Component {
           padding: 0,
           paddingLeft: 4,
           paddingRight: 4,
+          whiteSpace: 'nowrap',
         };
         
         const nameHeaderStyle = {
@@ -114,6 +115,7 @@ class BoxScore extends Component {
           textAlign: 'right',
           margin: 0,
           padding: 0,
+          paddingRight: 4,
         };
         
         const totalTitleCellStyle = {
