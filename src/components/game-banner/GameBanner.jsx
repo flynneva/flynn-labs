@@ -240,7 +240,7 @@ class GameBanner extends Component {
             // it's halftime....
             clockBanner = (
               <Grid item xs justify='center'>
-                <Typography variant='body2' style={{ fontWeight: 'bold' }}>
+                <Typography variant='body2' style={{ textAlign: 'center', fontWeight: 'bold' }}>
                   HALF TIME
                 </Typography>
               </Grid>
