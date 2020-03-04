@@ -282,9 +282,9 @@ class BoxScore extends Component {
                   </TableHead>
                   <TableBody>
                     <TableRow hover>
-                      <TableCell style={awayTeamCellStyle}>
-                        <Typography variant='body2' style={awayTeamCellStyle}>
-                          {this.props.awayInfo.shortName}
+                      <TableCell style={homeTeamCellStyle}>
+                        <Typography variant='body2' style={homeTeamCellStyle}>
+                          {this.props.homeInfo.shortName}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
@@ -314,79 +314,79 @@ class BoxScore extends Component {
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.points}
+                          {this.props.homeBox.playerTotals.points}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.fieldGoalsMade}
+                          {this.props.homeBox.playerTotals.fieldGoalsMade}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.fieldGoalPercentage}
+                          {this.props.homeBox.playerTotals.fieldGoalPercentage}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.threePointsMade}
+                          {this.props.homeBox.playerTotals.threePointsMade}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.threePointPercentage}
+                          {this.props.homeBox.playerTotals.threePointPercentage}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.freeThrowsMade}
+                          {this.props.homeBox.playerTotals.freeThrowsMade}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.freeThrowPercentage}
+                          {this.props.homeBox.playerTotals.freeThrowPercentage}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.totalRebounds}
+                          {this.props.homeBox.playerTotals.totalRebounds}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.offensiveRebounds}
+                          {this.props.homeBox.playerTotals.offensiveRebounds}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.assists}
+                          {this.props.homeBox.playerTotals.assists}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.personalFouls}
+                          {this.props.homeBox.playerTotals.personalFouls}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.steals}
+                          {this.props.homeBox.playerTotals.steals}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.turnovers}
+                          {this.props.homeBox.playerTotals.turnovers}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          {this.props.awayBox.playerTotals.blockedShots}
+                          {this.props.homeBox.playerTotals.blockedShots}
                         </Typography>
                       </TableCell>
                     </TableRow>
                     <TableRow hover>
-                      <TableCell style={homeTeamCellStyle}>
-                        <Typography variant='body2' style={homeTeamCellStyle}>
-                          {this.props.homeInfo.shortName}
+                      <TableCell style={awayTeamCellStyle}>
+                        <Typography variant='body2' style={awayTeamCellStyle}>
+                          {this.props.awayInfo.shortName}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
@@ -509,7 +509,7 @@ class BoxScore extends Component {
                           </TableCell>
                         </TableRow>
                         <TableRow style={headerStyle}>
-                          <TableCell style={{ margin: 0, padding: 0}}>
+                          <TableCell style={nameHeaderStyle}>
                             <Typography variant='body2' style={nameHeaderStyle}> 
                               Player Name
                             </Typography>
