@@ -37,7 +37,6 @@ class BoxScore extends Component {
     }
 
     componentDidMount () {
-        console.log('COMPONENT DID MOUNT');
         if(tinycolor(this.props.homeColor).isLight()) {
           this.setState({ homeTextColor: '#000000' });
         } else {
@@ -60,11 +59,6 @@ class BoxScore extends Component {
     componentDidUpdate (prevProps, prevState) {
       var gameInfo_url = this.state.gameUrl + 'gameInfo.json';
       if(this.state.isMounted) {
-        console.log('IS MOUNTED');
-        console.log(prevState.lastUpdated);
-        console.log(this.state.lastUpdated);
-        console.log(prevState.lastUpdated !== this.state.lastUpdated);
-  
         if (prevState.lastUpdated !== this.state.lastUpdated) {
           fetch(gameInfo_url, {
                    method: 'GET',

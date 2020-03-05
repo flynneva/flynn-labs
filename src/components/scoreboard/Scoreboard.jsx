@@ -38,17 +38,19 @@ class Scoreboard extends Component {
         this.setState({ day: tempDay });
         this.setState({ month: tempMonth });
         this.setState({ year: tempYear });
+        this.setState({ lastUpdated: 'NOW' });
     }
 
     handleDateChange (date) {
         var tempDay = ('0' + date.getDate()).slice(-2);
         var tempMonth = ('0' + (date.getMonth() + 1)).slice(-2);
         var tempYear = date.getFullYear();
-     
+    
         this.setState({ selectedDate: date }); 
         this.setState({ day: tempDay });
         this.setState({ month: tempMonth });
         this.setState({ year: tempYear });
+        this.setState({ lastUpdated: 'NOW' });
     }
  
     componentDidUpdate(prevProps, prevState) {
@@ -65,7 +67,7 @@ class Scoreboard extends Component {
                   this.state.day +
                   '/scoreboard.json';
 
-        if (!prevState.lastUpdated) {
+        if (prevState.lastUpdated !== this.state.lastUpdated) {
           fetch(url, {
                 method: 'GET',
                 body: JSON.stringify()
