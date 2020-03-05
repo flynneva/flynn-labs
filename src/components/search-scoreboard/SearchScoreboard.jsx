@@ -13,7 +13,7 @@ function SearchScoreboard() {
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-    width: '30%',
+    width: '100%',
     minWidth: '240px',
   }
 
