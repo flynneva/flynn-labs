@@ -26,19 +26,12 @@ function About () {
                         <Card>
                             <CardContent>
                                 <Typography variant='h4' style={{ textAlign: 'center' }}>About</Typography>
+                                <br></br>
                                 <Typography variant='body2'>
                                   Thanks for taking the time out of your day to read a little
                                   bit about what Flynn Labs is. Flynn Labs is just a collection
                                   of things that interest me and is definetly just a hobby
                                   project so please go easy on any issues/bugs you find.
-                                </Typography>
-                                <br></br>
-                                <Typography variant='body2'>
-                                  A perfect Sunday for me starts off with a morning hike or run,
-                                  something delicious for breakfast with a hot cup of coffee,
-                                  followed up with a few hours spent at a local coffee spot
-                                  working on some software or a personal project around the
-                                  house.
                                 </Typography>
                                 <br></br>
                                 <Typography variant='body2'>
