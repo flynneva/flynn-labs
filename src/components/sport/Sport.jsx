@@ -38,7 +38,7 @@ function Sport () {
           <Grid container style={gridStyle} justify='center' direction='column'>
             <Grid item>
               <Grid container justify='center'>
-                <Grid item>
+                <Grid item style={{ width: '60%' }}>
                   <SearchScoreboard />
                 </Grid>
               </Grid>
@@ -46,10 +46,7 @@ function Sport () {
             <Grid item>
                <Scoreboard
                       sport={sport}
-                      division="d1"
-                      day={('0' + today.getDate()).slice(-2)}
-                      month={('0' + (today.getMonth() + 1)).slice(-2)}
-                      year={today.getFullYear()} />
+                      division="d1" />
             </Grid>
           </Grid>
         </Route>
