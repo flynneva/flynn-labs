@@ -12,6 +12,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import tinycolor from 'tinycolor2';
+import { Chart } from 'react-google-charts';
 
 class BoxScore extends Component {
     constructor (props) {
@@ -230,11 +231,6 @@ class BoxScore extends Component {
           var hTR = parseInt((this.props.homeBox.playerTotals.totalRebounds));
           var hDR = parseInt(aTR - aOR);
 
-          console.log(aOR);
-          console.log(hOR);
-          console.log(hTR);
-          console.log(hDR);
-
           away_OR = parseFloat(aOR / parseInt(aOR + hDR) * 100).toFixed(2) + '%';
         }
         
@@ -252,6 +248,20 @@ class BoxScore extends Component {
           var aFGA = parseInt((this.props.awayBox.playerTotals.fieldGoalsMade).split('-')[1]);
 
           away_FT = parseFloat(parseFloat(aFTA/aFGA) * 100).toFixed(2) + '%';
+        }
+        
+        let home_PPP;
+        if (this.props.homeBox.playerTotals.points) {
+          var hPTS = parseInt((this.props.homeBox.playerTotals.points));
+
+          home_PPP = parseFloat(hPTS / totalPos).toFixed(2);
+        }
+        
+        let away_PPP;
+        if (this.props.awayBox.playerTotals.points) {
+          var aPTS = parseInt((this.props.awayBox.playerTotals.points));
+
+          away_PPP = parseFloat(aPTS / totalPos).toFixed(2);
         }
         
         let tempoFree;
@@ -294,6 +304,11 @@ class BoxScore extends Component {
                           FTR%
                         </Typography>
                       </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          PPP
+                        </Typography>
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -323,6 +338,11 @@ class BoxScore extends Component {
                           {home_FT}
                         </Typography>
                       </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {home_PPP}
+                        </Typography>
+                      </TableCell>
                     </TableRow>
                     <TableRow hover>
                       <TableCell style={awayTeamCellStyle}>
@@ -350,11 +370,58 @@ class BoxScore extends Component {
                           {away_FT}
                         </Typography>
                       </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {away_PPP}
+                        </Typography>
+                      </TableCell>
                     </TableRow>
                   </TableBody> 
                 </Table>
               </TableContainer>
             </Grid>
+          );
+        }
+
+        let tempoFreeGraph;
+        if (this.props.homeBox.playerTotals.points && home_PPP) {
+          
+          var hFG = parseFloat(home_eFG);
+          var aFG = parseFloat(away_eFG);
+          var hTO = parseFloat(home_TO);
+          var aTO = parseFloat(away_TO);
+          var hOR = parseFloat(home_OR);
+          var aOR = parseFloat(away_OR);
+          var hFT = parseFloat(home_FT);
+          var aFT = parseFloat(away_FT);
+
+          tempoFreeGraph = (
+                <Grid item>
+                  <Chart
+                    width={ '75vw' }
+                    height={ '50vh' }
+                    chartType='ColumnChart'
+                    loader={<div>Loading Tempo Free Chart...</div>}
+                    data={[
+                      ['Team', this.props.homeInfo.shortName, this.props.awayInfo.shortName ],
+                      ['Shooting', hFG, aFG ],
+                      ['Ball Handling', hTO, aTO ],
+                      ['Off Rebounding', hOR, aOR ],
+                      ['Shooting FTs', hFT, aFT ],
+                    ]}
+                    options={{
+                      title: this.props.homeInfo.shortName + ' ' + this.props.homeBox.playerTotals.points + ', ' + this.props.awayInfo.shortName + ' ' + this.props.awayBox.playerTotals.points,  
+                      chartArea: { width: '60%' },
+                      hAxis: {
+                          title: 'Tempo Free Factors',
+                          maxValue: 100,
+                      },
+                      vAxis: {
+                          title: 'Percent',
+                          maxValue: 100,
+                      },
+                    }} />
+                </Grid>
           );
         }
  
@@ -731,6 +798,7 @@ class BoxScore extends Component {
         return (
           <Grid container spacing={1} style={gridStyle}>
             {tempoFree}
+            {tempoFreeGraph}
             {totalStats}
             {homeStats}
             {awayStats}
