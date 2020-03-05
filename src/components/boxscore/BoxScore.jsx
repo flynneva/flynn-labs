@@ -20,11 +20,12 @@ class BoxScore extends Component {
     constructor (props) {
         super(props);
         this.state = {
+          isMounted: null,
+          lastUpdated: '',
           homeTextColor: null,
           awayTextColor: null,
-          lastUpdated: '',
           gameUrl: '',
-          gameID: this.props.gameID,
+          gameID: '',
           gameInfo: {},
           boxscore: {},
           pbp: {},
@@ -36,6 +37,7 @@ class BoxScore extends Component {
     }
 
     componentDidMount () {
+        console.log('COMPONENT DID MOUNT');
         if(tinycolor(this.props.homeColor).isLight()) {
           this.setState({ homeTextColor: '#000000' });
         } else {
@@ -47,60 +49,42 @@ class BoxScore extends Component {
         } else {
           this.setState({ awayTextColor: '#ffffff' });
         }
-        
+       
         var game_url = baseURL + this.props.gameID + '/';
         this.setState({ gameUrl: game_url});
         this.setState({ gameID: this.props.gameID });
-        
-        console.log(game_url);
-    }
-
-    getBoxScore () {
-      var boxscore_url = this.state.gameUrl + 'boxscore.json';
-      fetch(boxscore_url, {
-              method: 'GET',
-              body: JSON.stringify()
-      })
-      .then(result => response.json())
-      .then(data => {
-        console.log(result);
-        this.setState({ boxscore: result });
-        this.setState({ renderBoxScore: true });
-      })
-      .catch(error => {
-        console.log(error);
-      })
-    }
-
-    getGameInfo () {
-      var gameInfo_url = this.state.gameUrl + 'gameInfo.json';
-      fetch(gameInfo_url, {
-               method: 'GET',
-               body: JSON.stringify()
-      })
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ gameInfo: result });
-        this.setState({ lastUpdated: result.status.updatedTimestamp });
-
-        if(result.tabs.boxscore) {
-          this.getBoxScore();
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      })
+        this.setState({ lastUpdated: 'NOW' });
+        this.setState({ isMounted: true });
     }
 
     componentDidUpdate (prevProps, prevState) {
-      if(prevState.lastUpdated !== this.state.lastUpdated) {
-        this.getGameInfo();
-      } 
+      var gameInfo_url = this.state.gameUrl + 'gameInfo.json';
+      if(this.state.isMounted) {
+        console.log('IS MOUNTED');
+        console.log(prevState.lastUpdated);
+        console.log(this.state.lastUpdated);
+        console.log(prevState.lastUpdated !== this.state.lastUpdated);
+  
+        if (prevState.lastUpdated !== this.state.lastUpdated) {
+          fetch(gameInfo_url, {
+                   method: 'GET',
+                   body: JSON.stringify()
+          })
+          .then(response => response.json())
+          .then(data => {
+            this.setState({ gameInfo: data });
+            this.setState({ lastUpdated: data.status.updatedTimestamp });
+          })
+          .catch(error => {
+            console.log(error);
+          })
+        } else {
+          // do nothing
+        }
+      }
     }
 
     render () {
-        const { test } = this.state;
-
         const gridStyle = {
           margin: '8px',
           width: '100vw',

@@ -65,8 +65,6 @@ class Scoreboard extends Component {
                   this.state.day +
                   '/scoreboard.json';
 
-        console.log(url);
-        console.log(prevState.lastUpdated);
         if (!prevState.lastUpdated) {
           fetch(url, {
                 method: 'GET',

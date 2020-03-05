@@ -13,7 +13,8 @@ class GamePage extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            renderBoxScore: false,
+            isMounted: null,
+            renderBoxScore: null,
             lastUpdated: '',
             gameUrl: '',
             gameID: '',
@@ -37,6 +38,7 @@ class GamePage extends Component {
       .then(data => {
         this.setState({ boxscore: data });
         this.setState({ renderBoxScore: true });
+        this.setState({ lastUpdated: data.updatedTimestamp });
       })
       .catch(error => {
           console.log(error);
@@ -49,29 +51,56 @@ class GamePage extends Component {
         var game_url = baseURL + id + '/';
         this.setState({ gameUrl: game_url});
         this.setState({ gameID: id });
+        this.setState({ lastUpdated: 'NOW' });
+        this.setState({ isMounted: true });
+    }
+
+    async handleDataFetch (prevState) {
+      var game_info_url = this.state.gameUrl + 'gameInfo.json';
+      console.log('HANDLE DATA FETCH');
+      console.log(prevState.lastUpdated);
+      console.log(this.state.lastUpdated);
+      if (prevState.lastUpdated !== this.state.lastUpdated) { 
+        fetch(game_info_url, {
+              method: 'GET',
+              body: JSON.stringify()
+        })
+        .then(response => response.json())
+        .then(data => {
+          this.setState({ gameInfo: data });
+          if(data.tabs.boxscore) {
+            this.getBoxScore();
+          }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+      } else {
+        console.log('TIMESTAMPS MATCHED! wait and see if it has changed in 5s');
+        const response = fetch(game_info_url, { method: 'GET', body: JSON.stringify()});
+        const data = await response.json();
+      
+        console.log(prevState.lastUpdated);
+        console.log(this.state.lastUpdated);
+        
+        if (data.updatedTimestamp !== this.state.lastUpdated) {
+          this.setState({ gameInfo: data });
+          if(data.tabs.boxscore) {
+            this.getBoxScore();
+          }
+        }
+      }
     }
 
     componentDidUpdate (prevProps, prevState) {
-        var game_info_url = this.state.gameUrl + 'gameInfo.json';
-        var pbp_url = this.state.gameUrl + 'pbp.json';
-       
-        if (!this.state.lastUpdated) { 
-          fetch(game_info_url, {
-                method: 'GET',
-                body: JSON.stringify()
-          })
-          .then(response => response.json())
-          .then(data => {
-            this.setState({ gameInfo: data });
-            if(data.tabs.boxscore) {
-              this.getBoxScore();
-            }
-          })
-          .catch(error => {
-              console.log(error);
-          });
-        } else {
-          // do not fetch new data
+        if (this.state.isMounted) {
+          if (prevState.lastUpdated !== this.state.lastUpdated) { 
+            this.handleDataFetch(prevState);
+          } else {
+            setTimeout(function () {
+              this.handleDataFetch(prevState);
+            }, 5000);
+          }
         }
     }
 
