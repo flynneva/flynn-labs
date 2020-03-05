@@ -306,7 +306,7 @@ class BoxScore extends Component {
                       </TableCell>
                       <TableCell style={totalHeaderStyle}>
                         <Typography variant='body2' style={totalHeaderStyle}>
-                          PPP%
+                          PPP
                         </Typography>
                       </TableCell>
                     </TableRow>
