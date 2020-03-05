@@ -14,9 +14,11 @@ const baseURL = '/ncaa_api/casablanca/scoreboard/';
 const today = new Date();
 
 class Scoreboard extends Component {
+
     constructor (props) {
         super(props);
         this.state = {
+            lastUpdated: '',
             games: [],
             year: '',
             month: '',
@@ -31,7 +33,7 @@ class Scoreboard extends Component {
         var tempDay = ('0' + today.getDate()).slice(-2);
         var tempMonth = ('0' + (today.getMonth() + 1)).slice(-2);
         var tempYear = today.getFullYear();
-     
+
         this.setState({ selectedDate: today }); 
         this.setState({ day: tempDay });
         this.setState({ month: tempMonth });
@@ -50,7 +52,6 @@ class Scoreboard extends Component {
     }
  
     componentDidUpdate(prevProps, prevState) {
-
         var url =
                   baseURL +
                   this.props.sport +
@@ -64,18 +65,22 @@ class Scoreboard extends Component {
                   this.state.day +
                   '/scoreboard.json';
 
-        //console.log(url);
-        fetch(url, {
-              method: 'GET',
-              body: JSON.stringify()
-            })
-            .then(response => response.json())
-            .then(data => {
-              this.setState({ games: data.games })
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        if (!prevState.lastUpdated) {
+          fetch(url, {
+                method: 'GET',
+                body: JSON.stringify()
+              })
+              .then(response => response.json())
+              .then(data => {
+                this.setState({ games: data.games });
+                this.setState({ lastUpdated: data.updated_at });
+              })
+              .catch(error => {
+                  console.log(error);
+              });
+        } else {
+          // do not update
+        }
     }
 
     render () {

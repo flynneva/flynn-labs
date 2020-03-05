@@ -239,7 +239,7 @@ class GameBanner extends Component {
           if (this.props.gamePeriod === 'Half') {
             // it's halftime....
             clockBanner = (
-              <Grid item xs justify='center'>
+              <Grid item xs style={{ justifyContent: 'center' }}>
                 <Typography variant='body2' style={{ textAlign: 'center', fontWeight: 'bold' }}>
                   HALF TIME
                 </Typography>

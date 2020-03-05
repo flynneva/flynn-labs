@@ -14,16 +14,30 @@ import Paper from '@material-ui/core/Paper';
 import tinycolor from 'tinycolor2';
 import { Chart } from 'react-google-charts';
 
+const baseURL = '/ncaa_api/casablanca/game/';
+
 class BoxScore extends Component {
     constructor (props) {
         super(props);
         this.state = {
+          isMounted: null,
+          lastUpdated: '',
           homeTextColor: null,
           awayTextColor: null,
+          gameUrl: '',
+          gameID: '',
+          gameInfo: {},
+          boxscore: {},
+          pbp: {},
+          preview: {},
+          recap: {},
+          scoring_summary: {},
+          team_stats: {},
         };
     }
 
     componentDidMount () {
+        console.log('COMPONENT DID MOUNT');
         if(tinycolor(this.props.homeColor).isLight()) {
           this.setState({ homeTextColor: '#000000' });
         } else {
@@ -35,11 +49,42 @@ class BoxScore extends Component {
         } else {
           this.setState({ awayTextColor: '#ffffff' });
         }
+       
+        var game_url = baseURL + this.props.gameID + '/';
+        this.setState({ gameUrl: game_url});
+        this.setState({ gameID: this.props.gameID });
+        this.setState({ lastUpdated: 'NOW' });
+        this.setState({ isMounted: true });
+    }
+
+    componentDidUpdate (prevProps, prevState) {
+      var gameInfo_url = this.state.gameUrl + 'gameInfo.json';
+      if(this.state.isMounted) {
+        console.log('IS MOUNTED');
+        console.log(prevState.lastUpdated);
+        console.log(this.state.lastUpdated);
+        console.log(prevState.lastUpdated !== this.state.lastUpdated);
+  
+        if (prevState.lastUpdated !== this.state.lastUpdated) {
+          fetch(gameInfo_url, {
+                   method: 'GET',
+                   body: JSON.stringify()
+          })
+          .then(response => response.json())
+          .then(data => {
+            this.setState({ gameInfo: data });
+            this.setState({ lastUpdated: data.status.updatedTimestamp });
+          })
+          .catch(error => {
+            console.log(error);
+          })
+        } else {
+          // do nothing
+        }
+      }
     }
 
     render () {
-        const { test } = this.state;
-
         const gridStyle = {
           margin: '8px',
           width: '100vw',
@@ -278,6 +323,13 @@ class BoxScore extends Component {
                         </Typography>
                       </TableCell>
                     </TableRow>
+                    <TableRow style={tableTitle}>
+                      <TableCell style={{ backgroundColor: '#bfbfbf', padding: 0, margin: 0 }} colSpan={20}>
+                        <Typography variant='body2' style={{ margin: 0, padding: 0, paddingRight: 8,  textAlign: 'right', backgroundColor: '#bfbfbf'}}>
+                          Total Possessions: {totalPos.toFixed(1)}
+                        </Typography>
+                      </TableCell>
+                    </TableRow>
                     <TableRow style={headerStyle}>
                       <TableCell style={totalNameStyle}>
                         <Typography variant='body2' style={totalNameStyle}>
@@ -410,12 +462,12 @@ class BoxScore extends Component {
                       ['Shooting FTs', hFT, aFT ],
                     ]}
                     options={{
-                      title: this.props.homeInfo.shortName + ' ' + this.props.homeBox.playerTotals.points + ', ' + this.props.awayInfo.shortName + ' ' + this.props.awayBox.playerTotals.points,  
+                      title: this.props.homeInfo.shortName + ' ' + this.props.homeBox.playerTotals.points + ', ' + this.props.awayInfo.shortName + ' ' + this.props.awayBox.playerTotals.points,
+                      alignment: 'center',
                       chartArea: { width: '60%' },
-                      hAxis: {
-                          title: 'Tempo Free Factors',
-                          maxValue: 100,
-                      },
+                      legend: { position: 'bottom', alignment: 'center' },
+                      backgroundColor: '#eeeeee',
+                      colors: [ this.props.homeInfo.color, this.props.awayInfo.color ],
                       vAxis: {
                           title: 'Percent',
                           maxValue: 100,

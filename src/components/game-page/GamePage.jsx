@@ -13,8 +13,11 @@ class GamePage extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            renderBoxScore: false,
-            gameUrl: '', 
+            isMounted: null,
+            renderBoxScore: null,
+            lastUpdated: '',
+            gameUrl: '',
+            gameID: '',
             gameInfo: {},
             boxscore: {},
             pbp: {},
@@ -35,6 +38,7 @@ class GamePage extends Component {
       .then(data => {
         this.setState({ boxscore: data });
         this.setState({ renderBoxScore: true });
+        this.setState({ lastUpdated: data.updatedTimestamp });
       })
       .catch(error => {
           console.log(error);
@@ -43,13 +47,20 @@ class GamePage extends Component {
 
     componentDidMount () {
         const id = this.props.match.params.id;
-        
+         
         var game_url = baseURL + id + '/';
         this.setState({ gameUrl: game_url});
-        var game_info_url = game_url + 'gameInfo.json';
-        var pbp_url = game_url + 'pbp.json';
-        var pbp_url = game_url + 'pbp.json';
-        
+        this.setState({ gameID: id });
+        this.setState({ lastUpdated: 'NOW' });
+        this.setState({ isMounted: true });
+    }
+
+    async handleDataFetch (prevState) {
+      var game_info_url = this.state.gameUrl + 'gameInfo.json';
+      console.log('HANDLE DATA FETCH');
+      console.log(prevState.lastUpdated);
+      console.log(this.state.lastUpdated);
+      if (prevState.lastUpdated !== this.state.lastUpdated) { 
         fetch(game_info_url, {
               method: 'GET',
               body: JSON.stringify()
@@ -64,6 +75,33 @@ class GamePage extends Component {
         .catch(error => {
             console.log(error);
         });
+      } else {
+        console.log('TIMESTAMPS MATCHED! wait and see if it has changed in 5s');
+        const response = fetch(game_info_url, { method: 'GET', body: JSON.stringify()});
+        const data = await response.json();
+      
+        console.log(prevState.lastUpdated);
+        console.log(this.state.lastUpdated);
+        
+        if (data.updatedTimestamp !== this.state.lastUpdated) {
+          this.setState({ gameInfo: data });
+          if(data.tabs.boxscore) {
+            this.getBoxScore();
+          }
+        }
+      }
+    }
+
+    componentDidUpdate (prevProps, prevState) {
+        if (this.state.isMounted) {
+          if (prevState.lastUpdated !== this.state.lastUpdated) { 
+            this.handleDataFetch(prevState);
+          } else {
+            setTimeout(function () {
+              this.handleDataFetch(prevState);
+            }, 5000);
+          }
+        }
     }
 
     render () {
@@ -123,7 +161,8 @@ class GamePage extends Component {
        
           if(this.state.renderBoxScore) {
             boxScore = (
-              <BoxScore homeInfo={homeMetaData}
+              <BoxScore gameID={this.state.gameID}
+                        homeInfo={homeMetaData}
                         awayInfo={awayMetaData}
                         homeBox={homeBoxScore}
                         awayBox={awayBoxScore} />
