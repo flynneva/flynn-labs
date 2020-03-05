@@ -38,7 +38,7 @@ function Sport () {
           <Grid container style={gridStyle} justify='center' direction='column'>
             <Grid item>
               <Grid container justify='center'>
-                <Grid item style={{ width: '60%' }}>
+                <Grid item style={{ width: '80%' }}>
                   <SearchScoreboard />
                 </Grid>
               </Grid>

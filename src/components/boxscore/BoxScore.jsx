@@ -444,8 +444,8 @@ class BoxScore extends Component {
           tempoFreeGraph = (
                 <Grid item>
                   <Chart
-                    width={ '75vw' }
-                    height={ '50vh' }
+                    width={ '80vw' }
+                    height={ '30vh' }
                     chartType='ColumnChart'
                     loader={<div>Loading Tempo Free Chart...</div>}
                     data={[
@@ -458,13 +458,14 @@ class BoxScore extends Component {
                     options={{
                       title: this.props.homeInfo.shortName + ' ' + this.props.homeBox.playerTotals.points + ', ' + this.props.awayInfo.shortName + ' ' + this.props.awayBox.playerTotals.points,
                       alignment: 'center',
-                      chartArea: { width: '60%' },
+                      chartArea: { width: '90%' },
                       legend: { position: 'bottom', alignment: 'center' },
                       backgroundColor: '#eeeeee',
                       colors: [ this.props.homeInfo.color, this.props.awayInfo.color ],
                       vAxis: {
                           title: 'Percent',
                           maxValue: 100,
+                          textStyle: { fontSize: 11 },
                       },
                     }} />
                 </Grid>
