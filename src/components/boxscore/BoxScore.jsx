@@ -37,7 +37,6 @@ class BoxScore extends Component {
     }
 
     componentDidMount () {
-        console.log('COMPONENT DID MOUNT');
         if(tinycolor(this.props.homeColor).isLight()) {
           this.setState({ homeTextColor: '#000000' });
         } else {
@@ -60,11 +59,6 @@ class BoxScore extends Component {
     componentDidUpdate (prevProps, prevState) {
       var gameInfo_url = this.state.gameUrl + 'gameInfo.json';
       if(this.state.isMounted) {
-        console.log('IS MOUNTED');
-        console.log(prevState.lastUpdated);
-        console.log(this.state.lastUpdated);
-        console.log(prevState.lastUpdated !== this.state.lastUpdated);
-  
         if (prevState.lastUpdated !== this.state.lastUpdated) {
           fetch(gameInfo_url, {
                    method: 'GET',
@@ -326,7 +320,7 @@ class BoxScore extends Component {
                     <TableRow style={tableTitle}>
                       <TableCell style={{ backgroundColor: '#bfbfbf', padding: 0, margin: 0 }} colSpan={20}>
                         <Typography variant='body2' style={{ margin: 0, padding: 0, paddingRight: 8,  textAlign: 'right', backgroundColor: '#bfbfbf'}}>
-                          Total Possessions: {totalPos.toFixed(1)}
+                          Total Possessions: {totalPos.toFixed(0)}
                         </Typography>
                       </TableCell>
                     </TableRow>
@@ -450,8 +444,8 @@ class BoxScore extends Component {
           tempoFreeGraph = (
                 <Grid item>
                   <Chart
-                    width={ '75vw' }
-                    height={ '50vh' }
+                    width={ '80vw' }
+                    height={ '30vh' }
                     chartType='ColumnChart'
                     loader={<div>Loading Tempo Free Chart...</div>}
                     data={[
@@ -464,13 +458,14 @@ class BoxScore extends Component {
                     options={{
                       title: this.props.homeInfo.shortName + ' ' + this.props.homeBox.playerTotals.points + ', ' + this.props.awayInfo.shortName + ' ' + this.props.awayBox.playerTotals.points,
                       alignment: 'center',
-                      chartArea: { width: '60%' },
+                      chartArea: { width: '90%' },
                       legend: { position: 'bottom', alignment: 'center' },
                       backgroundColor: '#eeeeee',
                       colors: [ this.props.homeInfo.color, this.props.awayInfo.color ],
                       vAxis: {
                           title: 'Percent',
                           maxValue: 100,
+                          textStyle: { fontSize: 11 },
                       },
                     }} />
                 </Grid>

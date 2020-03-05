@@ -55,51 +55,34 @@ class GamePage extends Component {
         this.setState({ isMounted: true });
     }
 
-    async handleDataFetch (prevState) {
-      var game_info_url = this.state.gameUrl + 'gameInfo.json';
-      console.log('HANDLE DATA FETCH');
-      console.log(prevState.lastUpdated);
-      console.log(this.state.lastUpdated);
-      if (prevState.lastUpdated !== this.state.lastUpdated) { 
-        fetch(game_info_url, {
-              method: 'GET',
-              body: JSON.stringify()
-        })
-        .then(response => response.json())
-        .then(data => {
-          this.setState({ gameInfo: data });
-          if(data.tabs.boxscore) {
-            this.getBoxScore();
-          }
-        })
-        .catch(error => {
-            console.log(error);
-        });
-      } else {
-        console.log('TIMESTAMPS MATCHED! wait and see if it has changed in 5s');
-        const response = fetch(game_info_url, { method: 'GET', body: JSON.stringify()});
-        const data = await response.json();
+    async wait() {
+      await new Promise(resolve => setTimeout(resolve, 50000));
       
-        console.log(prevState.lastUpdated);
-        console.log(this.state.lastUpdated);
-        
-        if (data.updatedTimestamp !== this.state.lastUpdated) {
-          this.setState({ gameInfo: data });
-          if(data.tabs.boxscore) {
-            this.getBoxScore();
-          }
-        }
-      }
+      return 'done';
     }
 
     componentDidUpdate (prevProps, prevState) {
         if (this.state.isMounted) {
           if (prevState.lastUpdated !== this.state.lastUpdated) { 
-            this.handleDataFetch(prevState);
+            var game_info_url = this.state.gameUrl + 'gameInfo.json';
+            fetch(game_info_url, {
+                  method: 'GET',
+                  body: JSON.stringify()
+            })
+            .then(response => response.json())
+            .then(data => {
+              this.setState({ gameInfo: data });
+              if(data.tabs.boxscore) {
+                this.getBoxScore();
+              }
+            })
+            .catch(error => {
+                console.log(error);
+            });
           } else {
-            setTimeout(function () {
-              this.handleDataFetch(prevState);
-            }, 5000);
+            this.wait().then(result => {
+              this.setState({ lastUpdated: 'NOW' });
+            });
           }
         }
     }

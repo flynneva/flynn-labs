@@ -14,7 +14,6 @@ function SearchScoreboard() {
     display: 'flex',
     alignItems: 'center',
     width: '100%',
-    minWidth: '240px',
   }
 
   const inputStyle = {
