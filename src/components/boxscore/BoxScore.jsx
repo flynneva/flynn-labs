@@ -164,7 +164,91 @@ class BoxScore extends Component {
           padding: 0,
           paddingLeft: 4,
         };
+
+        let home_eFG;
+        if (this.props.homeInfo && this.props.homeBox) {
+          var FGM = parseInt((this.props.homeBox.playerTotals.fieldGoalsMade).split('-')[0]);
+          var FGA = parseInt((this.props.homeBox.playerTotals.fieldGoalsMade).split('-')[1]);
+          var TPM = parseInt((this.props.homeBox.playerTotals.threePointsMade).split('-')[0]);
+          var TPA = parseInt((this.props.homeBox.playerTotals.threePointsMade).split('-')[1]);
+         
+          home_eFG = parseFloat(parseFloat(FGM + parseFloat(0.5 * TPM))/FGA * 100).toFixed(2) + '%';
+        }
+ 
+        let away_eFG;
+        if (this.props.awayInfo && this.props.awayBox) {
+          var FGM = parseInt((this.props.awayBox.playerTotals.fieldGoalsMade).split('-')[0]);
+          var FGA = parseInt((this.props.awayBox.playerTotals.fieldGoalsMade).split('-')[1]);
+          var TPM = parseInt((this.props.awayBox.playerTotals.threePointsMade).split('-')[0]);
+          var TPA = parseInt((this.props.awayBox.playerTotals.threePointsMade).split('-')[1]);
+         
+          away_eFG = parseFloat(parseFloat(FGM + parseFloat(0.5 * TPM))/FGA * 100).toFixed(2) + '%';
+        }
        
+        let totalPos;
+        if (this.props.homeInfo && this.props.homeBox) {
+          var hFGA = parseInt((this.props.homeBox.playerTotals.fieldGoalsMade).split('-')[1]);
+          var aFGA = parseInt((this.props.awayBox.playerTotals.fieldGoalsMade).split('-')[1]);
+          var hFTA = parseInt((this.props.homeBox.playerTotals.freeThrowsMade).split('-')[1]);
+          var aFTA = parseInt((this.props.awayBox.playerTotals.freeThrowsMade).split('-')[1]);
+          var hOReb = parseInt((this.props.homeBox.playerTotals.offensiveRebounds));
+          var aOReb = parseInt((this.props.awayBox.playerTotals.offensiveRebounds));
+          var hTO = parseInt((this.props.homeBox.playerTotals.turnovers));
+          var aTO = parseInt((this.props.awayBox.playerTotals.turnovers));
+ 
+          totalPos = parseFloat(parseFloat(parseFloat(hFGA + parseFloat(0.475 * hFTA))) - parseInt(hOReb + hTO));
+        }
+        
+        let home_TO;
+        if (this.props.homeInfo && this.props.homeBox) {
+          var hTO = parseInt((this.props.homeBox.playerTotals.turnovers));
+
+          home_TO = parseFloat(hTO / totalPos * 100).toFixed(2) + '%';
+        }
+        
+        let away_TO;
+        if (this.props.awayInfo && this.props.awayBox) {
+          var aTO = parseInt((this.props.awayBox.playerTotals.turnovers));
+
+          away_TO = parseFloat(aTO / totalPos * 100).toFixed(2) + '%';
+        }
+        
+        let home_OR;
+        if (this.props.homeInfo && this.props.homeBox) {
+          var hOR = parseInt((this.props.homeBox.playerTotals.offensiveRebounds));
+          var aOR = parseInt((this.props.awayBox.playerTotals.offensiveRebounds));
+          var aTR = parseInt((this.props.awayBox.playerTotals.totalRebounds));
+          var aDR = parseInt(aTR - aOR);
+
+          home_OR = parseFloat(hOR / parseInt(hOR + aDR) * 100).toFixed(2) + '%';
+        }
+
+        let away_OR;
+        if (this.props.awayInfo && this.props.awayBox) {
+          var aOR = parseInt((this.props.awayBox.playerTotals.offensiveRebounds));
+          var hOR = parseInt((this.props.homeBox.playerTotals.offensiveRebounds));
+          var hTR = parseInt((this.props.homeBox.playerTotals.totalRebounds));
+          var hDR = parseInt(aTR - aOR);
+
+          away_OR = parseFloat(aOR / parseInt(aOR + hDR) * 100).toFixed(2) + '%';
+        }
+        
+        let home_FT;
+        if (this.props.homeInfo && this.props.homeBox) {
+          var hFTA = parseInt((this.props.homeBox.playerTotals.freeThrowsMade).split('-')[1]);
+          var hFGA = parseInt((this.props.homeBox.playerTotals.fieldGoalsMade).split('-')[1]);
+
+          home_FT = parseFloat(parseFloat(hFTA/FGA) * 100).toFixed(2) + '%';
+        }
+        
+        let away_FT;
+        if (this.props.awayInfo && this.props.awayBox) {
+          var aFTA = parseInt((this.props.awayBox.playerTotals.freeThrowsMade).split('-')[1]);
+          var aFGA = parseInt((this.props.awayBox.playerTotals.fieldGoalsMade).split('-')[1]);
+
+          away_FT = parseFloat(parseFloat(aFTA/aFGA) * 100).toFixed(2) + '%';
+        }
+        
         let tempoFree;
         if (this.props.homeInfo && this.props.homeBox) {
           tempoFree = (
@@ -192,22 +276,17 @@ class BoxScore extends Component {
                       </TableCell>
                       <TableCell style={totalHeaderStyle}>
                         <Typography variant='body2' style={totalHeaderStyle}>  
-                          TOV%
+                          TO%
                         </Typography>
                       </TableCell>
                       <TableCell style={totalHeaderStyle}>
                         <Typography variant='body2' style={totalHeaderStyle}>
-                          ORB%
+                          OR%
                         </Typography>
                       </TableCell>
                       <TableCell style={totalHeaderStyle}>
                         <Typography variant='body2' style={totalHeaderStyle}>
-                          DRB%
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={totalHeaderStyle}>
-                        <Typography variant='body2' style={totalHeaderStyle}>
-                          FTR
+                          FTR%
                         </Typography>
                       </TableCell>
                     </TableRow>
@@ -221,27 +300,22 @@ class BoxScore extends Component {
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          0.0
+                          {home_eFG}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          0.0
+                          {home_TO}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          0.0
+                          {home_OR}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          0.0
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={dataCellStyle}>
-                        <Typography variant='body2' style={dataCellStyle}>
-                          0.0
+                          {home_FT}
                         </Typography>
                       </TableCell>
                     </TableRow>
@@ -253,27 +327,22 @@ class BoxScore extends Component {
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          0.0
+                          {away_eFG}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          0.0
+                          {away_TO}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          0.0
+                          {away_OR}
                         </Typography>
                       </TableCell>
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
-                          0.0
-                        </Typography>
-                      </TableCell>
-                      <TableCell style={dataCellStyle}>
-                        <Typography variant='body2' style={dataCellStyle}>
-                          0.0
+                          {away_FT}
                         </Typography>
                       </TableCell>
                     </TableRow>

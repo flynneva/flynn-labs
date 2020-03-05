@@ -306,14 +306,14 @@ class GameBanner extends Component {
             </Grid>
             <Grid container spacing={0} direction='column' style={{ width: '100vw', height: '50px' }}>
               <Grid container justify='center' spacing={0}>
-                <Paper elevation={0} style={{ margin: 0, padding: 0, width: '75%', minWidth: '100px', backgroundColor: '#bfbfbf' }}>
+                <Grid item style={{ margin: 0, padding: 0, width: '75%', minWidth: '100px', backgroundColor: '#bfbfbf' }}>
                   {clockBanner}
-                </Paper>
+                </Grid>
               </Grid>
               <Grid container justify='center' spacing={0}>
-                <Paper elevation={0} style={{ margin: 0, padding: 0, paddingLeft: 8, paddingRight: 8, minWidth: '75px', backgroundColor: '#bfbfbf' }}>
+                <Grid item style={{ margin: 0, padding: 0, paddingLeft: 8, paddingRight: 8, minWidth: '75px', backgroundColor: '#bfbfbf' }}>
                   {venueBanner}
-                </Paper>
+                </Grid>
               </Grid>  
             </Grid>
           </Grid>
