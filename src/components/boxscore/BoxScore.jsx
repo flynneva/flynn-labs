@@ -254,6 +254,20 @@ class BoxScore extends Component {
           away_FT = parseFloat(parseFloat(aFTA/aFGA) * 100).toFixed(2) + '%';
         }
         
+        let home_PPP;
+        if (this.props.homeBox.playerTotals.points) {
+          var hPTS = parseInt((this.props.homeBox.playerTotals.points));
+
+          home_PPP = parseFloat(hPTS / totalPos).toFixed(2);
+        }
+        
+        let away_PPP;
+        if (this.props.awayBox.playerTotals.points) {
+          var aPTS = parseInt((this.props.awayBox.playerTotals.points));
+
+          away_PPP = parseFloat(aPTS / totalPos).toFixed(2);
+        }
+        
         let tempoFree;
         if (this.props.homeInfo && this.props.homeBox) {
           tempoFree = (
@@ -294,6 +308,11 @@ class BoxScore extends Component {
                           FTR%
                         </Typography>
                       </TableCell>
+                      <TableCell style={totalHeaderStyle}>
+                        <Typography variant='body2' style={totalHeaderStyle}>
+                          PPP%
+                        </Typography>
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -323,6 +342,11 @@ class BoxScore extends Component {
                           {home_FT}
                         </Typography>
                       </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {home_PPP}
+                        </Typography>
+                      </TableCell>
                     </TableRow>
                     <TableRow hover>
                       <TableCell style={awayTeamCellStyle}>
@@ -348,6 +372,11 @@ class BoxScore extends Component {
                       <TableCell style={dataCellStyle}>
                         <Typography variant='body2' style={dataCellStyle}>
                           {away_FT}
+                        </Typography>
+                      </TableCell>
+                      <TableCell style={dataCellStyle}>
+                        <Typography variant='body2' style={dataCellStyle}>
+                          {away_PPP}
                         </Typography>
                       </TableCell>
                     </TableRow>
