@@ -320,7 +320,7 @@ class BoxScore extends Component {
                     <TableRow style={tableTitle}>
                       <TableCell style={{ backgroundColor: '#bfbfbf', padding: 0, margin: 0 }} colSpan={20}>
                         <Typography variant='body2' style={{ margin: 0, padding: 0, paddingRight: 8,  textAlign: 'right', backgroundColor: '#bfbfbf'}}>
-                          Total Possessions: {totalPos.toFixed(1)}
+                          Total Possessions: {totalPos.toFixed(0)}
                         </Typography>
                       </TableCell>
                     </TableRow>
