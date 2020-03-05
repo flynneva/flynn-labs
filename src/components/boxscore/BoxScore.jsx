@@ -14,12 +14,24 @@ import Paper from '@material-ui/core/Paper';
 import tinycolor from 'tinycolor2';
 import { Chart } from 'react-google-charts';
 
+const baseURL = '/ncaa_api/casablanca/game/';
+
 class BoxScore extends Component {
     constructor (props) {
         super(props);
         this.state = {
           homeTextColor: null,
           awayTextColor: null,
+          lastUpdated: '',
+          gameUrl: '',
+          gameID: this.props.gameID,
+          gameInfo: {},
+          boxscore: {},
+          pbp: {},
+          preview: {},
+          recap: {},
+          scoring_summary: {},
+          team_stats: {},
         };
     }
 
@@ -35,6 +47,55 @@ class BoxScore extends Component {
         } else {
           this.setState({ awayTextColor: '#ffffff' });
         }
+        
+        var game_url = baseURL + this.props.gameID + '/';
+        this.setState({ gameUrl: game_url});
+        this.setState({ gameID: this.props.gameID });
+        
+        console.log(game_url);
+    }
+
+    getBoxScore () {
+      var boxscore_url = this.state.gameUrl + 'boxscore.json';
+      fetch(boxscore_url, {
+              method: 'GET',
+              body: JSON.stringify()
+      })
+      .then(result => response.json())
+      .then(data => {
+        console.log(result);
+        this.setState({ boxscore: result });
+        this.setState({ renderBoxScore: true });
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    }
+
+    getGameInfo () {
+      var gameInfo_url = this.state.gameUrl + 'gameInfo.json';
+      fetch(gameInfo_url, {
+               method: 'GET',
+               body: JSON.stringify()
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ gameInfo: result });
+        this.setState({ lastUpdated: result.status.updatedTimestamp });
+
+        if(result.tabs.boxscore) {
+          this.getBoxScore();
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    }
+
+    componentDidUpdate (prevProps, prevState) {
+      if(prevState.lastUpdated !== this.state.lastUpdated) {
+        this.getGameInfo();
+      } 
     }
 
     render () {
@@ -278,6 +339,13 @@ class BoxScore extends Component {
                         </Typography>
                       </TableCell>
                     </TableRow>
+                    <TableRow style={tableTitle}>
+                      <TableCell style={{ backgroundColor: '#bfbfbf', padding: 0, margin: 0 }} colSpan={20}>
+                        <Typography variant='body2' style={{ margin: 0, padding: 0, paddingRight: 8,  textAlign: 'right', backgroundColor: '#bfbfbf'}}>
+                          Total Possessions: {totalPos.toFixed(1)}
+                        </Typography>
+                      </TableCell>
+                    </TableRow>
                     <TableRow style={headerStyle}>
                       <TableCell style={totalNameStyle}>
                         <Typography variant='body2' style={totalNameStyle}>
@@ -410,12 +478,12 @@ class BoxScore extends Component {
                       ['Shooting FTs', hFT, aFT ],
                     ]}
                     options={{
-                      title: this.props.homeInfo.shortName + ' ' + this.props.homeBox.playerTotals.points + ', ' + this.props.awayInfo.shortName + ' ' + this.props.awayBox.playerTotals.points,  
+                      title: this.props.homeInfo.shortName + ' ' + this.props.homeBox.playerTotals.points + ', ' + this.props.awayInfo.shortName + ' ' + this.props.awayBox.playerTotals.points,
+                      alignment: 'center',
                       chartArea: { width: '60%' },
-                      hAxis: {
-                          title: 'Tempo Free Factors',
-                          maxValue: 100,
-                      },
+                      legend: { position: 'bottom', alignment: 'center' },
+                      backgroundColor: '#eeeeee',
+                      colors: [ this.props.homeInfo.color, this.props.awayInfo.color ],
                       vAxis: {
                           title: 'Percent',
                           maxValue: 100,

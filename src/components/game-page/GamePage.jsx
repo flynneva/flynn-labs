@@ -14,7 +14,9 @@ class GamePage extends Component {
         super(props);
         this.state = {
             renderBoxScore: false,
-            gameUrl: '', 
+            lastUpdated: '',
+            gameUrl: '',
+            gameID: '',
             gameInfo: {},
             boxscore: {},
             pbp: {},
@@ -43,27 +45,34 @@ class GamePage extends Component {
 
     componentDidMount () {
         const id = this.props.match.params.id;
-        
+         
         var game_url = baseURL + id + '/';
         this.setState({ gameUrl: game_url});
-        var game_info_url = game_url + 'gameInfo.json';
-        var pbp_url = game_url + 'pbp.json';
-        var pbp_url = game_url + 'pbp.json';
-        
-        fetch(game_info_url, {
-              method: 'GET',
-              body: JSON.stringify()
-        })
-        .then(response => response.json())
-        .then(data => {
-          this.setState({ gameInfo: data });
-          if(data.tabs.boxscore) {
-            this.getBoxScore();
-          }
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        this.setState({ gameID: id });
+    }
+
+    componentDidUpdate (prevProps, prevState) {
+        var game_info_url = this.state.gameUrl + 'gameInfo.json';
+        var pbp_url = this.state.gameUrl + 'pbp.json';
+       
+        if (!this.state.lastUpdated) { 
+          fetch(game_info_url, {
+                method: 'GET',
+                body: JSON.stringify()
+          })
+          .then(response => response.json())
+          .then(data => {
+            this.setState({ gameInfo: data });
+            if(data.tabs.boxscore) {
+              this.getBoxScore();
+            }
+          })
+          .catch(error => {
+              console.log(error);
+          });
+        } else {
+          // do not fetch new data
+        }
     }
 
     render () {
@@ -123,7 +132,8 @@ class GamePage extends Component {
        
           if(this.state.renderBoxScore) {
             boxScore = (
-              <BoxScore homeInfo={homeMetaData}
+              <BoxScore gameID={this.state.gameID}
+                        homeInfo={homeMetaData}
                         awayInfo={awayMetaData}
                         homeBox={homeBoxScore}
                         awayBox={awayBoxScore} />
