@@ -166,7 +166,7 @@ class BoxScore extends Component {
         };
 
         let home_eFG;
-        if (this.props.homeInfo && this.props.homeBox) {
+        if (this.props.homeBox.playerTotals.fieldGoalsMade) {
           var FGM = parseInt((this.props.homeBox.playerTotals.fieldGoalsMade).split('-')[0]);
           var FGA = parseInt((this.props.homeBox.playerTotals.fieldGoalsMade).split('-')[1]);
           var TPM = parseInt((this.props.homeBox.playerTotals.threePointsMade).split('-')[0]);
@@ -176,7 +176,7 @@ class BoxScore extends Component {
         }
  
         let away_eFG;
-        if (this.props.awayInfo && this.props.awayBox) {
+        if (this.props.awayBox.playerTotals.fieldGoalsMade) {
           var FGM = parseInt((this.props.awayBox.playerTotals.fieldGoalsMade).split('-')[0]);
           var FGA = parseInt((this.props.awayBox.playerTotals.fieldGoalsMade).split('-')[1]);
           var TPM = parseInt((this.props.awayBox.playerTotals.threePointsMade).split('-')[0]);
@@ -186,7 +186,7 @@ class BoxScore extends Component {
         }
        
         let totalPos;
-        if (this.props.homeInfo && this.props.homeBox) {
+        if (this.props.homeBox.playerTotals.fieldGoalsMade) {
           var hFGA = parseInt((this.props.homeBox.playerTotals.fieldGoalsMade).split('-')[1]);
           var aFGA = parseInt((this.props.awayBox.playerTotals.fieldGoalsMade).split('-')[1]);
           var hFTA = parseInt((this.props.homeBox.playerTotals.freeThrowsMade).split('-')[1]);
@@ -200,21 +200,21 @@ class BoxScore extends Component {
         }
         
         let home_TO;
-        if (this.props.homeInfo && this.props.homeBox) {
+        if (this.props.homeBox.playerTotals.turnovers) {
           var hTO = parseInt((this.props.homeBox.playerTotals.turnovers));
 
           home_TO = parseFloat(hTO / totalPos * 100).toFixed(2) + '%';
         }
         
         let away_TO;
-        if (this.props.awayInfo && this.props.awayBox) {
+        if (this.props.awayBox.playerTotals.turnovers) {
           var aTO = parseInt((this.props.awayBox.playerTotals.turnovers));
 
           away_TO = parseFloat(aTO / totalPos * 100).toFixed(2) + '%';
         }
         
         let home_OR;
-        if (this.props.homeInfo && this.props.homeBox) {
+        if (this.props.homeBox.playerTotals.offensiveRebounds) {
           var hOR = parseInt((this.props.homeBox.playerTotals.offensiveRebounds));
           var aOR = parseInt((this.props.awayBox.playerTotals.offensiveRebounds));
           var aTR = parseInt((this.props.awayBox.playerTotals.totalRebounds));
@@ -224,17 +224,22 @@ class BoxScore extends Component {
         }
 
         let away_OR;
-        if (this.props.awayInfo && this.props.awayBox) {
+        if (this.props.awayBox.playerTotals.offensiveRebounds) {
           var aOR = parseInt((this.props.awayBox.playerTotals.offensiveRebounds));
           var hOR = parseInt((this.props.homeBox.playerTotals.offensiveRebounds));
           var hTR = parseInt((this.props.homeBox.playerTotals.totalRebounds));
           var hDR = parseInt(aTR - aOR);
 
+          console.log(aOR);
+          console.log(hOR);
+          console.log(hTR);
+          console.log(hDR);
+
           away_OR = parseFloat(aOR / parseInt(aOR + hDR) * 100).toFixed(2) + '%';
         }
         
         let home_FT;
-        if (this.props.homeInfo && this.props.homeBox) {
+        if (this.props.homeBox.playerTotals.freeThrowsMade) {
           var hFTA = parseInt((this.props.homeBox.playerTotals.freeThrowsMade).split('-')[1]);
           var hFGA = parseInt((this.props.homeBox.playerTotals.fieldGoalsMade).split('-')[1]);
 
@@ -242,7 +247,7 @@ class BoxScore extends Component {
         }
         
         let away_FT;
-        if (this.props.awayInfo && this.props.awayBox) {
+        if (this.props.awayBox.playerTotals.freeThrowsMade) {
           var aFTA = parseInt((this.props.awayBox.playerTotals.freeThrowsMade).split('-')[1]);
           var aFGA = parseInt((this.props.awayBox.playerTotals.fieldGoalsMade).split('-')[1]);
 
