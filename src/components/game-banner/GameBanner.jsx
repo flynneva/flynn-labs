@@ -97,7 +97,7 @@ class GameBanner extends Component {
         };
   
         const homeNameStyle = {
-            fontSize: 25,
+            fontSize: 22,
             textAlign: 'left',
             margin: 0,
             padding: 0,
@@ -125,7 +125,7 @@ class GameBanner extends Component {
             margin: 0,
             padding: 0,
             paddingTop: 14,
-            paddingLeft: 2,
+            paddingRight: 2,
         };
 
         const awayStyle = {
