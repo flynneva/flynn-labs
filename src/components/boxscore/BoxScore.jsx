@@ -236,7 +236,7 @@ class BoxScore extends Component {
           var hTO = parseInt((this.props.homeBox.playerTotals.turnovers));
           var aTO = parseInt((this.props.awayBox.playerTotals.turnovers));
  
-          totalPos = parseFloat(parseFloat(parseFloat(hFGA + parseFloat(0.475 * hFTA))) - parseInt(hOReb + hTO));
+          totalPos = parseFloat(parseFloat(parseFloat(parseFloat(hFGA + parseFloat(0.475 * hFTA))) - parseInt(hOReb + hTO)) + parseFloat(parseFloat(parseFloat(hFGA + parseFloat(0.475 * hFTA))) - parseInt(hOReb + hTO)));
         }
         
         let home_TO;
@@ -268,7 +268,7 @@ class BoxScore extends Component {
           var aOR = parseInt((this.props.awayBox.playerTotals.offensiveRebounds));
           var hOR = parseInt((this.props.homeBox.playerTotals.offensiveRebounds));
           var hTR = parseInt((this.props.homeBox.playerTotals.totalRebounds));
-          var hDR = parseInt(aTR - aOR);
+          var hDR = parseInt(hTR - hOR);
 
           away_OR = parseFloat(aOR / parseInt(aOR + hDR) * 100).toFixed(2) + '%';
         }
