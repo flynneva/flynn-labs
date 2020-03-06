@@ -170,7 +170,7 @@ class BoxScore extends Component {
         const totalNameStyle = {
           backgroundColor: '#bfbfbf',
           fontWeight: 'bold',
-          minWidth: '125px',
+          minWidth: '85px',
           textAlign: 'center',
           margin: 0,
           padding: 0,
@@ -212,7 +212,7 @@ class BoxScore extends Component {
           var TPM = parseInt((this.props.homeBox.playerTotals.threePointsMade).split('-')[0]);
           var TPA = parseInt((this.props.homeBox.playerTotals.threePointsMade).split('-')[1]);
          
-          home_eFG = parseFloat(parseFloat(FGM + parseFloat(0.5 * TPM))/FGA * 100).toFixed(2) + '%';
+          home_eFG = parseFloat(parseFloat(FGM + parseFloat(0.5 * TPM))/FGA * 100).toFixed(1) + '%';
         }
  
         let away_eFG;
@@ -239,10 +239,6 @@ class BoxScore extends Component {
           var homePos = parseFloat(parseFloat(parseFloat(parseFloat(hFGA + parseFloat(0.475 * hFTA))) - hTO) - aOReb);
           var awayPos = parseFloat(parseFloat(parseFloat(parseFloat(aFGA + parseFloat(0.475 * aFTA))) + aTO) - aOReb);
 
-          console.log('#########################################');
-          console.log('homePos: ' + homePos); 
-          console.log('awayPos: ' + awayPos); 
- 
           totalPos = parseFloat( parseFloat(homePos + awayPos) / 2);
         }
         
@@ -456,11 +452,11 @@ class BoxScore extends Component {
                     chartType='ColumnChart'
                     loader={<div>Loading Tempo Free Chart...</div>}
                     data={[
-                      ['Team', this.props.homeInfo.shortName, this.props.awayInfo.shortName ],
-                      ['Shooting', hFG, aFG ],
-                      ['Ball Handling', hTO, aTO ],
-                      ['Off Rebounding', hOR, aOR ],
-                      ['Shooting FTs', hFT, aFT ],
+                      ['Team', this.props.homeInfo.shortName, { role: 'annotation'}, this.props.awayInfo.shortName, { role: 'annotation', type: 'string' } ],
+                      ['Shooting', hFG, home_eFG, aFG, away_eFG ],
+                      ['Ball Handling', hTO, home_TO, aTO, away_TO ],
+                      ['Off Rebounding', hOR, home_OR, aOR, away_OR ],
+                      ['Shooting FTs', hFT, home_FT, aFT, away_FT ],
                     ]}
                     options={{
                       title: this.props.homeInfo.shortName + ' ' + this.props.homeBox.playerTotals.points + ', ' + this.props.awayInfo.shortName + ' ' + this.props.awayBox.playerTotals.points,
