@@ -4,7 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Waves from '../waves/Waves';
+import { Canvas } from 'react-three-fiber';
+import Box from '../three/box/Box';
 
 function Robotics () {
 
@@ -28,7 +29,12 @@ function Robotics () {
                         </Typography>
                       </Grid>
                       <Grid item xs={12} style={{ height: '65vh', marginBottom: 8 }}>
-                        <Waves />
+                        <Canvas>
+                          <ambientLight />
+                          <pointLight position={[10, 10, 10]} />
+                          <Box position={[ 0, 1.2, 0]} />
+                          <Box position={[ 0, -1.2, 0]} />
+                        </Canvas>
                       </Grid>
                     </Grid>
                 </CardContent>

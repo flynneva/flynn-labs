@@ -43,7 +43,9 @@
     "prettier": "1.19.1",
     "prop-types": "^15.7.2",
     "react-google-charts": "^3.0.15",
+    "react-three-fiber": "^4.0.20",
     "three": "^0.114.0",
+    "use-cannon": "^0.1.12",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.2"
   },
