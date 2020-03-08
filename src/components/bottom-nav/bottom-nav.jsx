@@ -10,7 +10,7 @@ import AndroidIcon from '@material-ui/icons/Android';
 
 const useStyles = makeStyles({
     root: {
-        width: '100%',
+        width: '100vw',
         position: 'fixed',
         bottom: 0
     }

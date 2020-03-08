@@ -98,6 +98,8 @@ class GamePage extends Component {
         };
         
         const innerGridStyle = {
+          margin: 0,
+          padding: 0,
           height: '100%',
           width: '100vw',
         };
@@ -106,6 +108,7 @@ class GamePage extends Component {
           margin: 0,
           padding: 0,
           height: '120px',
+          width: '100vw',
         };
         
         const gameDetailsStyle = {
@@ -177,7 +180,7 @@ class GamePage extends Component {
                       venueName={this.state.gameInfo.venue.name}
                       venueState={this.state.gameInfo.venue.state} />
             </Grid>
-            <Grid item container spacing={0} justify='center' style={gameDetailsStyle}>
+            <Grid item justify='center' style={gameDetailsStyle}>
               {boxScore} 
             </Grid>
           </Grid>

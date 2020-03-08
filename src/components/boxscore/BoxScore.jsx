@@ -80,7 +80,8 @@ class BoxScore extends Component {
 
     render () {
         const gridStyle = {
-          margin: '8px',
+          margin: 0,
+          padding: 0,
           width: '100vw',
           justifyContent: 'center',
         };
@@ -467,7 +468,7 @@ class BoxScore extends Component {
           var aFT = parseFloat(away_FT);
 
           tempoFreeGraph = (
-                <Grid item>
+                <Grid item style={{ maxWidt: '95vw' }}>
                   <Chart
                     width={ '80vw' }
                     height={ '30vh' }

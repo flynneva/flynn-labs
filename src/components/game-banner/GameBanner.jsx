@@ -56,6 +56,7 @@ class GameBanner extends Component {
           margin: 0,
           padding: 0,
           width: '100vw',
+          maxWidth: '100vw',
           height: '100px',
         }
         
@@ -63,6 +64,7 @@ class GameBanner extends Component {
           margin: 0,
           padding: 0,
           width: '100vw',
+          maxWidth: '100vw',
           height: '75px',
         }
         
@@ -304,14 +306,14 @@ class GameBanner extends Component {
               {homeTeam}
               {awayTeam}
             </Grid>
-            <Grid container spacing={0} direction='column' style={{ width: '100vw', height: '50px' }}>
+            <Grid container spacing={0} direction='column' style={{ width: '100%', height: '50px' }}>
               <Grid container justify='center' spacing={0}>
-                <Grid item style={{ margin: 0, padding: 0, width: '75%', minWidth: '100px', backgroundColor: '#bfbfbf' }}>
+                <Grid item style={{ margin: 0, padding: 0, width: '100%', backgroundColor: '#bfbfbf' }}>
                   {clockBanner}
                 </Grid>
               </Grid>
               <Grid container justify='center' spacing={0}>
-                <Grid item style={{ margin: 0, padding: 0, paddingLeft: 8, paddingRight: 8, minWidth: '75px', backgroundColor: '#bfbfbf' }}>
+                <Grid item style={{ margin: 0, padding: 0, width: '100%', backgroundColor: '#bfbfbf' }}>
                   {venueBanner}
                 </Grid>
               </Grid>  
