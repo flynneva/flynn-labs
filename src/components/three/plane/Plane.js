@@ -1,16 +1,12 @@
 import React from 'react';
-import UseCannon from '../provider/Provider';
+import { usePlane } from 'use-cannon';
 
-function Plane({ position }) {
-  // Register plane as a physics body with zero mass
-  const ref = UseCannon({ mass: 0 }, body => {
-    body.addShape(new CANNON.Plane())
-    body.position.set(...position)
-  })
+function Plane(props) {
+  const [ref] = usePlane(() => ({ mass: 0, ...props }))
   return (
     <mesh ref={ref} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[1000, 1000]} />
-      <meshPhongMaterial attach="material" color="#272727" />
+      <planeBufferGeometry attach="geometry" args={[5, 5]} />
+      <meshPhongMaterial attach="material" color="#171717" />
     </mesh>
   )
 }
