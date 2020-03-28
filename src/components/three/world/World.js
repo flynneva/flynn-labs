@@ -9,8 +9,17 @@ import Plane from '../plane/Plane';
 import Cubes from '../cubes/Cubes';
 
 function World() {
+
+  const itemStyle = {
+    width: '100vw',
+    height: '100vh',
+    minHeight: '500px',
+    padding: 0,
+    margin: 0
+  }
+
   return (
-   <Grid container spacing={0} style={{ width: '100%', height: '100%' }}>
+   <Grid container spacing={0} style={itemStyle}>
      <Canvas shadowMap
              gl={{ alpha: false }}
              camera={{ position: [-1, 1, 2.5], fov: 50 }}
@@ -22,7 +31,7 @@ function World() {
        <Controls />
        <Sun />
        <Physics>
-         <Plane rotation={[-Math.PI / 2, 0, 0]} />
+         <Plane rotation={[-Math.PI / 2, 0, 0]} color={ new THREE.Color('lightblue') }/>
          <Cubes number={200} />
        </Physics>
      </Canvas>
