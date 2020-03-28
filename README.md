@@ -1,12 +1,12 @@
 ## Flynn Labs
 
-Welcome to Flynn Labs! This project is actively being developed so bare with us if anything does not work as expected. Issues and Pull Requests are greatly appreciated.
+Welcome to Flynn Labs! This project is actively being developed so bare with me if anything does not work as expected. Issues and Pull Requests are greatly appreciated.
 
-You can see this site deployed at [flynnlabs.dev](https://flynnlabs.dev)
+You can see this site live at [flynnlabs.dev](https://flynnlabs.dev)
 
 ### Features:
 - Live NCAA sports stats (source: [data.ncaa.com](http://data.ncaa.com/casablanca/scoreboard/basketball-men/d1/2020/02/22/scoreboard.json))
-- In-browser 3D view (source: [worldview](https://webviz.io/worldview/#/) from Cruise Automation)
+- In-browser 3D view (source: [three.js](https://github.com/mrdoob/three.js))
 
 
 ### Getting Started
