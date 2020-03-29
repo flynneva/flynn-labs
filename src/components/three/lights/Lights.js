@@ -1,22 +1,21 @@
-import React from "react";
+import React from 'react';
 
 function Lights () {
-  const FakeSphere = () => {
-    return (
-      <mesh>
-        <sphereBufferGeometry args={[0.7, 15, 15]} attach="geometry" />
-        <meshBasicMaterial color={0xfff1ef} attach="material" />
-      </mesh>
-    );
-  };
-
   return (
     <group>
-      <FakeSphere />
-      <ambientLight intensity={0.9} />
-      <pointLight intensity={1.12} position={[0, 0, 0]} />
+      <pointLight intensity={0.3} />
+      <ambientLight intensity={2} />
+      <spotLight
+        castShadow
+        intensity={0.2}
+        angle={Math.PI / 7}
+        position={[150, 150, 250]}
+        penumbra={1}
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+      />
     </group>
-  );
-};
+  )
+}
 
 export default Lights;
