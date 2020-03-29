@@ -14,7 +14,7 @@ import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import SportsIcon from '@material-ui/icons/Sports';
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import PublicIcon from '@material-ui/icons/Public';
 import AndroidIcon from '@material-ui/icons/Android';
 import InfoIcon from '@material-ui/icons/Info';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
@@ -101,7 +101,7 @@ function NavDrawer () {
               Flynn Labs
             </Typography>
             <List component="nav">
-                {['Home', 'Sports', 'Finance', 'Robotics'].map((text, index) => (
+                {['Home', 'Sports', 'Robotics', '3D Sandbox'].map((text, index) => (
                     <ListItemLink
                         to={
                             index === 0 ?
@@ -109,8 +109,8 @@ function NavDrawer () {
                                 index === 1 ?
                                     '/sports' :
                                     index === 2 ?
-                                        '/finance' :
-                                        '/robotics'
+                                        '/robotics' :
+                                        '/three'
                         }
                         icon={
                             index === 0 ? (
@@ -118,9 +118,9 @@ function NavDrawer () {
                             ) : index === 1 ? (
                                 <SportsIcon />
                             ) : index === 2 ? (
-                                <MonetizationOnIcon />
-                            ) : (
                                 <AndroidIcon />
+                            ) : (
+                                <PublicIcon />
                             )
                         }
                         primary={text}
