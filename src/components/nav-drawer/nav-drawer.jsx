@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import Drawer from '@material-ui/core/Drawer';
 import Fab from '@material-ui/core/Fab';
 import List from '@material-ui/core/List';
@@ -96,7 +97,9 @@ function NavDrawer () {
             onClick={toggleDrawer(side, false)}
             onKeyDown={toggleDrawer(side, false)}
         >
-            <h1 className={classes.drawerTitle}>Flynn Labs</h1>
+            <Typography variant="h4" style={{ padding: '8px' }}>
+              Flynn Labs
+            </Typography>
             <List component="nav">
                 {['Home', 'Sports', 'Finance', 'Robotics'].map((text, index) => (
                     <ListItemLink

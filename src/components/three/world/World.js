@@ -25,7 +25,7 @@ function World() {
              camera={{ position: [-1, 1, 2.5], fov: 50 }}
              onCreated={({ gl, camera, scene }) => {
                camera.lookAt(0, 0, 0)
-               scene.background = new THREE.Color('lightblue')
+               scene.background = new THREE.Color('black')
                gl.toneMapping = THREE.ACESFilmicToneMapping
                gl.outputEncoding = THREE.sRGBEncoding }}>
        <Controls />

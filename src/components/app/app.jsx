@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import BottomNav from '../bottom-nav/bottom-nav';
+import NavDrawer from '../nav-drawer/nav-drawer.jsx';
 import Home from '../home/home';
 import About from '../about/about';
 import Contact from '../contact/contact';
@@ -33,8 +33,8 @@ function App () {
                   <Route exact path="/robotics"><Robotics /></Route>
                   <Route exact path="/error"><Error /></Route>
                 </Switch>
-                <BottomNav />
             </div>
+            <NavDrawer />
         </Router>
     );
 }

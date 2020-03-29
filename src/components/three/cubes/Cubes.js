@@ -23,7 +23,7 @@ function Cubes ({ number }) {
      return array
   }, [ number])
 
-  useFrame(() => api.setPositionAt(Math.floor(Math.random() * number), 0, Math.random() * 2, 0))
+  useFrame(() => api.setPositionAt(Math.floor(Math.random() * number), Math.random(), Math.random() * 2, Math.random()))
  
   return (
     <instancedMesh receiveShadow castShadow ref={ref} args={[null, null, number]}>

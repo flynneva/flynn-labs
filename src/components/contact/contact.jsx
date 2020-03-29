@@ -12,52 +12,56 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 function Contact () {
 
     const gridStyle = {
-      width: '100vw',
-      height: '100%',
-      minHeight: '100vh',
-    }
-    
+        justifyContent: 'center',
+        height: '100vh',
+    };
+
+    const itemStyle = {
+      textAlign: 'center',
+      margin: '8px',
+    };
+
+    const cardActionsStyle = {
+        justifyContent: 'center'
+    };
+
     return (
-        <Grid container style={gridStyle} spacing={1}>
-            <Grid item xs={12}>
-                <Grid container justify="center" spacing={2}>
-                    <Grid item xs={10}>
-                        <Card>
-                            <CardContent>
-                                <Typography style={{ textAlign: 'center' }} variant='h4'>Contact</Typography>
-                                <br></br>
-                                <Typography variant='body2' style={{ textAlign: 'center' }}>
-                                Feel free to reach out through any of the channels below.
-                                </Typography>
-                            </CardContent>
-                            <CardActions style={{ justifyContent: 'center' }}>
-                                <Button
-                                    size="medium"
-                                    startIcon={<GitHubIcon />}
-                                    href="https://github.com/flynneva"
-                                >
-                  Github
-                                </Button>
-                                <Button
-                                    size="medium"
-                                    startIcon={<LinkedInIcon />}
-                                    href="https://www.linkedin.com/in/evan-flynn-466b6a62/"
-                                >
-                  LinkedIn
-                                </Button>
-                                <Button
-                                    size="medium"
-                                    startIcon={<TwitterIcon />}
-                                    href="https://twitter.com/flynneva_"
-                                >
-                  Twitter
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                </Grid>
-            </Grid>
+    <Grid container style={gridStyle} justify="center" spacing={0}>
+        <Grid item xs={12} style={itemStyle}>
+            <Card>
+               <CardContent>
+                   <Typography style={{ textAlign: 'center' }} variant='h4'>Contact</Typography>
+                   <br></br>
+                   <Typography variant='body2' style={{ textAlign: 'center' }}>
+                   Feel free to reach out through any of the channels below.
+                   </Typography>
+               </CardContent>
+               <CardActions style={{ justifyContent: 'center' }}>
+                   <Button
+                       size="medium"
+                       startIcon={<GitHubIcon />}
+                       href="https://github.com/flynneva"
+                   >
+     Github
+                   </Button>
+                   <Button
+                       size="medium"
+                       startIcon={<LinkedInIcon />}
+                       href="https://www.linkedin.com/in/evan-flynn-466b6a62/"
+                   >
+     LinkedIn
+                   </Button>
+                   <Button
+                       size="medium"
+                       startIcon={<TwitterIcon />}
+                       href="https://twitter.com/flynneva_"
+                   >
+     Twitter
+                   </Button>
+               </CardActions>
+           </Card>
         </Grid>
+    </Grid>
     );
 }
 
