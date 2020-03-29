@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import NavDrawer from '../nav-drawer/nav-drawer.jsx';
+import NavDrawer from '../nav-drawer/NavDrawer';
 import Home from '../home/home';
 import About from '../about/about';
 import Contact from '../contact/contact';

@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Drawer from '@material-ui/core/Drawer';
@@ -18,30 +17,6 @@ import PublicIcon from '@material-ui/icons/Public';
 import AndroidIcon from '@material-ui/icons/Android';
 import InfoIcon from '@material-ui/icons/Info';
 import ContactSupportIcon from '@material-ui/icons/ContactSupport';
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1
-    },
-    list: {
-        width: 250
-    },
-    fullList: {
-        width: 'auto'
-    },
-    fabButton: {
-        margin: 0,
-        top: 20,
-        bottom: 'auto',
-        left: 20,
-        right: 'auto',
-        position: 'fixed'
-    },
-    drawerTitle: {
-        textAlign: 'left',
-        margin: theme.spacing(2)
-    }
-}));
 
 function ListItemLink (props) {
     const { icon, primary, to } = props;
@@ -71,7 +46,33 @@ ListItemLink.propTypes = {
 };
 
 function NavDrawer () {
-    const classes = useStyles();
+ 
+    const rootStyle = {
+        flexGrow: 1
+    };
+
+    const listStyle = {
+        width: 250
+    };
+
+    const fullListStyle = {
+        width: 'auto'
+    };
+
+    const fabButtonStyle = {
+        margin: 0,
+        top: 20,
+        bottom: 'auto',
+        left: 20,
+        right: 'auto',
+        position: 'fixed'
+    };
+
+    const drawerTitleStyle = {
+        textAlign: 'left',
+        margin: '16px'
+    };
+
     const [state, setState] = React.useState({
         top: false,
         left: false,
@@ -92,7 +93,7 @@ function NavDrawer () {
 
     const menuList = side => (
         <div
-            className={classes.list}
+            style={listStyle}
             role="presentation"
             onClick={toggleDrawer(side, false)}
             onKeyDown={toggleDrawer(side, false)}
@@ -143,7 +144,7 @@ function NavDrawer () {
     return (
         <Grid container spacing={1}>
             <Grid item>
-                <Fab className={classes.fabButton} onClick={toggleDrawer('left', true)}>
+                <Fab style={fabButtonStyle} onClick={toggleDrawer('left', true)}>
                     <MenuIcon />
                 </Fab>
                 <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
