@@ -9,10 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: ros-tooling/setup-ros@0.0.11
+      - name: Setup ROS2
+        uses: ros-tooling/setup-ros@0.0.11
         with:
           required-ros-distributions: eloquent
-      - run: "source /opt/ros/eloquent/setup.bash"
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup Node.js
@@ -21,5 +21,3 @@ jobs:
           node-version: '10.x'
       - run: source /opt/ros/eloquent/setup.bash && npm install && npm run build --if-present
       # - run: npm test
-        env:
-          CI: true
