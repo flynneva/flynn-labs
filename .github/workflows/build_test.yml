@@ -9,8 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: install and build Node.js
+      - name: ROS 2 CI Action
+        uses: ros-tooling/action-ros-ci@0.0.12
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install and Build package
         uses: actions/setup-node@v1
         with: 
           node-version: '10.x'
