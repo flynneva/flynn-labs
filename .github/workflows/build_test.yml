@@ -18,8 +18,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: install and build Node.js
         uses: actions/setup-node@v1
-          with:
-            node-version: '10.x'
+        with: 
+          node-version: '10.x'
       - run: npm install
       - run: npm run build --if-present
       # - run: npm test
