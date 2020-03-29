@@ -14,7 +14,7 @@ jobs:
       - uses: ros-tooling/setup-ros@0.0.14
         with: 
           required-ros-distributions: eloquent
-      - run: "source /opt/ros/dashing/setup.bash"
+      - run: "source /opt/ros/eloquent/setup.bash"
       - uses: actions/checkout@v2
       - name: install and build Node.js
         uses: actions/setup-node@v1
