@@ -7,11 +7,7 @@ on:
 
 jobs:
   build:
-
-    runs-on:
-      using: 'docker'
-      image: 'osrf/ros2:eloquent'
-        
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: install and build Node.js
