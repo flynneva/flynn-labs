@@ -7,23 +7,24 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-        
     steps:
-    - uses: actions/checkout@v2
-    - name: install and build Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - run: npm install
-    - run: npm run build --if-present
-   # - run: npm test
-      env:
-        CI: true
-    - uses: actions-hub/gcloud@271.0.0
-      env:
-        PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
-        APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-      with:
-        args: app deploy app.yaml
+      - name: Setup ROS2
+        uses: ros-tooling/setup-ros@0.0.11
+        with:
+          required-ros-distributions: eloquent
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with: 
+          node-version: '10.x'
+      - name: Install and Build package
+        run: source /opt/ros/eloquent/setup.bash && npm install && npm run build --if-present
+      - name: Deploy to Google App Engine
+        uses: actions-hub/gcloud@271.0.0
+        env:
+          PROJECT_ID: ${{ secrets.GCLOUD_PROJECT_ID }}
+          APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        with:
+          args: app deploy app.yaml
