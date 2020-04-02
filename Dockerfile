@@ -4,32 +4,45 @@
 FROM ros:eloquent
 LABEL maintainer="Evan Flynn <evanflynn.msu@gmail.com>"
 
-# Install Node.js using Node Versioning Manager (NVM)
-# Replace shell with bash so we can source files
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+# Replacing shell with bash for later docker build commands
+# This is needed for sourcing ROS later on
+RUN mv /bin/sh /bin/sh-old && \
+    ln -s /bin/bash /bin/sh
+RUN echo "source /opt/ros/eloquent/setup.bash" >> $HOME/.bashrc
 
-# Set debconf to run non-interactively
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+# Update and install dependencies
+RUN apt-get update && apt-get install -y git locales python curl wget
+RUN locale-gen en_US en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+ENV LANG en_US.UTF-8
 
-# Install base dependencies
-RUN apt-get update && apt-get install -y -q --no-install-recommends \
-        apt-transport-https \
-        build-essential \
-        ca-certificates \
-        curl \
-        git \
-        libssl-dev \
-        wget \
-    && rm -rf /var/lib/apt/lists/*
+# Copy application code
+COPY . /app/
 
-ENV NODE_VERSION 0.10.19
+# Install nvm, Node.js and node-gyp
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION v10.19.0
 
-# Install nvm with node and npm
-RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+RUN mkdir $NVM_DIR
+RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash \
+    && . $NVM_DIR/nvm.sh && \
+    nvm install $NODE_VERSION && \
+    nvm alias default $NODE_VERSION
 
-# Use NVM to install specific Node.js Version
-RUN source ~/.nvm/nvm.sh; \
-    nvm install $NODE_VERSION \
-    nvm use --delete-prefix $NODE_VERSION \
-    node -v \
-    npm -v
+# add node and npm to path so the commands are available
+ENV NODE_PATH $NVM_DIR/$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
+
+WORKDIR /app
+
+# Source the ROS underlay and run npm install
+# sourcing ROS is needed to use the rclnodejs package
+RUN source /opt/ros/eloquent/setup.bash && \
+    npm install  && \
+    npm run build
+
+# Set common env vars
+ENV NODE_ENV production
+ENV PORT 8080
+
+# start
+CMD ["npm", "run", "start"]
