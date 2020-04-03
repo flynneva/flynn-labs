@@ -1,4 +1,4 @@
-## Flynn Labs ![build](https://github.com/flynneva/flynn-labs/workflows/build/badge.svg)
+## Flynn Labs ![build](https://github.com/flynneva/flynn-labs/workflows/build/badge.svg) ![deploy](https://github.com/flynneva/flynn-labs/workflows/deploy/badge.svg)
 
 Welcome to Flynn Labs! This project is actively being developed so bare with me if anything does not work as expected. Issues and Pull Requests are greatly appreciated.
 
