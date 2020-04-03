@@ -60,6 +60,7 @@ function NavDrawer () {
     };
 
     const fabButtonStyle = {
+        backgroundColor: '#11322b',
         margin: 0,
         top: 20,
         bottom: 'auto',
@@ -145,7 +146,7 @@ function NavDrawer () {
         <Grid container spacing={1}>
             <Grid item>
                 <Fab style={fabButtonStyle} onClick={toggleDrawer('left', true)}>
-                    <MenuIcon />
+                    <MenuIcon style={{ fill: 'white' }} />
                 </Fab>
                 <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
                     {menuList('left')}
