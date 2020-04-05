@@ -1,7 +1,6 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const express = require('express');
 const path = require('path');
-var testROSAPI = require("./routes/testROS");
 
 const app = express();
 const BUILD_DIR = path.resolve(path.join(__dirname, 'dist'));
@@ -21,7 +20,6 @@ app.use( '/ncaa_api',
            }
          })
 );
-app.use('/testROS', testROSAPI);
 
 app.get('/', (req, res) => {
   res.sendFile(HTML_FILE);

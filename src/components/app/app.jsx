@@ -8,8 +8,8 @@ import About from '../about/about';
 import Contact from '../contact/contact';
 import Sports from '../sports/sports';
 import Finance from '../finance/finance';
-import HelloWorld from '../ros/hello-world/HelloWorld';
-import Robotics from '../robotics/robotics';
+import Three from '../three/Three';
+import Robotics from '../robotics/Robotics';
 import Error from '../error/Error';
 
 const useStyles = makeStyles(theme => ({
@@ -30,8 +30,8 @@ function App () {
                   <Route exact path="/about"><About /></Route>
                   <Route exact path="/contact"><Contact /></Route>
                   <Route path="/sports"><Sports /></Route>
-                  <Route exact path="/robotics"><HelloWorld /></Route>
-                  <Route exact path="/three"><Robotics /></Route>
+                  <Route exact path="/robotics"><Robotics /></Route>
+                  <Route exact path="/three"><Three /></Route>
                   <Route exact path="/error"><Error /></Route>
                 </Switch>
             </div>

@@ -105,6 +105,7 @@ function NavDrawer () {
             <List component="nav">
                 {['Home', 'Sports', 'Robotics', '3D Sandbox'].map((text, index) => (
                     <ListItemLink
+                        key={index}
                         to={
                             index === 0 ?
                                 '/' :
@@ -133,6 +134,7 @@ function NavDrawer () {
             <List component="nav">
                 {['About', 'Contact'].map((text, index) => (
                     <ListItemLink
+                        key={index}
                         to={index === 0 ? '/about' : '/contact'}
                         icon={index === 0 ? <InfoIcon /> : <ContactSupportIcon />}
                         primary={text}
