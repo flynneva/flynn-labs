@@ -1,31 +1,28 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import BottomNav from '../bottom-nav/bottom-nav';
+import NavDrawer from '../nav-drawer/NavDrawer';
 
-const useStyles = makeStyles(theme => ({
-    root: {
+function Error () {
+    
+    const rootStyle = {
         margin: theme.spacing(1)
-    },
-    paper: {
+    }
+
+    const paperStyle = {
         height: '90vh',
         width: '100%',
         textAlign: 'center',
         paddingBottom: 0
     }
-}));
-
-function Error () {
-    const classes = useStyles();
 
     return (
         <Router>
-            <div className={classes.root}>
-                <Paper elevation={1} className={classes.paper}>
+            <div style={rootStyle}>
+                <Paper elevation={1} style={paperStyle}>
                  Oops! Something went wrong....check back soon and hopefully this will be fixed.
                 </Paper>
-                <BottomNav />
+                <NavDrawer />
             </div>
         </Router>
     );
