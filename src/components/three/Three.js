@@ -4,9 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import World from '../three/world/World';
+import World from './world/World';
 
-function Robotics () {
+function Three () {
 
     const gridStyle = {
       width: '100vw',
@@ -32,4 +32,4 @@ function Robotics () {
     );
 }
 
-export default Robotics;
+export default Three;
