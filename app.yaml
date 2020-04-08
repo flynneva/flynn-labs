@@ -1,5 +1,4 @@
-runtime: custom
-env: flex
+runtime: nodejs10
 
 handlers:
   - url: /ncaa_api/.*
