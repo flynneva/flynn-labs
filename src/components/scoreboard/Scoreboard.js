@@ -79,6 +79,7 @@ class Scoreboard extends Component {
               })
               .catch(error => {
                   console.log(error);
+                  this.setState({ lastUpdated: 'ERROR' });
               });
         } else {
           // do not update

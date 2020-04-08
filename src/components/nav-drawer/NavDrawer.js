@@ -12,7 +12,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
-import SportsIcon from '@material-ui/icons/Sports';
+import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
 import PublicIcon from '@material-ui/icons/Public';
 import AndroidIcon from '@material-ui/icons/Android';
 import InfoIcon from '@material-ui/icons/Info';
@@ -62,8 +62,8 @@ function NavDrawer () {
     const fabButtonStyle = {
         backgroundColor: '#11322b',
         margin: 0,
-        top: 20,
-        bottom: 'auto',
+        top: 'auto',
+        bottom: 20,
         left: 20,
         right: 'auto',
         position: 'fixed'
@@ -103,14 +103,14 @@ function NavDrawer () {
               Flynn Labs
             </Typography>
             <List component="nav">
-                {['Home', 'Sports', 'Robotics', '3D Sandbox'].map((text, index) => (
+                {['Home', 'NCAA Basketball', 'Robotics', '3D Sandbox'].map((text, index) => (
                     <ListItemLink
                         key={index}
                         to={
                             index === 0 ?
                                 '/' :
                                 index === 1 ?
-                                    '/sports' :
+                                    '/sports/ncaa/basketball-men' :
                                     index === 2 ?
                                         '/robotics' :
                                         '/three'
@@ -119,7 +119,7 @@ function NavDrawer () {
                             index === 0 ? (
                                 <HomeIcon />
                             ) : index === 1 ? (
-                                <SportsIcon />
+                                <SportsBasketballIcon />
                             ) : index === 2 ? (
                                 <AndroidIcon />
                             ) : (

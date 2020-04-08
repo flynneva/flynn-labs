@@ -21,6 +21,10 @@ function SportLevel () {
       textAlign: 'center',
     };
 
+    const linkStyle = {
+      textDecoration: 'none',
+    };
+
     return (
       <Switch>
         <Route exact path={path}>
@@ -31,7 +35,7 @@ function SportLevel () {
               </Typography>
             </Grid>
             <Grid item>
-              <Link to={`${url}/basketball-men`}>
+              <Link style={linkStyle} to={`${url}/basketball-men`}>
                 <Button size="large" variant="contained">Men's Basketball</Button>
               </Link>
             </Grid>

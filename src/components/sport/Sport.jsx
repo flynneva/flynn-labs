@@ -18,7 +18,6 @@ function Sport () {
       margin: 0,
       padding: 0,
       paddingTop: 16,
-      marginBottom: '75px',
     };
 
     const titleStyle = {
