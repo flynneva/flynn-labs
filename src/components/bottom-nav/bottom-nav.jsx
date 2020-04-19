@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from '@material-ui/icons/Home';
@@ -8,16 +7,8 @@ import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import AndroidIcon from '@material-ui/icons/Android';
 
-const useStyles = makeStyles({
-    root: {
-        width: '100vw',
-        position: 'fixed',
-        bottom: 0
-    }
-});
 
 function BottomNav () {
-    const classes = useStyles();
     const [value, setValue] = React.useState('home');
 
     const handleChange = (event, newValue) => {
@@ -25,14 +16,16 @@ function BottomNav () {
     };
 
     const navStyle = {
-      height: '75px',
+      width: '100vw',
+      position: 'fixed',
+      bottom: 0,
+      height: '75px'
     }
 
     return (
         <BottomNavigation
             value={value}
             onChange={handleChange}
-            className={classes.root}
             style={navStyle}
         >
             <BottomNavigationAction

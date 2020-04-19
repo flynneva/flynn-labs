@@ -244,8 +244,6 @@ class BoxScore extends Component {
           var homePos = parseFloat(parseFloat(parseFloat(parseFloat(hFGA + parseFloat(0.475 * hFTA))) - hTO) - aOReb);
           var awayPos = parseFloat(parseFloat(parseFloat(parseFloat(aFGA + parseFloat(0.475 * aFTA))) + aTO) - aOReb);
 
-          console.log(homePos);
-          console.log(awayPos);
           totalPos = parseFloat( parseFloat(homePos + awayPos) / 2);
         }
         
