@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import GameCard from '../game-card/game-card';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
@@ -8,6 +9,7 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { Typography } from '@material-ui/core';
 
 const baseURL = '/ncaa_api/casablanca/scoreboard/';
 
@@ -88,10 +90,49 @@ class Scoreboard extends Component {
 
     render () {
         const { games, selectedDate } = this.state;
+        let listOfGames;
 
         const gridStyle = {
+          justifyContent: 'center'
         };
- 
+
+        if (games.length > 0) {
+          listOfGames =
+              games.map(game => (
+                <Grid item key={game.game.gameID}>
+                    <GameCard
+                        sport={this.props.sport}
+                        gameID={game.game.url}
+                        homeName={game.game.home.names.char6}
+                        awayName={game.game.away.names.char6}
+                        gameStatus={game.game.gameState}
+                        currentClock={game.game.contestClock}
+                        currentPeriod={game.game.currentPeriod}
+                        homeScore={game.game.home.score}
+                        homeRecord={game.game.home.description}
+                        homeRank={game.game.home.rank}
+                        awayScore={game.game.away.score}
+                        awayRecord={game.game.away.description}
+                        awayRank={game.game.away.rank}
+                        startDate={game.game.startDate}
+                        startTime={game.game.startTime}
+                    />
+                </Grid>
+              ));
+        } else {
+          listOfGames =
+              <Grid item>
+                <Paper style={{ margin: '8px', padding: '8px', textAlign: 'center'}}>
+                  <Typography>
+                    No games seem to be scheduled for the date selected.
+                  </Typography>
+                  <Typography>
+                    Please select another date.
+                  </Typography>
+                </Paper>
+              </Grid>
+        }
+
         return (
             <Grid container spacing={0} justify='center' alignItems='flex-start' direction='column' style={gridStyle}>
                <Grid item style={{ width: '100vw' }}>
@@ -110,29 +151,9 @@ class Scoreboard extends Component {
                    </Grid>
                  </MuiPickersUtilsProvider>
                </Grid>
-               <Grid item>
+               <Grid item style={{ width: '100vw' }}>
                  <Grid container spacing={0} justify='center' alignItems='flex-start' style={gridStyle}>
-                    {games.map(game => (
-                       <Grid item key={game.game.gameID}>
-                           <GameCard
-                               sport={this.props.sport}
-                               gameID={game.game.url}
-                               homeName={game.game.home.names.char6}
-                               awayName={game.game.away.names.char6}
-                               gameStatus={game.game.gameState}
-                               currentClock={game.game.contestClock}
-                               currentPeriod={game.game.currentPeriod}
-                               homeScore={game.game.home.score}
-                               homeRecord={game.game.home.description}
-                               homeRank={game.game.home.rank}
-                               awayScore={game.game.away.score}
-                               awayRecord={game.game.away.description}
-                               awayRank={game.game.away.rank}
-                               startDate={game.game.startDate}
-                               startTime={game.game.startTime}
-                           />
-                       </Grid>
-                     ))}
+                    {listOfGames}
                  </Grid>
                </Grid>
              </Grid>

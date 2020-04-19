@@ -180,7 +180,7 @@ class GamePage extends Component {
                       venueName={this.state.gameInfo.venue.name}
                       venueState={this.state.gameInfo.venue.state} />
             </Grid>
-            <Grid item justify='center' style={gameDetailsStyle}>
+            <Grid item style={gameDetailsStyle}>
               {boxScore} 
             </Grid>
           </Grid>
