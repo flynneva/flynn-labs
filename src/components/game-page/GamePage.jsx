@@ -15,6 +15,7 @@ class GamePage extends Component {
         this.state = {
             isMounted: null,
             renderBoxScore: null,
+            renderPbp: null,
             lastUpdated: '',
             gameUrl: '',
             gameID: '',
@@ -26,6 +27,23 @@ class GamePage extends Component {
             scoring_summary: {},
             team_stats: {},
         };
+    }
+
+    getPbp () {
+      var pbp_url = this.state.gameUrl + 'pbp.json';
+      fetch(pbp_url, {
+            method: 'GET',
+            body: JSON.stringify()
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ pbp: data });
+        this.setState({ renderPbp: true });
+        this.setState({ lastUpdated: data.updatedTimestamp });
+      })
+      .catch(error => {
+          console.log(error);
+      });
     }
 
     getBoxScore () {
@@ -45,6 +63,28 @@ class GamePage extends Component {
       });
     }
 
+    getGameInfo () {
+      var game_info_url = this.state.gameUrl + 'gameInfo.json';
+      fetch(game_info_url, {
+            method: 'GET',
+            body: JSON.stringify()
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ gameInfo: data });
+        this.setState({ lastUpdated: data.status.gameState});
+        if(data.tabs.boxscore) {
+          this.getBoxScore();
+        }
+        if(data.tabs.pbp) {
+          this.getPbp();
+        }
+      })
+      .catch(error => {
+          console.log(error);
+      });
+    }
+
     componentDidMount () {
         const id = this.props.match.params.id;
          
@@ -56,33 +96,26 @@ class GamePage extends Component {
     }
 
     async wait() {
-      await new Promise(resolve => setTimeout(resolve, 50000));
+      await new Promise(resolve => setTimeout(resolve, 500000));
       
       return 'done';
     }
 
     componentDidUpdate (prevProps, prevState) {
         if (this.state.isMounted) {
-          if (prevState.lastUpdated !== this.state.lastUpdated) { 
-            var game_info_url = this.state.gameUrl + 'gameInfo.json';
-            fetch(game_info_url, {
-                  method: 'GET',
-                  body: JSON.stringify()
-            })
-            .then(response => response.json())
-            .then(data => {
-              this.setState({ gameInfo: data });
-              if(data.tabs.boxscore) {
-                this.getBoxScore();
-              }
-            })
-            .catch(error => {
-                console.log(error);
-            });
+          if (prevState.lastUpdated == 'final') {
+            // no need to update
+          }
+          else if (prevState.lastUpdated !== this.state.lastUpdated) { 
+            this.getGameInfo();
           } else {
-            this.wait().then(result => {
-              this.setState({ lastUpdated: 'NOW' });
-            });
+            if (prevState.lastUpdated == 'final') {
+              // no need to keep updating
+            } else {
+              this.wait().then(result => {
+                this.setState({ lastUpdated: 'NOW' });
+              });
+            }
           }
         }
     }

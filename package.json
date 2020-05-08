@@ -62,6 +62,7 @@
     "path": "^0.12.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-ros": "^1.0.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.1",
     "react-swipeable-views": "^0.13.8",
