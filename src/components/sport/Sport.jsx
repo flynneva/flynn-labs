@@ -34,14 +34,7 @@ function Sport () {
     return (
       <Switch>
         <Route exact path={path}>
-          <Grid container style={gridStyle} justify='center' direction='column'>
-            <Grid item>
-              <Grid container justify='center'>
-                <Grid item style={{ width: '80%' }}>
-                  <SearchScoreboard />
-                </Grid>
-              </Grid>
-            </Grid>
+	  <Grid container style={gridStyle} justify='center' direction='column'>
             <Grid item>
                <Scoreboard
                       sport={sport}
