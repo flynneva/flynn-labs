@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { createMuiTheme } from '@material-ui/core/styles';
 import { withRouter } from 'react-router';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';

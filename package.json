@@ -16,7 +16,10 @@
     "url": "git+https://github.com/flynneva/flynn-labs.git"
   },
   "keywords": [
-    "react", "ros", "3D", "ncaa"
+    "react",
+    "ros",
+    "3D",
+    "ncaa"
   ],
   "author": "Evan Flynn",
   "license": "MIT",
@@ -45,6 +48,7 @@
     "prettier": "1.19.1",
     "prop-types": "^15.7.2",
     "react-google-charts": "^3.0.15",
+    "react-grid-layout": "^0.18.3",
     "react-spring": "^8.0.27",
     "react-three-fiber": "^4.2.5",
     "three": "^0.114.0",
