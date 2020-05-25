@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import SportLevel from '../sport-level/SportLevel';
+import SportsBar from '../sportsBar/SportsBar';
 
 function Sports () {
     let { path, url } = useRouteMatch();
@@ -25,6 +26,8 @@ function Sports () {
     };
  
     return (
+    <div>
+      <SportsBar />
       <Switch>
         <Route exact path={path}>
           <Grid container spacing={0} direction='column' justify='center' alignItems='center' style={gridStyle}>
@@ -44,6 +47,7 @@ function Sports () {
           <SportLevel />
         </Route>
       </Switch>
+    </div>
     );
 }
 

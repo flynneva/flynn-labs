@@ -136,22 +136,6 @@ class Scoreboard extends Component {
         return (
             <Grid container spacing={0} justify='center' alignItems='flex-start' direction='column' style={gridStyle}>
                <Grid item style={{ width: '100vw' }}>
-                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                   <Grid container justify='space-around'>
-                     <KeyboardDatePicker
-                        margin="normal"
-                        id="date-picker-dialog"
-                        label="Date picker dialog"
-                        format="MM/dd/yyyy"
-                        value={selectedDate}
-                        onChange={this.handleDateChange}
-                        KeyboardButtonProps={{
-                          'aria-label': 'change date',
-                        }} />
-                   </Grid>
-                 </MuiPickersUtilsProvider>
-               </Grid>
-               <Grid item style={{ width: '100vw' }}>
                  <Grid container spacing={0} justify='center' alignItems='flex-start' style={gridStyle}>
                     {listOfGames}
                  </Grid>
