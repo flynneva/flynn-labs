@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import SportLevel from '../sport-level/SportLevel';
 import SportsBar from '../sportsBar/SportsBar';
+import { NCAA } from 'react-ncaa-data';
 
 function Sports () {
     let { path, url } = useRouteMatch();
@@ -26,7 +27,7 @@ function Sports () {
     };
  
     return (
-    <div>
+    <NCAA>
       <SportsBar />
       <Switch>
         <Route exact path={path}>
@@ -47,7 +48,7 @@ function Sports () {
           <SportLevel />
         </Route>
       </Switch>
-    </div>
+    </NCAA>
     );
 }
 
