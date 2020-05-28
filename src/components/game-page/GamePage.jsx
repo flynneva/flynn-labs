@@ -120,8 +120,6 @@ class GamePage extends Component {
     }
 
     render () {
-        const theme = createMuiTheme();
-
         const gridStyle = {
           height: '100%',
           minHeight: '100vh',

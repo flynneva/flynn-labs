@@ -3,32 +3,32 @@ import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import SportsBasketball from '@material-ui/icons/SportsBasketball';
+import WcIcon from '@material-ui/icons/Wc';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider,
          KeyboardTimePicker,
          KeyboardDatePicker } from '@material-ui/pickers';
-import SearchScoreboard from '../search-scoreboard/SearchScoreboard';
+import { useNCAA } from 'react-ncaa-data';
+
 
 function SportsBar () {
   const [ date, setDate ] = useState(new Date());
-  const [ day, setDay ] = useState('');
-  const [ month, setMonth ] = useState('');
-  const [ year, setYear ] = useState('');
-  const [ lastUpdated, setLastUpdated] = useState('');
+  const { sport, gender, toggleGender, changeDate, games, getGames } = useNCAA();
+
+  const handleBasketball = () => {
+    if (gender == 'men') {
+      getGames('basketball-men');
+    } else if (gender == 'women') {
+      getGames('basketball-women');
+    }
+  }
 
   const handleDateChange = (new_date) => {
-    var tempDay = ('0' + new_date.getDate()).slice(-2);
-    var tempMonth = ('0' + (new_date.getMonth() + 1)).slice(-2);
-    var tempYear = new_date.getFullYear();
-
     setDate(new_date);
-    setDay(tempDay);
-    setMonth(tempMonth);
-    setYear(tempYear);
-    setLastUpdated('NOW');
+    changeDate(new_date);
   }
 
   return (
@@ -36,12 +36,22 @@ function SportsBar () {
       <Toolbar>
         <Grid container spacing={1} justify="flex-end">
           <Grid item>
+            <Button color="primary" aria-label="gender" component="span" onClick={toggleGender} startIcon={<WcIcon />}>
+              {gender}
+            </Button>
+          </Grid>
+	  <Grid item>
+            <Button color="primary" aria-label="basketball" component="span" onClick={handleBasketball} startIcon={<SportsBasketball />}>
+              {sport}
+            </Button>
+          </Grid>
+	  <Grid item style={{ width: 150 }}>
 	    <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <Grid container justify='space-around'>
                 <KeyboardDatePicker
                    margin="normal"
                    id="date-picker-dialog"
-                   label="Date picker dialog"
+                   label="Pick a date"
                    format="MM/dd/yyyy"
                    value={date}
                    onChange={handleDateChange}
@@ -50,9 +60,6 @@ function SportsBar () {
                    }} />
               </Grid>
             </MuiPickersUtilsProvider>
-          </Grid>
-	  <Grid item style={{ marginTop: '12px' }}>
-            <SearchScoreboard />
           </Grid>
         </Grid>
       </Toolbar>
