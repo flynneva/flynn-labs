@@ -20,6 +20,9 @@ const theme = createMuiTheme({
     secondary: {
       main: '#e3e3e3',
     },
+    background: {
+      paper: '#eeeeee',
+    },
   },
   status: {
     danger: red,
@@ -32,7 +35,6 @@ const theme = createMuiTheme({
 function App () {
 
     const rootStyle = {
-      backgroundColor: '#eeeeee',
       width: '100%',
     }
 
@@ -44,7 +46,7 @@ function App () {
                   <Route exact path="/"><Home /></Route>
                   <Route exact path="/about"><About /></Route>
                   <Route exact path="/contact"><Contact /></Route>
-                  <Route path="/sports"><Sports /></Route>
+                  <Route path="/sports/ncaa"><Sports /></Route>
                   <Route exact path="/robotics"><ROS><Robotics /></ROS></Route>
                   <Route exact path="/three"><Three /></Route>
                   <Route exact path="/error"><Error /></Route>

@@ -293,7 +293,7 @@ class GameCard extends Component {
             </Grid>
         );
         let gameUrl;
-        gameUrl = '/sports/ncaa/' + this.props.sport +  this.props.gameID;
+        gameUrl = '/sports/ncaa' + this.props.gameID;
         // wrap this component in a Grid component and add your spacing there
         return (
             <Grid item component={Link} to={gameUrl} style={{ color: 'inherit', textDecoration: 'inherit'}}>
