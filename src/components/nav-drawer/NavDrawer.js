@@ -102,14 +102,14 @@ function NavDrawer () {
               Flynn Labs
             </Typography>
             <List component="nav">
-                {['Home', 'NCAA Basketball', 'Robotics', '3D Sandbox'].map((text, index) => (
+                {['Home', 'NCAA Sports', 'Robotics', '3D Sandbox'].map((text, index) => (
                     <ListItemLink
                         key={index}
                         to={
                             index === 0 ?
                                 '/' :
                                 index === 1 ?
-                                    '/sports/ncaa/basketball-men' :
+                                    '/sports/ncaa/' :
                                     index === 2 ?
                                         '/robotics' :
                                         '/three'
