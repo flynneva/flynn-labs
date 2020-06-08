@@ -101,8 +101,7 @@ function GamePage (props) {
       <Grid item>
         {banner}
       </Grid>
-      <br />
-      <Grid item>
+      <Grid item style={{ paddingTop: '16px'}}>
         {boxscoreViz}
       </Grid>
     </Grid>
