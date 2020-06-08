@@ -23,7 +23,6 @@ function Sports () {
       textDecoration: 'none',
     };
 
-    console.log(path);
     return (
     <NCAA>
       <SportsBar />
