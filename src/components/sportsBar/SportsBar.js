@@ -92,7 +92,7 @@ function SportsBar () {
           </Grid>
           <Grid item>
             <Grid item>
-              <IconButton color={sport.includes('basketball') ? "primary" : "primary-light" }
+              <IconButton color={sport.includes('basketball') ? "primary" : "default" }
                   aria-label="basketball"
                   onClick={handleBasketball}>
                 <SportsBasketballIcon />
