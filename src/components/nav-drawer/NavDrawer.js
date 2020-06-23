@@ -144,16 +144,16 @@ function NavDrawer () {
     );
 
     return (
-        <Grid container spacing={1}>
-            <Grid item>
-                <Fab style={fabButtonStyle} color="primary" onClick={toggleDrawer('left', true)}>
-                    <MenuIcon style={{ fill: 'white' }} />
-                </Fab>
-                <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
-                    {menuList('left')}
-                </Drawer>
-            </Grid>
+      <Grid container spacing={0}>
+        <Grid item>
+          <Fab style={fabButtonStyle} color="primary" onClick={toggleDrawer('left', true)}>
+            <MenuIcon style={{ fill: 'white' }} />
+          </Fab>
+          <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+            {menuList('left')}
+          </Drawer>
         </Grid>
+      </Grid>
     );
 }
 

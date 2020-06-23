@@ -41,7 +41,7 @@ function App () {
     return (
         <Router>
           <ThemeProvider theme={theme}>
-            <div style={rootStyle}>
+            <div>
                 <Switch>
                   <Route exact path="/"><Home /></Route>
                   <Route exact path="/about"><About /></Route>
