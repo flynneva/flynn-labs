@@ -26,7 +26,6 @@ function ROSBar () {
   const handleTopic = (event) => {
     for (var i in topics) {
       if (topics[i].path === event.target.value) {
-        createListener(topics[i].path, topics[i].msgType, Number(10), 'none');
         setVizTopic(event.target.value);
       }
     }
