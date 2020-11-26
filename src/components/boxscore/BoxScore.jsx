@@ -241,10 +241,10 @@ class BoxScore extends Component {
           var hTO = parseInt((this.props.homeBox.playerTotals.turnovers));
           var aTO = parseInt((this.props.awayBox.playerTotals.turnovers));
 
-          var homePos = parseFloat(parseFloat(parseFloat(parseFloat(hFGA + parseFloat(0.475 * hFTA))) - hTO) - aOReb);
-          var awayPos = parseFloat(parseFloat(parseFloat(parseFloat(aFGA + parseFloat(0.475 * aFTA))) + aTO) - aOReb);
+          var homePos = parseFloat(hFGA - hOReb + parseFloat(0.475 * hFTA) + hTO);
+          var awayPos = parseFloat(aFGA - aOReb + parseFloat(0.475 * aFTA) + aTO);
 
-          totalPos = parseFloat( parseFloat(homePos + awayPos) / 2);
+          totalPos = parseFloat((homePos + awayPos) / 2);
         }
         
         let home_TO;
@@ -344,7 +344,7 @@ class BoxScore extends Component {
                     <TableRow style={tableTitle}>
                       <TableCell style={{ backgroundColor: '#bfbfbf', padding: 0, margin: 0 }} colSpan={20}>
                         <Typography variant='body2' style={{ margin: 0, padding: 0, paddingRight: 8,  textAlign: 'right', backgroundColor: '#bfbfbf'}}>
-                          Total Possessions: {totalPos.toFixed(0)}
+                          Total Average Possessions: {totalPos.toFixed(0)}
                         </Typography>
                       </TableCell>
                     </TableRow>
