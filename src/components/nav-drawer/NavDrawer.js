@@ -81,14 +81,11 @@ function NavDrawer () {
     });
 
     const toggleDrawer = (side, open) => event => {
-        if (
-            event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-        ) {
-            return;
-        }
-
+      if (event.type === 'keydown')
+      {
+        console.log('CLICK');  
         setState({ ...state, [side]: open });
+      }
     };
 
     const menuList = side => (
@@ -146,7 +143,7 @@ function NavDrawer () {
     return (
       <Grid container spacing={0}>
         <Grid item>
-          <Fab style={fabButtonStyle} color="primary" onClick={toggleDrawer('left', true)}>
+          <Fab style={fabButtonStyle} color="primary" onClick={() => {console.log('CLICK');}}>
             <MenuIcon style={{ fill: 'white' }} />
           </Fab>
           <Drawer open={state.left} onClose={toggleDrawer('left', false)}>

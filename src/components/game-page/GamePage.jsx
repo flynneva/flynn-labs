@@ -14,7 +14,14 @@ function usePrevious(value) {
 }
 
 function GamePage (props) {
-  const { sport, getGameInfo, gameInfo, getBoxScore, boxscore, getPbP } = useNCAA();
+  const { sport,
+          getGameInfo,
+	  loadingGameInfo,
+	  gameInfo,
+	  getBoxScore,
+	  loadingBoxScore,
+	  boxscore,
+	  getPbP } = useNCAA();
 
   let prevGameInfo;
   if (!gameInfo.inputMD5Sum) {
@@ -31,11 +38,19 @@ function GamePage (props) {
   }
 
   useEffect(() => {
-    if (gameInfo.inputMD5Sum === undefined || prevGameInfo !== gameInfo.inputMD5Sum) {
+    console.log('USE EFFECT GAME PAGE');
+    let mounted = true;
+    if (gameInfo.inputMD5Sum === undefined ||
+        prevGameInfo !== gameInfo.inputMD5Sum &&
+        mounted &&
+        !loadingGameInfo) {
       getGameInfo(props.match.params.id);
     }
     
-    if (boxscore === undefined || prevBoxScore !== boxscore.inputMD5Sum) {
+    if (boxscore === undefined ||
+        prevBoxScore !== boxscore.inputMD5Sum &&
+        mounted &&
+        !loadingBoxScore) {
       getBoxScore(props.match.params.id);
     }
   })
@@ -68,7 +83,7 @@ function GamePage (props) {
   let awayMetaData;
   let homeBoxScore;
   let awayBoxScore;
-  if(boxscore !== undefined && boxscore.length !== 0) {
+  if(boxscore !== undefined && boxscore.length !== 0 && !loadingBoxScore) {
     if (boxscore.meta.teams['0'].homeTeam) {
       // home team is team 0
       homeMetaData = boxscore.meta.teams['0'];

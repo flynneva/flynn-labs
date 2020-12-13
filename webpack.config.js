@@ -1,5 +1,7 @@
 const path = require('path');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -27,6 +29,11 @@ module.exports = {
             loader: 'html-loader'
           }
         ]
+      },
+      {
+        test: /\.(js|jsx)$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
       }
     ],
   },
@@ -49,9 +56,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './src/index.html',
+      template: './public/index.html',
       favicon: './public/favicon.ico',
       filename:"index.html"
-    })
+    }),
   ]
 };
