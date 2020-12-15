@@ -33,29 +33,27 @@ const theme = createMuiTheme({
 });
 
 function App () {
-
-    const rootStyle = {
-      width: '100%',
-    }
-
-    return (
-        <Router>
-          <ThemeProvider theme={theme}>
-            <div>
-                <Switch>
-                  <Route exact path="/"><Home /></Route>
-                  <Route exact path="/about"><About /></Route>
-                  <Route exact path="/contact"><Contact /></Route>
-                  <Route path="/sports/ncaa"><Sports /></Route>
-                  <Route exact path="/robotics"><ROS><Robotics /></ROS></Route>
-                  <Route exact path="/three"><Three /></Route>
-                  <Route exact path="/error"><Error /></Route>
-                </Switch>
-            </div>
-            <NavDrawer />
-          </ThemeProvider>
-        </Router>
-    );
+  const rootStyle = {
+    width: '100%',
+  }
+  return (
+    <Router>
+      <ThemeProvider theme={theme}>
+        <div>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/about' component={About} />
+            <Route path='/contact'><Contact /></Route>
+            <Route path='/sports/ncaa'><Sports /></Route>
+            <Route path='/robotics'><ROS><Robotics /></ROS></Route>
+            <Route path='/three'><Three /></Route>
+            <Route path='/error'><Error /></Route>
+          </Switch>
+        </div>
+        <NavDrawer />
+      </ThemeProvider>
+    </Router>
+  );
 }
 
 export default App;

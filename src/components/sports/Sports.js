@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Link, useParams, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, Link, useParams, useRouteMatch } from 'react-router';
 import Grid from '@material-ui/core/Grid';
 import SportsBar from '../sportsBar/SportsBar';
 import Scoreboard from '../scoreboard/Scoreboard';

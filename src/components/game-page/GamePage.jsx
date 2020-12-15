@@ -38,7 +38,7 @@ function GamePage (props) {
   }
 
   useEffect(() => {
-    console.log('USE EFFECT GAME PAGE');
+    console.log(loadingBoxScore);
     let mounted = true;
     if (gameInfo.inputMD5Sum === undefined ||
         prevGameInfo !== gameInfo.inputMD5Sum &&

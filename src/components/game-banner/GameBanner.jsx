@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Paper from '@material-ui/core/Paper';
 import tinycolor from 'tinycolor2';
 
