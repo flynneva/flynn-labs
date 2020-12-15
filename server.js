@@ -4,7 +4,8 @@ const path = require('path');
 
 const app = express();
 const BUILD_DIR = path.resolve(path.join(__dirname, 'dist'));
-const HTML_FILE = path.join(BUILD_DIR, 'index.html');
+const PUBLIC_DIR = path.resolve(path.join(__dirname, 'public'));
+const HTML_FILE = path.join(PUBLIC_DIR, 'index.html');
 
 const targetUrl = 'https://data.ncaa.com/';
 
