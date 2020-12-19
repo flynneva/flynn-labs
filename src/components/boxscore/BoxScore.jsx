@@ -439,7 +439,7 @@ function BoxScore (props) {
                 ['Shooting FTs', hFT, home_FT, aFT, away_FT ],
               ]}
               options={{
-                title: props.homeInfo.shortName + ' ' + props.homeBox.playerTotals.points + ', ' + this.props.awayInfo.shortName + ' ' + this.props.awayBox.playerTotals.points,
+                title: props.homeInfo.shortName + ' ' + props.homeBox.playerTotals.points + ', ' + props.awayInfo.shortName + ' ' + props.awayBox.playerTotals.points,
                 alignment: 'center',
                 chartArea: { width: '90%' },
                 legend: { position: 'bottom', alignment: 'center' },

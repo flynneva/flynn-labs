@@ -47,9 +47,13 @@ function GamePage (props) {
     
     if (boxscore === undefined ||
         prevBoxScore !== boxscore.inputMD5Sum) {
-      if(!loadingBoxScore) {
-        console.log('GET BOX SCORE');
-        getBoxScore(props.match.params.id);
+      if (gameInfo !== undefined &&
+	  gameInfo.length !== 0 &&
+          gameInfo.tabs !== undefined) {
+        if(!loadingBoxScore && gameInfo.tabs.boxscore) {
+          console.log('GET BOX SCORE');
+          getBoxScore(props.match.params.id);
+        }
       }
     }
   })
@@ -84,34 +88,34 @@ function GamePage (props) {
   let awayMetaData;
   let homeBoxScore;
   let awayBoxScore;
-  if(boxscore !== undefined && boxscore.length !== 0) {
+  if(boxscore !== undefined) {
     if(!loadingBoxScore) {
-      console.log('BOX SCORE VIZ INIT');
-      if (boxscore.meta.teams['0'].homeTeam) {
-        // home team is team 0
-        homeMetaData = boxscore.meta.teams['0'];
-        awayMetaData = boxscore.meta.teams['1'];
-      } else {
-        homeMetaData = boxscore.meta.teams['1'];
-        awayMetaData = boxscore.meta.teams['0'];
+      if(boxscore.meta !== undefined) {
+        if (boxscore.meta.teams['0'].homeTeam) {
+          // home team is team 0
+          homeMetaData = boxscore.meta.teams['0'];
+          awayMetaData = boxscore.meta.teams['1'];
+        } else {
+          homeMetaData = boxscore.meta.teams['1'];
+          awayMetaData = boxscore.meta.teams['0'];
+        }
+    
+        if (homeMetaData.id === boxscore.teams['0'].teamId) {
+          // home team is first in list 
+          homeBoxScore = boxscore.teams['0'];
+          awayBoxScore = boxscore.teams['1'];
+        } else {
+          homeBoxScore = boxscore.teams['1'];
+          awayBoxScore = boxscore.teams['0'];
+        }
+        boxscoreViz = (
+            <BoxScore gameID={props.match.params.id}
+                      homeInfo={homeMetaData}
+                      awayInfo={awayMetaData}
+                      homeBox={homeBoxScore}
+                      awayBox={awayBoxScore} />
+        );
       }
-  
-      if (homeMetaData.id === boxscore.teams['0'].teamId) {
-        // home team is first in list 
-        homeBoxScore = boxscore.teams['0'];
-        awayBoxScore = boxscore.teams['1'];
-      } else {
-        homeBoxScore = boxscore.teams['1'];
-        awayBoxScore = boxscore.teams['0'];
-      } 
-  
-      boxscoreViz = (
-          <BoxScore gameID={props.match.params.id}
-                    homeInfo={homeMetaData}
-                    awayInfo={awayMetaData}
-                    homeBox={homeBoxScore}
-                    awayBox={awayBoxScore} />
-      );
     }
   }
 
