@@ -10,9 +10,10 @@ module.exports = merge(common, {
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
       title: 'Production',
-      filename: 'index.html',
-      template: path.resolve(__dirname, 'src', 'index.html'),
-      favicon: path.resolve(__dirname, 'public', 'favicon.ico'),
+      template: 'public/index.html',
+      favicon: 'public/favicon.ico',
+      hash: true,
+      inject: 'body',
     }),
   ],
 

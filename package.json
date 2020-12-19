@@ -1,6 +1,6 @@
 {
   "name": "flynn-labs",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Flynn Labs website",
   "main": "index.js",
   "scripts": {

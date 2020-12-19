@@ -51,7 +51,6 @@ function GamePage (props) {
 	  gameInfo.length !== 0 &&
           gameInfo.tabs !== undefined) {
         if(!loadingBoxScore && gameInfo.tabs.boxscore) {
-          console.log('GET BOX SCORE');
           getBoxScore(props.match.params.id);
         }
       }
