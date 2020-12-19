@@ -22,7 +22,7 @@ function BoxScore (props) {
 
   useEffect(() => {
     let mounted = true;
-    if (mounted) {
+    if(mounted) {
       if(tinycolor(props.homeColor).isLight()) {
         setHomeTextColor('#000000');
       } else {
@@ -34,6 +34,8 @@ function BoxScore (props) {
         setAwayTextColor('#ffffff');
       }
     }
+
+    return () => mounted = false;
   })
 
   const gridStyle = {
@@ -285,7 +287,7 @@ function BoxScore (props) {
   }
   
   let tempoFree;
-  if (props.homeInfo && this.props.homeBox  && totalPos) {
+  if (props.homeInfo && props.homeBox  && totalPos) {
     tempoFree = (
       <Grid item style={boxScoreStyle}>
         <TableContainer component={Paper}>
@@ -430,19 +432,19 @@ function BoxScore (props) {
               chartType='ColumnChart'
               loader={<div>Loading Tempo Free Chart...</div>}
               data={[
-                ['Team', props.homeInfo.shortName, { role: 'annotation'}, this.props.awayInfo.shortName, { role: 'annotation', type: 'string' } ],
+                ['Team', props.homeInfo.shortName, { role: 'annotation'}, props.awayInfo.shortName, { role: 'annotation', type: 'string' } ],
                 ['Shooting', hFG, home_eFG, aFG, away_eFG ],
                 ['Ball Handling', hTO, home_TO, aTO, away_TO ],
                 ['Off Rebounding', hOR, home_OR, aOR, away_OR ],
                 ['Shooting FTs', hFT, home_FT, aFT, away_FT ],
               ]}
               options={{
-                title: props.homeInfo.shortName + ' ' + this.props.homeBox.playerTotals.points + ', ' + this.props.awayInfo.shortName + ' ' + this.props.awayBox.playerTotals.points,
+                title: props.homeInfo.shortName + ' ' + props.homeBox.playerTotals.points + ', ' + this.props.awayInfo.shortName + ' ' + this.props.awayBox.playerTotals.points,
                 alignment: 'center',
                 chartArea: { width: '90%' },
                 legend: { position: 'bottom', alignment: 'center' },
                 backgroundColor: '#eeeeee',
-                colors: [ props.homeInfo.color, this.props.awayInfo.color ],
+                colors: [ props.homeInfo.color, props.awayInfo.color ],
                 vAxis: {
                     title: 'Percent',
                     maxValue: 100,
@@ -454,7 +456,7 @@ function BoxScore (props) {
   }
   
   let totalStats;
-  if (props.homeInfo && this.props.homeBox) {
+  if (props.homeInfo && props.homeBox) {
     totalStats = (
       <Grid item style={boxScoreStyle}>
         <TableContainer component={Paper}>
@@ -709,7 +711,7 @@ function BoxScore (props) {
   }
   
   let homeStats;
-  if (props.homeInfo && this.props.homeBox) {
+  if (props.homeInfo && props.homeBox) {
     // generate home team stats
     homeStats = (
           <Grid item style={boxScoreStyle}>
@@ -719,7 +721,7 @@ function BoxScore (props) {
                   <TableRow style={tableTitle}>
                     <TableCell style={homeTitleCellStyle} colSpan={13}>
                       <Typography variant='h6' style={homeTitleCellStyle}>
-                        {props.homeInfo.shortName} {this.props.homeInfo.nickName}
+                        {props.homeInfo.shortName} {props.homeInfo.nickName}
                       </Typography>
                     </TableCell>
                   </TableRow>
@@ -769,7 +771,7 @@ function BoxScore (props) {
   }
   
   let awayStats;
-  if (props.awayInfo && this.props.awayBox) {
+  if (props.awayInfo && props.awayBox) {
     // generate away team stats
     awayStats = (
           <Grid item style={boxScoreStyle}>
@@ -779,7 +781,7 @@ function BoxScore (props) {
                   <TableRow style={tableTitle}>
                     <TableCell style={awayTitleCellStyle} colSpan={13}>
                       <Typography variant='h6' style={awayTitleCellStyle}>
-                        {props.awayInfo.shortName} {this.props.awayInfo.nickName}
+                        {props.awayInfo.shortName} {props.awayInfo.nickName}
                       </Typography>
                     </TableCell>
                   </TableRow>

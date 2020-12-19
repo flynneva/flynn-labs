@@ -1,24 +1,12 @@
-const path = require('path');
 const webpack = require('webpack');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-  entry: {
-    app: './src/index.js',
-  },
+  entry: './src/index.js',
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.[fullhash].js',
+    publicPath: '',
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebPackPlugin({
-      template: './public/index.html',
-      favicon: './public/favicon.ico',
-      filename:"index.html"
-    }),
-  ],
   module: {
     rules: [
       {
@@ -43,10 +31,10 @@ module.exports = {
         test: /\.(js|jsx)$/,
         enforce: 'pre',
         use: ['source-map-loader'],
-      }
+      },
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: ['.js', '.jsx']
   },
 };
