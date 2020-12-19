@@ -28,7 +28,7 @@ function usePrevious(value) {
 
 function SportsBar () {
   const [ date, setDate ] = useState(new Date());
-  const { month, day, sport, gender, toggleGender, changeDate, games, getGames } = useNCAA();
+  const { month, day, sport, gender, toggleGender, changeDate, games, getGames, loadingGames } = useNCAA();
 
   const prevDate = usePrevious(date)
   const prevGender = usePrevious(gender)
@@ -45,9 +45,9 @@ function SportsBar () {
   })
 
   const handleBasketball = () => {
-    if (gender == 'men') {
+    if (gender == 'men' && !loadingGames) {
       getGames('basketball-men');
-    } else if (gender == 'women') {
+    } else if (gender == 'women' && !loadingGames) {
       getGames('basketball-women');
     }
   }

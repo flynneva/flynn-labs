@@ -81,14 +81,10 @@ function NavDrawer () {
     });
 
     const toggleDrawer = (side, open) => event => {
-        if (
-            event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-        ) {
-            return;
-        }
-
+      if (event.type === 'keydown' || event.type === 'click')
+      {
         setState({ ...state, [side]: open });
+      }
     };
 
     const menuList = side => (

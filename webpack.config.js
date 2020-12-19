@@ -1,12 +1,14 @@
 const path = require('path');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname + '/dist'),
-    publicPath: '/'
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/public'
   },
   module: {
     rules: [
@@ -27,6 +29,11 @@ module.exports = {
             loader: 'html-loader'
           }
         ]
+      },
+      {
+        test: /\.(js|jsx)$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
       }
     ],
   },
@@ -34,9 +41,11 @@ module.exports = {
     extensions: [".js", ".jsx"]
   },
   devServer: {
+    port: 8080,
     hot: true,
     inline: true,
-    contentBase: ['./src', './dist'],
+    contentBase: path.join(__dirname, 'dist'),
+    publicPath: '/public',
     proxy: {
       '/ncaa_api': {
         target: 'https://data.ncaa.com',
@@ -49,9 +58,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './src/index.html',
+      template: './public/index.html',
       favicon: './public/favicon.ico',
       filename:"index.html"
-    })
+    }),
   ]
 };
