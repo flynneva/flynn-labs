@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { green, yellow, red } from '@material-ui/core/colors';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 import NavDrawer from '../nav-drawer/NavDrawer';
 import Home from '../home/Home';
 import About from '../about/About';
@@ -36,18 +36,21 @@ function App () {
   const rootStyle = {
     width: '100%',
   }
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <div>
           <Switch>
-            <Route exact path='/' component={Home} />
             <Route path='/about' component={About} />
-            <Route path='/contact'><Contact /></Route>
-            <Route path='/sports/ncaa'><Sports /></Route>
+            <Route path='/contact' component={Contact} />
+            <Route path='/sports/ncaa' component={Sports} />
+            <Redirect from='/sports' to='/sports/ncaa' />
             <Route path='/robotics'><ROS><Robotics /></ROS></Route>
-            <Route path='/three'><Three /></Route>
-            <Route path='/error'><Error /></Route>
+            <Route path='/three' component={Three} />
+            <Route path='/error' component={Error} />
+            <Route path='/home' component={Home} />
+            <Redirect from='/' to='/home' />
           </Switch>
         </div>
         <NavDrawer />

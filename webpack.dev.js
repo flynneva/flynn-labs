@@ -30,8 +30,8 @@ module.exports = merge(common, {
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
       title: 'Development',
-      template: 'public/index.html',
-      favicon: 'public/favicon.ico',
+      template: './public/index.html',
+      favicon: './public/favicon.ico',
       hash: true,
       inject: 'body',
     }),

@@ -2,11 +2,11 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: '/src/index.js',
   output: {
     filename: 'bundle.[fullhash].js',
     path: path.resolve(process.cwd(), 'dist'),
-    publicPath: '',
+    publicPath: '/',
   },
   module: {
     rules: [
