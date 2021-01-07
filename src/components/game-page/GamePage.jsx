@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState} from 'react';
 import { withRouter } from 'react-router';
 import Grid from '@material-ui/core/Grid';
 import BoxScore from '../boxscore/BoxScore';
@@ -16,12 +16,21 @@ function usePrevious(value) {
 function GamePage (props) {
   const { sport,
           getGameInfo,
-	  loadingGameInfo,
 	  gameInfo,
+	  loadingGameInfo,
 	  getBoxScore,
 	  loadingBoxScore,
 	  boxscore,
 	  getPbP } = useNCAA();
+
+  const [refreshBoxScore, setRefreshBoxScore] = useState(false)
+
+  const gridStyle = {
+    margin: 0,
+    padding: 0,
+    width: '100vw',
+    justifyContent: 'center',
+  };
 
   let prevGameInfo;
   if (!gameInfo.inputMD5Sum) {
@@ -31,27 +40,43 @@ function GamePage (props) {
   }
 
   let prevBoxScore;
-  if (!boxscore.inputMD5Sum) {
+  if (!boxscore) {
     prevBoxScore = usePrevious(boxscore);
   } else {
     prevBoxScore = usePrevious(boxscore.inputMD5Sum);
   }
 
   useEffect(() => {
-    if (gameInfo.inputMD5Sum === undefined ||
-        prevGameInfo !== gameInfo.inputMD5Sum) {
-      if(!loadingGameInfo) {
-        getGameInfo(props.match.params.id);
+    if (props.match.params.id !== gameInfo.id) {
+      if (!loadingGameInfo) {
+        if (props.match.params.id !== gameInfo.id) {
+          getGameInfo(props.match.params.id)
+          setRefreshBoxScore(true)
+        } else if (gameInfo.status) {
+          if (gameInfo.status.gameState !== 'final' &&
+	      gameInfo.status.gameState !== 'postponed' &&
+	      gameInfo.status.gameState !== 'pre') {
+	    // update gameInfo every 1 second if game is live
+            setTimeout(() => {getGameInfo(props.match.params.id)}, 1000)
+          }
+	} else {
+	  getGameInfo(props.match.params.id);
+          setRefreshBoxScore(true)
+        }
       }
     }
-    
-    if (boxscore === undefined ||
-        prevBoxScore !== boxscore.inputMD5Sum) {
-      if (gameInfo !== undefined &&
-	  gameInfo.length !== 0 &&
-          gameInfo.tabs !== undefined) {
-        if(!loadingBoxScore && gameInfo.tabs.boxscore) {
-          getBoxScore(props.match.params.id);
+ 
+    if (!loadingGameInfo &&
+        gameInfo.tabs !== undefined) {
+      if (refreshBoxScore) {
+        console.log('refresh box score')
+        if(gameInfo.tabs.boxscore) {
+          console.log('boxscore available')
+          if (!loadingBoxScore) {
+            console.log('get box score')
+            getBoxScore(props.match.params.id)
+            setRefreshBoxScore(false)
+          }
         }
       }
     }
@@ -59,7 +84,6 @@ function GamePage (props) {
 
   let banner;
   if (gameInfo !== undefined  && gameInfo.length !== 0) {
-    if(!loadingGameInfo) {
       banner = <GameBanner homeName={gameInfo.home.names['6Char']}
                            homeRecord={gameInfo.home.record}
                            homeColor={gameInfo.home.color}
@@ -79,7 +103,6 @@ function GamePage (props) {
                            venueCity={gameInfo.venue.city}
                            venueName={gameInfo.venue.name}
                            venueState={gameInfo.venue.state} />
-    }
   }
 
   let boxscoreViz;
@@ -88,34 +111,37 @@ function GamePage (props) {
   let homeBoxScore;
   let awayBoxScore;
   if(boxscore !== undefined) {
-    if(!loadingBoxScore) {
-      if(boxscore.meta !== undefined) {
-        if (boxscore.meta.teams['0'].homeTeam) {
-          // home team is team 0
-          homeMetaData = boxscore.meta.teams['0'];
-          awayMetaData = boxscore.meta.teams['1'];
-        } else {
-          homeMetaData = boxscore.meta.teams['1'];
-          awayMetaData = boxscore.meta.teams['0'];
-        }
-    
-        if (homeMetaData.id === boxscore.teams['0'].teamId) {
-          // home team is first in list 
-          homeBoxScore = boxscore.teams['0'];
-          awayBoxScore = boxscore.teams['1'];
-        } else {
-          homeBoxScore = boxscore.teams['1'];
-          awayBoxScore = boxscore.teams['0'];
-        }
-        boxscoreViz = (
-            <BoxScore gameID={props.match.params.id}
-                      homeInfo={homeMetaData}
-                      awayInfo={awayMetaData}
-                      homeBox={homeBoxScore}
-                      awayBox={awayBoxScore} />
-        );
+    if(boxscore.meta !== undefined) {
+      if (boxscore.meta.teams['0'].homeTeam) {
+        // home team is team 0
+        homeMetaData = boxscore.meta.teams['0'];
+        awayMetaData = boxscore.meta.teams['1'];
+      } else {
+        homeMetaData = boxscore.meta.teams['1'];
+        awayMetaData = boxscore.meta.teams['0'];
       }
+    
+      if (homeMetaData.id === boxscore.teams['0'].teamId) {
+        // home team is first in list 
+        homeBoxScore = boxscore.teams['0'];
+        awayBoxScore = boxscore.teams['1'];
+      } else {
+        homeBoxScore = boxscore.teams['1'];
+        awayBoxScore = boxscore.teams['0'];
+      }
+      boxscoreViz = (
+          <BoxScore gameID={props.match.params.id}
+                    homeInfo={homeMetaData}
+                    awayInfo={awayMetaData}
+                    homeBox={homeBoxScore}
+                    awayBox={awayBoxScore} />
+      );
     }
+  }
+
+  if (refreshBoxScore ||
+      boxscore === undefined) {
+    boxscoreViz = <Grid container style={gridStyle}>No Boxscore Data Available</Grid>
   }
 
   return (

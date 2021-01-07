@@ -10,8 +10,13 @@ import { useNCAA } from 'react-ncaa-data';
 function Scoreboard () {
   const { games, sport } = useNCAA();
  
-  let game_cards;
+  const gridStyle = {
+    width: '100%',
+    margin: 0,
+    padding: 0,
+  };
 
+  let game_cards;
   if (games.length > 0) {
     game_cards = games.map(game => (
       <Grid item key={game.game.gameID}>
@@ -47,9 +52,13 @@ function Scoreboard () {
   }
 
   return (
-  <Grid container spacing={0} justify='center' alignItems='center'>
-    {game_cards}
-  </Grid>
+    <Grid container style={gridStyle} justify='center' direction='column'>
+      <Grid item>
+        <Grid container spacing={0} justify='center' alignItems='center'>
+          {game_cards}
+	</Grid>
+      </Grid>
+    </Grid>
   );
 }
 

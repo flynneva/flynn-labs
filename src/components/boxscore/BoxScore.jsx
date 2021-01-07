@@ -423,7 +423,7 @@ function BoxScore (props) {
     var aOR = parseFloat(away_OR);
     var hFT = parseFloat(home_FT);
     var aFT = parseFloat(away_FT);
-  
+
     tempoFreeGraph = (
           <Grid item style={{ maxWidt: '95vw' }}>
             <Chart
