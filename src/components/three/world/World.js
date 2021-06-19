@@ -1,8 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import * as THREE from 'three';
-import { Canvas } from 'react-three-fiber';
-import { Physics } from 'use-cannon';
+import { Canvas } from '@react-three/fiber';
+import { Physics } from '@react-three/cannon';
 import Controls from '../controls/Controls';
 import Sun from '../sun/Sun';
 import Plane from '../plane/Plane';

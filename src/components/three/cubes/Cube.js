@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import { random } from "lodash";
-import { useFrame } from "react-three-fiber";
+import { useFrame } from "@react-three/fiber";
 
 function Cube () {
   const mesh = useRef();

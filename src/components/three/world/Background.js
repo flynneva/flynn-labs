@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import * as THREE from 'three';
-import { Canvas } from 'react-three-fiber';
+import { Canvas } from '@react-three/fiber';
 import Controls from '../controls/Controls';
 import Sun from '../sun/Sun';
 import RandomCubes from '../backgrounds/RandomCubes';

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import * as THREE from 'three';
-import { useFrame } from "react-three-fiber";
-import { useBox } from 'use-cannon';
+import { useFrame } from "@react-three/fiber";
+import { useBox } from '@react-three/cannon';
 import niceColors from 'nice-color-palettes';
 
 function Cubes ({ number }) {

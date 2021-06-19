@@ -1,5 +1,5 @@
 import React from 'react';
-import { useThree } from 'react-three-fiber';
+import { useThree } from '@react-three/fiber';
 
 function Scene() {
   const { camera } = useThree();

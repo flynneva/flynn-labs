@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePlane } from 'use-cannon';
+import { usePlane } from '@react-three/cannon';
 
 function Plane(props) {
   const [ref] = usePlane(() => ({ mass: 0, ...props }))
