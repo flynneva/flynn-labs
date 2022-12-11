@@ -61,7 +61,7 @@
     "@material-ui/pickers": "^3.2.10",
     "@react-three/cannon": "^2.3.2",
     "@react-three/fiber": "^7.0.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "http-proxy-middleware": "^1.0.6",
     "module-alias": "^2.2.2",
     "react": "^17.0.1",
